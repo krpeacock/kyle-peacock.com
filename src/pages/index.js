@@ -1,5 +1,4 @@
 import React from 'react'
-import withHooks, { useState, useEffect } from 'react-with-hooks'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
@@ -33,9 +32,9 @@ const IndexPage = () => (
     <GoTo>
       <p>Why you're probably here:</p>
 
-      <Link to="portfolio">stuff I've made</Link>
       <Link to="about">about me</Link>
       <Link to="blog">my blog</Link>
+      <Link to="portfolio">stuff I've made</Link>
     </GoTo>
   </Layout>
 )

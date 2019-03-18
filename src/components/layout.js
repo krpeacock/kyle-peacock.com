@@ -67,7 +67,8 @@ const Button = styled.button`
 `
 
 const Layout = withHooks(({ children }) => {
-  const [mode, setMode] = useState('light')
+  const pulledState = localStorage.getItem('darkmode') || 'light'
+  const [mode, setMode] = useState(pulledState)
   return (
     <>
       <GlobalStyle mode={mode} />
