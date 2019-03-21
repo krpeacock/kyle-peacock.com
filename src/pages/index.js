@@ -33,7 +33,7 @@ const IndexPage = () => (
       <p>Why you're probably here:</p>
 
       <Link to="about">about me</Link>
-      <Link to="blog">my blog</Link>
+      <a href="https://peacock.dev/blog">my blog</a>
       <Link to="portfolio">stuff I've made</Link>
     </GoTo>
   </Layout>
