@@ -1,5 +1,5 @@
 import React from 'react'
-import withHooks, { useState } from 'react-with-hooks'
+import withHooks, { useState, useEffect } from 'react-with-hooks'
 import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
 import Typography from 'typography'
@@ -84,8 +84,10 @@ const Button = styled.button`
 `
 
 const Layout = withHooks(({ children }) => {
-  const pulledState = localStorage.getItem('mode') || 'light'
-  const [mode, setMode] = useState(pulledState)
+  const [mode, setMode] = useState('light')
+  useEffect(() => {
+    setMode(localStorage.getItem('mode'))
+  })
   return (
     <>
       <GlobalStyle mode={mode} />
