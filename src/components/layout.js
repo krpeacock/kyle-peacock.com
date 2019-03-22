@@ -83,11 +83,11 @@ const Button = styled.button`
   border-radius: 100%;
 `
 
+const useDidMount = f => useEffect(() => f && f(), [])
+
 const Layout = withHooks(({ children }) => {
   const [mode, setMode] = useState('light')
-  useEffect(() => {
-    setMode(localStorage.getItem('mode'))
-  })
+  useDidMount(() => setMode(localStorage.getItem('mode') || 'light'))
   return (
     <>
       <GlobalStyle mode={mode} />
