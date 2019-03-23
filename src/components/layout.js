@@ -88,6 +88,7 @@ const useDidMount = f => useEffect(() => f && f(), [])
 const Layout = withHooks(({ children }) => {
   const [mode, setMode] = useState('light')
   useDidMount(() => setMode(localStorage.getItem('mode') || 'light'))
+
   return (
     <>
       <GlobalStyle mode={mode} />
