@@ -113,4 +113,5 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
+console.log('test')
 export default Layout
