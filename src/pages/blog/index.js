@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
 import PowerStrip from './power-strip'
 import SiteUpgrade from './site-upgrade'

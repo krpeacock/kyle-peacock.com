@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
 import Typography from 'typography'
 import fairyGatesTheme from 'typography-theme-fairy-gates'
+import store from 'store'
 
 const black = 'black'
 fairyGatesTheme.headerColor = black
@@ -85,7 +86,7 @@ const useDidMount = f => useEffect(() => f && f(), [])
 
 const Layout = ({ children }) => {
   const [mode, setMode] = useState('light')
-  useDidMount(() => setMode(localStorage.getItem('mode') || 'light'))
+  useDidMount(() => setMode(store.get('mode') || 'light'))
 
   return (
     <>
@@ -94,7 +95,7 @@ const Layout = ({ children }) => {
         type="button"
         onClick={() => {
           let newMode = mode === 'light' ? 'dark' : 'light'
-          localStorage.setItem('mode', newMode)
+          store.set('mode', newMode)
           return setMode(newMode)
         }}
         title="toggle dark mode"
