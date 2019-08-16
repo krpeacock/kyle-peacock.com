@@ -56,7 +56,8 @@ typings/
 
 # gatsby files
 .cache/
-public
+public/*
+public/static/d/*
 
 # Mac files
 .DS_Store
@@ -67,3 +68,10 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+
+# Don't ignore static assets
+!public/static
+!public/static/*
+!public/static/icons
+!public/static/icons/*

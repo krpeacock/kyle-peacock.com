@@ -1,5 +1,4 @@
-import React from 'react'
-import withHooks, { useState, useEffect } from 'react-with-hooks'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
 import Typography from 'typography'
@@ -24,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     overflow-x: hidden;
     text-transform: lowercase;
-    background: white;
+    background: ${props => (props.mode === 'light' ? 'white' : `black`)};
     filter: ${props => (props.mode === 'light' ? null : `invert(100%)`)};
     a {
     color: ${black};
@@ -44,19 +43,18 @@ const GlobalStyle = createGlobalStyle`
 
 `
 
-const Main = styled.main`
+export const Main = styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
   width: 100%;
   overflow-x: hidden;
+  min-height: 100vh;
   height: 100%;
-  height: -webkit-fill-available;
   background: white;
-  float: left;
+  padding: 1rem;
   @media (min-width: 376px) {
     text-align: left;
-    min-height: initial;
   }
 `
 
@@ -85,7 +83,7 @@ const Button = styled.button`
 
 const useDidMount = f => useEffect(() => f && f(), [])
 
-const Layout = withHooks(({ children }) => {
+const Layout = ({ children }) => {
   const [mode, setMode] = useState('light')
   useDidMount(() => setMode(localStorage.getItem('mode') || 'light'))
 
@@ -107,7 +105,7 @@ const Layout = withHooks(({ children }) => {
       <Footer>&copy; Kyle Peacock {new Date().getFullYear()}</Footer>
     </>
   )
-})
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
