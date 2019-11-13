@@ -20,6 +20,15 @@ const SecondPage = () => (
         <a href="https://smvsf.org/">Episcopal Church of St Mary the Virgin.</a>
       </p>
       <p>
+        In my spare time, I've been spearheading ongoing projects at{' '}
+        <a href="https://codeforsanfrancisco.org/">Code for San Francisco</a>,
+        including a PWA for reporting bike lane violations to SF311{' – '}
+        <a href="https://app.lanebreach.org">app.lanebreach.org</a>, and a
+        website to inform California renters about upcoming legislation that
+        will offer them new protections –{' '}
+        <a href="https://rentcap.info">rentcap.info</a>.
+      </p>
+      <p>
         I grew up in Walnut Creek and went to college in Illinois where I
         studied Political Science and Philosophy. My wife and I met in Oxford
         while studying abroad, and we moved back to the bay area in 2015.
@@ -42,6 +51,12 @@ const SecondPage = () => (
         <a href="https://www.splunk.com/">Splunk</a> before settling into my
         current role.
       </p>
+
+      <a href="https://docs.google.com/document/d/17bodJJkgD76tYKhIOg-cEJlXrRGoOWpcKzUobClP5y8/edit?usp=sharing">
+        My Resume
+      </a>
+      <br />
+      <br />
       <Link to="/">Go back to the homepage</Link>
     </Container>
   </Layout>

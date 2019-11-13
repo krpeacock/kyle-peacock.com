@@ -14,6 +14,7 @@ const Portfolio = () => (
   <Layout>
     <Section>
       <h1>Portfolio</h1>
+      <a href="https://rentcap.info">Rentcap</a>
       <a href="https://app.lanebreach.org">Lanebreach (311 reporting tool)</a>
       <a href="https://www.instructables.com/id/Google-Home-Raspberry-Pi-Power-Strip/">
         Raspberry Pi + Google Home Power Strip
