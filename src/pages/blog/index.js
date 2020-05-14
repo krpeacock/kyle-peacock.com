@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PowerStrip from "./power-strip";
 import SiteUpgrade from "./site-upgrade";
+import WebWorkers from "./web-workers";
 
 const Banner = styled.div`
   width: 100%;
@@ -12,6 +13,7 @@ const Banner = styled.div`
 const Blog = () => (
   <div>
     <Banner />
+    <WebWorkers />
     <SiteUpgrade />
     <PowerStrip />
   </div>
