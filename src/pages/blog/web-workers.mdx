@@ -1,7 +1,7 @@
 import WorkerParent from '../../components/WorkerParent.tsx'
 import { TitleSection } from '../../components/BlogComponents'
 
-<TitleSection title="Un<script>: How do web workers work?" date="5/13/2020" />
+<TitleSection title="web workers" date="5/13/2020" />
 
 I've heard some people say I should use web workers, but that always seemed like a pain.
 
@@ -127,45 +127,54 @@ And the WorkerParent, now a React component:
 
 ```ts
 // WorkerParent.tsx
-import React, { useEffect, useState } from 'react'
-import Worker from 'worker-loader!./Worker'
-
-const worker = new Worker()
-
-worker.postMessage({ a: 1 })
-worker.onmessage = event => {
-  console.log('parent event', event)
-}
-
-worker.addEventListener('message', event => {})
-
+import React, { useEffect, useState } from "react";
+import WebpackWorker from "worker-loader!*";
 interface Props {}
 
+type WorkerState = WebpackWorker | undefined;
+
 function WorkerParent(props: Props) {
-  const {} = props
-  const [count, setCount] = useState(0)
+  const {} = props;
+  const [count, setCount] = useState(0);
+  const [worker, setWorker] = useState<WorkerState>();
 
   useEffect(() => {
-    worker.onmessage = event => {
-      const next = event.data.next
-      setCount(next)
-    }
-  }, [worker])
+    console.log("Loading countworker");
+    (async () => {
+      if (typeof window !== "undefined") {
+        const countListenerWorker = await import(
+          "worker-loader!./countListener.worker.ts"
+        );
+        const loaded = new countListenerWorker.default();
+        console.log("Worker loaded", loaded);
+        loaded.onmessage = event => {
+          const next = event.data.next;
+          setCount(next);
+        };
+        setWorker(loaded);
+      }
+    })();
+  }, []);
 
   const handleClick = () => {
-    worker.postMessage({ count })
-  }
+    worker?.postMessage({ count });
+  };
 
   return (
     <>
       <h4>Count: {count}</h4>
-      <button onClick={handleClick}>Increase</button>
+      <button onClick={handleClick} disabled={!worker}>
+        Increase
+      </button>
     </>
-  )
+  );
 }
 
-export default WorkerParent
+export default WorkerParent;
 ```
+
+A note on this - during local development, or a scenario where you're not doing SSR, you can use an ordinary import statement. Since Gatsby renders my code in Node.js though, I need to structure the web worker using the new dynamic import syntax, so that I can conditionally load it only in the browser.
+
 
 <WorkerParent />
 
