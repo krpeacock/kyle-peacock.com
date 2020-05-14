@@ -118,11 +118,11 @@ const PowerStripPage = () => (
         constantly if something went wrong.{' '}
       </p>
       <div className="gallery">
-        <img src="/static/backward-pins.jpg" />
+        <img src="/static/backward-pins.jpg" alt="showing the GPIO pins" />
         <Description>Connecting the backwards GPIO pins</Description>
-        <img src="/static/exposed-wiring.jpg" />
+        <img src="/static/exposed-wiring.jpg" alt="Wiring up the relays" />
         <Description>Wiring up the relays</Description>
-        <img src="/static/tidying.jpg" />
+        <img src="/static/tidying.jpg" alt="pi attached to the switch" />
         <Description>
           You can see Pi Zero bolted onto the back with spacers
         </Description>

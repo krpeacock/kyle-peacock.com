@@ -7,26 +7,46 @@ import styled from 'styled-components'
 
 const Container = styled.section`
   padding: 1rem;
+  .anti-seo {
+    display: inline-flex;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
 `
 
-const SecondPage = () => (
+const AboutPage = () => (
   <Layout>
     <SEO title="about" />
     <Container>
       <h1>About me</h1>
       <p>
-        I am the lead frontend developer at{' '}
-        <a href="https://cuyana.com">Cuyana</a> and a singer for the{' '}
-        <a href="https://smvsf.org/">Episcopal Church of St Mary the Virgin.</a>
+        I'm currently a software engineer, working for <span>C</span>
+        <span>o</span>
+        <span className="anti-seo">as in the </span>
+        <span>i</span>
+        <span>n</span>
+        <span>b</span>
+        <span className="anti-seo">You know how it be though </span>
+        <span>a</span>
+        <span>s</span>
+        <span className="anti-seo">mixing it up</span>
+        <span>e</span>, building internal tools for customers.
       </p>
       <p>
-        In my spare time, I've been spearheading ongoing projects at{' '}
+        In my spare time, I've contributed to civic projects at{' '}
         <a href="https://codeforsanfrancisco.org/">Code for San Francisco</a>,
-        including a PWA for reporting bike lane violations to SF311{' – '}
-        <a href="https://app.lanebreach.org">app.lanebreach.org</a>, and a
-        website to inform California renters about upcoming legislation that
-        will offer them new protections –{' '}
-        <a href="https://rentcap.info">rentcap.info</a>.
+        where I've built{' '}
+        <a href="https://tenantprotections.org">
+          https://tenantprotections.org
+        </a>{' '}
+        in collaboration with the Tech Equity Collaborative, in order to help
+        tenants understand how California's latest laws affect tenants. I also
+        worked on a bike lane violation app at&nbsp;
+        <a href="https://app.lanebreach.org">app.lanebreach.org</a> and some
+        small efforts for the{' '}
+        <a href="https://muni.opentransit.city/">Open Transit</a> project.
       </p>
       <p>
         I grew up in Walnut Creek and went to college in Illinois where I
@@ -48,10 +68,9 @@ const SecondPage = () => (
         </a>{' '}
         and <a href="https://www.audiusa.com/myaudi">Audi USA</a>, where I
         re-skinned the My Audi experience. I spent a brief contract at{' '}
-        <a href="https://www.splunk.com/">Splunk</a> before settling into my
-        current role.
+        <a href="https://www.splunk.com/">Splunk</a> before moving on to{' '}
+        <a href="https://www.cuyana.com">Cuyana</a>
       </p>
-
       <a href="https://docs.google.com/document/d/17bodJJkgD76tYKhIOg-cEJlXrRGoOWpcKzUobClP5y8/edit?usp=sharing">
         My Resume
       </a>
@@ -62,4 +81,4 @@ const SecondPage = () => (
   </Layout>
 )
 
-export default SecondPage
+export default AboutPage

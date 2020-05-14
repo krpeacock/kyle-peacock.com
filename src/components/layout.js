@@ -82,11 +82,11 @@ const Button = styled.button`
   border-radius: 100%;
 `
 
-const useDidMount = f => useEffect(() => f && f(), [])
-
 const Layout = ({ children }) => {
   const [mode, setMode] = useState('light')
-  useDidMount(() => setMode(store.get('mode') || 'light'))
+  useEffect(() => {
+    setMode(store.get('mode') || 'light')
+  }, [])
 
   return (
     <>
