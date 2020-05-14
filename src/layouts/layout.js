@@ -4,8 +4,12 @@ import styled, { createGlobalStyle } from "styled-components";
 import Typography from "typography";
 import fairyGatesTheme from "typography-theme-fairy-gates";
 import store from "store";
-import { MDXProvider } from "@mdx-js/react";
+import * as Sentry from "@sentry/browser";
 import "prismjs/themes/prism-twilight.css";
+
+if (process.env.GATSBY_SENTRY_URL) {
+  Sentry.init({ dsn: process.env.GATSBY_SENTRY_URL });
+}
 
 const black = "black";
 fairyGatesTheme.headerColor = black;
