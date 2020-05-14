@@ -1,6 +1,6 @@
-import React from 'react'
-import { TitleSection } from '../../components/BlogComponents'
-import { Main } from '../../components/layout'
+import React from "react";
+import { TitleSection } from "../../components/BlogComponents";
+import { Main } from "../../layouts/layout";
 
 const SiteUpgrade = () => (
   <Main>
@@ -11,6 +11,6 @@ const SiteUpgrade = () => (
       and also showcase bits of design that I've been working on
     </p>
   </Main>
-)
+);
 
-export default SiteUpgrade
+export default SiteUpgrade;

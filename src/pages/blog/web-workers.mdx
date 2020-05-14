@@ -1,0 +1,174 @@
+import WorkerParent from '../../components/WorkerParent.tsx'
+import { TitleSection } from '../../components/BlogComponents'
+
+<TitleSection title="Un<script>: How do web workers work?" date="5/13/2020" />
+
+I've heard some people say I should use web workers, but that always seemed like a pain.
+
+Tonight I'm going to face my fear and use a worker. My goal is pretty simple - click a button and have it add 2 to a count.
+
+### Problems:
+
+problem 1: don't know how to create a web worker
+
+problem 2: I use compiled javascript<br/>
+note - My javascript is passed through Gatsby, so I don't have access to webpack
+
+problem 3: don't know how to talk to a web worker
+
+#### Step 1: build a web worker
+
+Is there some magic code that I can copy and paste?
+
+Yes - https://github.com/webpack-contrib/worker-loader
+
+Example Worker
+
+```js
+// Worker.ts
+const ctx: Worker = self as any
+
+// Post data to parent thread
+ctx.postMessage({ foo: 'foo' })
+
+// Respond to message from parent thread
+ctx.addEventListener('message', event => console.log(event))
+```
+
+Example script that loads a worker (don't worry, you don't have to use typescript - I just want all the help I can get from intellisense)
+
+```js
+// WorkerParent.ts
+import Worker from 'worker-loader!./Worker'
+
+const worker = new Worker()
+
+worker.postMessage({ a: 1 })
+worker.onmessage = event => {}
+
+worker.addEventListener('message', event => {})
+```
+
+Neat, now how do I use it?
+
+### Step 2 - configuring workers
+
+Turns out you drop this in your webpack config:
+
+```js
+// webpack.config.js
+{
+  loader: 'worker-loader',
+  options: { publicPath: '/workers/' }
+}
+```
+
+#### Step 2a: gatsby makes this harder
+
+Gatsby lets you update the config by updating gatsby-node, so I'm changing it mine to configure the workers like so:
+
+```js
+// gatsby-node.js
+exports.onCreateWebpackConfig = ({
+  actions: { replaceWebpackConfig },
+  getConfig,
+}) => {
+  const config = getConfig()
+
+  config.module.rules.push({
+    test: /\.worker\.js$/,
+    use: { loader: 'worker-loader', options: { inline: true } },
+  })
+
+  config.output.globalObject = 'this'
+
+  replaceWebpackConfig(config)
+}
+```
+
+With that in place, I'm able to load the parent, and recieve the dummy message from the sample!
+
+### Step 3: send information to and from the worker
+
+Fortunately, it looks like the example files gave me the tools that I need for a simple message. The flow looks like this:
+
+1. My parent starts up a new worker
+2. The parent posts a message, and binds an "onmessage" event
+3. The child posted a message of `{foo: "foo"}`
+4. I could access that message under `event.message.data` in the onmessage listener
+
+So, that answers how to get information back from the worker, but now I need to figure out how to access information while inside the worker.
+
+Do debugger statements work yet?
+
+It turns out that DevTools aren't quite there yet. Well, I know that the event type is a `MessageEvent`, thanks to typescript, so a quick web search reveals that there's a `data` payload I can access inside the worker.
+
+### Problems Resolved!
+
+Let's wrap up with a simple example.
+
+Here's our new worker:
+
+```ts
+// Worker.ts
+const ctx: Worker = self as any
+
+// Respond to message from parent thread
+ctx.addEventListener('message', event => {
+  // Read number from data
+  let count: number = event.data.count || 0
+
+  // respond with next value
+  ctx.postMessage({ next: count + 1 })
+})
+```
+
+And the WorkerParent, now a React component:
+
+```ts
+// WorkerParent.tsx
+import React, { useEffect, useState } from 'react'
+import Worker from 'worker-loader!./Worker'
+
+const worker = new Worker()
+
+worker.postMessage({ a: 1 })
+worker.onmessage = event => {
+  console.log('parent event', event)
+}
+
+worker.addEventListener('message', event => {})
+
+interface Props {}
+
+function WorkerParent(props: Props) {
+  const {} = props
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    worker.onmessage = event => {
+      const next = event.data.next
+      setCount(next)
+    }
+  }, [worker])
+
+  const handleClick = () => {
+    worker.postMessage({ count })
+  }
+
+  return (
+    <>
+      <h4>Count: {count}</h4>
+      <button onClick={handleClick}>Increase</button>
+    </>
+  )
+}
+
+export default WorkerParent
+```
+
+<WorkerParent />
+
+<p style={{marginTop: "24px"}}>
+And that about does it!
+</p>

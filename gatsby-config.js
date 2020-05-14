@@ -1,3 +1,4 @@
+const rehypePrism = require('@mapbox/rehype-prism')
 module.exports = {
   siteMetadata: {
     title: `Kyle Peacock's website`,
@@ -7,11 +8,21 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: {
+          default: require.resolve('./src/layouts/layout.js'),
+        },
+        rehypePlugins: [rehypePrism],
       },
     },
     `gatsby-transformer-sharp`,

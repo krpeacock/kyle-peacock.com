@@ -5,15 +5,26 @@
   "version": "0.1.0",
   "author": "Kyle Peacock <kylpeacock@gmail.com>",
   "dependencies": {
+    "@anansi/babel-preset": "^1.2.2",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/register": "^7.9.0",
+    "@mapbox/rehype-prism": "^0.4.0",
+    "@mdx-js/loader": "^1.6.1",
+    "@mdx-js/mdx": "^1.6.1",
+    "@mdx-js/react": "^1.6.1",
     "gatsby": "^2.21.29",
     "gatsby-image": "^2.4.3",
     "gatsby-plugin-manifest": "^2.4.3",
+    "gatsby-plugin-mdx": "^1.2.7",
     "gatsby-plugin-offline": "^2.2.10",
     "gatsby-plugin-react-helmet": "^3.3.1",
     "gatsby-plugin-sharp": "^2.6.3",
     "gatsby-plugin-styled-components": "^3.3.1",
     "gatsby-source-filesystem": "^2.3.3",
     "gatsby-transformer-sharp": "^2.5.2",
+    "prism-react-renderer": "^1.1.0",
+    "prismjs": "^1.20.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -35,7 +46,9 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "gatsby-plugin-typescript": "^2.4.2",
+    "prettier": "^1.19.1",
+    "worker-loader": "^2.0.0"
   },
   "repository": {
     "type": "git",
@@ -43,5 +56,8 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "quokka": {
+    "babel": true
   }
 }

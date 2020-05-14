@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import styled, { createGlobalStyle } from 'styled-components'
-import Typography from 'typography'
-import fairyGatesTheme from 'typography-theme-fairy-gates'
-import store from 'store'
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import styled, { createGlobalStyle } from "styled-components";
+import Typography from "typography";
+import fairyGatesTheme from "typography-theme-fairy-gates";
+import store from "store";
+import { MDXProvider } from "@mdx-js/react";
+import "prismjs/themes/prism-twilight.css";
 
-const black = 'black'
-fairyGatesTheme.headerColor = black
-fairyGatesTheme.bodyColor = black
-fairyGatesTheme.linkColor = black
-const typography = new Typography(fairyGatesTheme)
-typography.injectStyles()
+const black = "black";
+fairyGatesTheme.headerColor = black;
+fairyGatesTheme.bodyColor = black;
+fairyGatesTheme.linkColor = black;
+const typography = new Typography(fairyGatesTheme);
+typography.injectStyles();
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans');
@@ -24,8 +26,8 @@ const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     overflow-x: hidden;
     text-transform: lowercase;
-    background: ${props => (props.mode === 'light' ? 'white' : `black`)};
-    filter: ${props => (props.mode === 'light' ? null : `invert(100%)`)};
+    background: ${props => (props.mode === "light" ? "white" : `black`)};
+    filter: ${props => (props.mode === "light" ? null : `invert(100%)`)};
     a {
     color: ${black};
     background-image: none;
@@ -40,9 +42,12 @@ const GlobalStyle = createGlobalStyle`
   a:visited {
     color: blueviolet;
   }
+  pre, code {
+    text-transform: none;
+  }
   }
 
-`
+`;
 
 export const Main = styled.main`
   display: flex;
@@ -57,7 +62,7 @@ export const Main = styled.main`
   @media (min-width: 376px) {
     text-align: left;
   }
-`
+`;
 
 const Footer = styled.footer`
   bottom: 0;
@@ -66,7 +71,7 @@ const Footer = styled.footer`
   overflow-x: hidden;
   background: white;
   clear: both;
-`
+`;
 const Button = styled.button`
   --size: 2.5rem;
   height: var(--size);
@@ -80,13 +85,13 @@ const Button = styled.button`
   background-color: white;
   font-size: calc(var(--size) / 3.5);
   border-radius: 100%;
-`
+`;
 
 const Layout = ({ children }) => {
-  const [mode, setMode] = useState('light')
+  const [mode, setMode] = useState("light");
   useEffect(() => {
-    setMode(store.get('mode') || 'light')
-  }, [])
+    setMode(store.get("mode") || "light");
+  }, []);
 
   return (
     <>
@@ -94,9 +99,9 @@ const Layout = ({ children }) => {
       <Button
         type="button"
         onClick={() => {
-          let newMode = mode === 'light' ? 'dark' : 'light'
-          store.set('mode', newMode)
-          return setMode(newMode)
+          let newMode = mode === "light" ? "dark" : "light";
+          store.set("mode", newMode);
+          return setMode(newMode);
         }}
         title="toggle dark mode"
       >
@@ -105,12 +110,12 @@ const Layout = ({ children }) => {
       <Main>{children}</Main>
       <Footer>&copy; Kyle Peacock {new Date().getFullYear()}</Footer>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-console.log('test')
-export default Layout
+console.log("test");
+export default Layout;

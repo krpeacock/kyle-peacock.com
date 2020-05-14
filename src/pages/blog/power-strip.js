@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import {
   TitleSection,
   BlogImage,
   Description,
-} from '../../components/BlogComponents'
-import styled from 'styled-components'
-import { Main } from '../../components/layout'
+} from "../../components/BlogComponents";
+import styled from "styled-components";
+import { Main } from "../../layouts/layout";
 
 const Container = styled.div`
   padding: 2em,
@@ -15,7 +15,7 @@ const Container = styled.div`
   img {
     max-width: 90vw;
   }
-`
+`;
 
 const PowerStripPage = () => (
   <Main>
@@ -26,11 +26,11 @@ const PowerStripPage = () => (
         power strip! You may be asking a few questions now, like "what power
         strip?" Well, after feeling frustrated about having to walk across the
         room to turn off a lamp with an awkward off-switch, I decided to
-        over-engineer a solution.{' '}
+        over-engineer a solution.{" "}
       </p>
       <p>
         Starting with a power strip I found on Amazon, I began by taking it
-        apart and looking at what I had to work with.{' '}
+        apart and looking at what I had to work with.{" "}
       </p>
       <BlogImage src="/static/power-strip-guts.jpg">
         First look inside the strip
@@ -52,7 +52,7 @@ const PowerStripPage = () => (
         call ten python scripts, which would set the state of 5 GPIO pins to
         control the outlets. My webpage was incredibly minimalistic, and I only
         wrote buttons for the two outlets I was regularly using: a lamp and a
-        space heater.{' '}
+        space heater.{" "}
       </p>
       <p>
         It wasn't until June that I picked the project back up for some major
@@ -61,7 +61,7 @@ const PowerStripPage = () => (
         more intelligent server and view, and a much tidier and more compact
         piece of hardware. For the server, I decided to continue using Node.js
         with Express, and I decided that React.js had a philosophy of state that
-        would suit this project particularly well.{' '}
+        would suit this project particularly well.{" "}
       </p>
       <BlogImage src="/static/strip-app.png">
         The first version of my new view
@@ -84,7 +84,7 @@ const PowerStripPage = () => (
         With these relays off ebay, I was effectively able to split the larger
         block I had used the first time, and now the relays could control their
         respective outlets from inside the power strip. Space was tight, but I
-        was committed to fitting everything within the original housing.{' '}
+        was committed to fitting everything within the original housing.{" "}
       </p>
       <BlogImage src="/static/strip-wiring.jpg">
         I make it look easy, right?
@@ -115,7 +115,7 @@ const PowerStripPage = () => (
         for the GPIO pins to point directly inside of the casing. Here, the Pi's
         ports would be available and on display in case I ever needed to further
         configuration. This way, I wouldn't need to open up the device
-        constantly if something went wrong.{' '}
+        constantly if something went wrong.{" "}
       </p>
       <div className="gallery">
         <img src="/static/backward-pins.jpg" alt="showing the GPIO pins" />
@@ -148,7 +148,7 @@ const PowerStripPage = () => (
         was meant to be housed inside the case. After cramming the cables
         through and re-soldering a couple broken connections, the cables all fit
         inside. With some minimal configuration to the server to update the GPIO
-        pins, everything was working.{' '}
+        pins, everything was working.{" "}
       </p>
       <p>
         Since then, I've been working to improve the interface. I've added
@@ -160,15 +160,15 @@ const PowerStripPage = () => (
       </p>
       <p>
         Thanks for checking this out! I'd love to answer any comments or
-        questions you might have about this project.{' '}
+        questions you might have about this project.{" "}
       </p>
       <p>
         There is a live demo at strip.peacockweb.net, and you can check out my
-        code at{' '}
+        code at{" "}
         <a href="github.com/krpeacock/power_strip">
           github.com/krpeacock/power_strip
         </a>
-        .{' '}
+        .{" "}
       </p>
       <p>
         If you are interested in getting in touch with me, send me a message
@@ -177,6 +177,6 @@ const PowerStripPage = () => (
       </p>
     </Container>
   </Main>
-)
+);
 
-export default PowerStripPage
+export default PowerStripPage;
