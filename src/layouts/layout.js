@@ -6,6 +6,7 @@ import fairyGatesTheme from "typography-theme-fairy-gates";
 import store from "store";
 import * as Sentry from "@sentry/browser";
 import "prismjs/themes/prism-twilight.css";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 if (process.env.GATSBY_SENTRY_URL) {
   Sentry.init({ dsn: process.env.GATSBY_SENTRY_URL });
@@ -99,20 +100,22 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <GlobalStyle mode={mode} />
-      <Button
-        type="button"
-        onClick={() => {
-          let newMode = mode === "light" ? "dark" : "light";
-          store.set("mode", newMode);
-          return setMode(newMode);
-        }}
-        title="toggle dark mode"
-      >
-        {mode}
-      </Button>
-      <Main>{children}</Main>
-      <Footer>&copy; Kyle Peacock {new Date().getFullYear()}</Footer>
+      <ErrorBoundary>
+        <GlobalStyle mode={mode} />
+        <Button
+          type="button"
+          onClick={() => {
+            let newMode = mode === "light" ? "dark" : "light";
+            store.set("mode", newMode);
+            return setMode(newMode);
+          }}
+          title="toggle dark mode"
+        >
+          {mode}
+        </Button>
+        <Main>{children}</Main>
+        <Footer>&copy; Kyle Peacock {new Date().getFullYear()}</Footer>
+      </ErrorBoundary>
     </>
   );
 };
@@ -121,5 +124,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-console.log("test");
 export default Layout;
