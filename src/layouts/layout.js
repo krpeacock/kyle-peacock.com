@@ -6,7 +6,7 @@ import store from "store";
 import "prismjs/themes/prism-twilight.css";
 import { TitleAndDate, Date as BlogDate } from "../components/BlogComponents";
 import { Link } from "gatsby";
-import SEO from "../components/SEO";
+import SEO from "../components/seo";
 const queryString = require("query-string");
 import * as Sentry from "@sentry/browser";
 import ErrorBoundary from "../components/ErrorBoundary";
