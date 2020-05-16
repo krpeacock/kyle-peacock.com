@@ -1,4 +1,4 @@
-const rehypePrism = require('@mapbox/rehype-prism')
+const rehypePrism = require("@mapbox/rehype-prism");
 module.exports = {
   siteMetadata: {
     title: `Kyle Peacock's website`,
@@ -17,10 +17,17 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
-          default: require.resolve('./src/layouts/layout.js'),
+          default: require.resolve("./src/layouts/layout.js"),
         },
         rehypePlugins: [rehypePrism],
       },
@@ -43,4 +50,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
   ],
-}
+};

@@ -5,13 +5,22 @@ import Link from "gatsby-link";
 export const TitleAndDate = styled.div`
   border-bottom: 1px solid #e6e9eb;
   padding-bottom: 0.2em;
-  margin-bottom: "1em";
-  height: "auto";
+  margin-bottom: 2em;
+  h1,
+  h2,
+  h3 {
+    margin-bottom: 0;
+    color: var(--title-color);
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
 `;
 
 export const BlogHeader = styled.h3`
   margin-bottom: 0;
-  color: #415161;
+  color: var(--title-color);
   text-decoration: none;
   &:hover: {
     color: #6c8095;
@@ -38,9 +47,9 @@ export const Column = styled.div`
   flex-direction: column;
 `;
 
-export const BlogImage = ({ src, children }) => (
+export const BlogImage = ({ src, alt, children }) => (
   <Column>
-    <StyledImage src={src} />
+    <StyledImage src={src} alt={alt} />
     <Description>{children}</Description>
   </Column>
 );

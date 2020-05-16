@@ -19,8 +19,8 @@ const GoTo = styled.section`
   }
 `;
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
     <SEO title="Kyle Peacock" keywords={[`gatsby`, `application`, `react`]} />
     <Intro>
       <h1>kyle peacock</h1>

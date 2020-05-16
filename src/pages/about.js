@@ -16,8 +16,8 @@ const Container = styled.section`
   }
 `;
 
-const AboutPage = () => (
-  <Layout>
+const AboutPage = ({ location }) => (
+  <Layout location={location}>
     <SEO title="about" />
     <Container>
       <h1>About me</h1>

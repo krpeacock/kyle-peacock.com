@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
+import ogImage from "../images/Peacockbanner.png";
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, tags, title }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -40,7 +41,7 @@ function SEO({ description, lang, meta, keywords, title }) {
               },
               {
                 name: `twitter:creator`,
-                content: data.site.siteMetadata.author,
+                content: "kylpeacock",
               },
               {
                 name: `twitter:title`,
@@ -50,12 +51,20 @@ function SEO({ description, lang, meta, keywords, title }) {
                 name: `twitter:description`,
                 content: metaDescription,
               },
+              {
+                name: `og:image`,
+                content: `https://kyle-peacock.com${ogImage}`,
+              },
+              {
+                name: `og:image:alt`,
+                content: `kyle-peacock.com banner`,
+              },
             ]
               .concat(
-                keywords.length > 0
+                tags.length > 0
                   ? {
                       name: `keywords`,
-                      content: keywords.join(`, `),
+                      content: tags.join(`, `),
                     }
                   : []
               )

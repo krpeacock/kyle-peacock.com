@@ -1,22 +1,81 @@
 import React from "react";
 import styled from "styled-components";
-import PowerStrip from "./power-strip";
-import SiteUpgrade from "./site-upgrade";
-import WebWorkers from "./web-workers";
+import { useStaticQuery, Link } from "gatsby";
+import {
+  TitleAndDate,
+  BlogHeader,
+  Date as BlogDate,
+} from "../../components/BlogComponents";
+import banner from "../../images/Peacockbanner.png";
+import Layout from "../../layouts/layout";
 
-const Banner = styled.div`
+const Picture = styled.picture`
+  display: flex;
+  justify-content: center;
+  max-height: 35vh;
+  background-color: #04141b;
   width: 100%;
-  height: 20em;
-  background-image: url("/static/blog_banner.jpg");
+  img {
+    max-height: 35vh;
+  }
 `;
 
-const Blog = () => (
-  <div>
-    <Banner />
-    <WebWorkers />
-    <SiteUpgrade />
-    <PowerStrip />
-  </div>
-);
+const Posts = ({ edges }) => {
+  if (!edges) return null;
+  const posts = edges.map(post => {
+    const frontmatter = post.node.frontmatter;
+    const { title, description, date, path, series, tags } = frontmatter;
+    const dt = new Date(date).toDateString().split(" ");
+    return (
+      <article key={post?.node?.id}>
+        <TitleAndDate>
+          <Link to={`/blog/${path}`} style={{ textDecoration: "none" }}>
+            <BlogHeader>{title}</BlogHeader>
+          </Link>
+          <BlogDate>{`${dt[1]} ${dt[2]}, ${dt[3]}`}</BlogDate>
+          <p>{description}</p>
+        </TitleAndDate>
+      </article>
+    );
+  });
+
+  return <>{posts}</>;
+};
+
+const Blog = () => {
+  const data = useStaticQuery(
+    graphql`
+      query PostsQuery {
+        allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+          edges {
+            node {
+              id
+              frontmatter {
+                title
+                description
+                date
+                path
+                series
+                tags
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+
+  console.log(data);
+  return (
+    <>
+      <Picture>
+        <img src={banner} alt="image with a Peacock logo" />
+      </Picture>
+      <Layout>
+        <Posts edges={data?.allMdx?.edges} />
+      </Layout>
+    </>
+  );
+};
 
 export default Blog;
