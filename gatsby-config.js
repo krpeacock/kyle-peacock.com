@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const rehypePrism = require("@mapbox/rehype-prism");
 module.exports = {
   siteMetadata: {

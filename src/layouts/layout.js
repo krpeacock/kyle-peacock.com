@@ -8,6 +8,12 @@ import { TitleAndDate, Date as BlogDate } from "../components/BlogComponents";
 import { Link } from "gatsby";
 import SEO from "../components/SEO";
 const queryString = require("query-string");
+import * as Sentry from "@sentry/browser";
+import ErrorBoundary from "../components/ErrorBoundary";
+
+if (process.env.GATSBY_SENTRY_URL) {
+  Sentry.init({ dsn: process.env.GATSBY_SENTRY_URL });
+}
 
 const black = "black";
 fairyGatesTheme.headerColor = black;
@@ -115,7 +121,7 @@ export default ({ children, pageContext, location }) => {
   }, []);
 
   return (
-    <>
+    <ErrorBoundary>
       <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
       <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
       <Button
@@ -151,6 +157,6 @@ export default ({ children, pageContext, location }) => {
         {children}
       </Main>
       <Footer>&copy; Kyle Peacock {new Date().getFullYear()}</Footer>
-    </>
+    </ErrorBoundary>
   );
 };
