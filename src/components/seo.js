@@ -61,10 +61,10 @@ function SEO({ description, lang, meta, tags, title }) {
               },
             ]
               .concat(
-                tags.length > 0
+                tags?.length > 0
                   ? {
                       name: `keywords`,
-                      content: tags.join(`, `),
+                      content: tags?.join(`, `),
                     }
                   : []
               )
