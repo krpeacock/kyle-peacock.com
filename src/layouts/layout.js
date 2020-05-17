@@ -9,7 +9,24 @@ import { Link } from "gatsby";
 import SEO from "../components/seo";
 import * as Sentry from "@sentry/browser";
 import ErrorBoundary from "../components/ErrorBoundary";
+import { Breadcrumb } from "gatsby-plugin-breadcrumb";
 const queryString = require("query-string");
+
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  ol {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  li {
+    list-style: none;
+    display: inline;
+    a {
+      text-transform: capitalize;
+    }
+  }
+`;
 
 if (process.env.GATSBY_SENTRY_URL) {
   Sentry.init({ dsn: process.env.GATSBY_SENTRY_URL });
@@ -119,7 +136,7 @@ export default ({ children, pageContext, location }) => {
   useEffect(() => {
     setMode(store.get("mode") || "light");
   }, []);
-
+  console.log(pageContext);
   return (
     <ErrorBoundary>
       <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
@@ -136,6 +153,15 @@ export default ({ children, pageContext, location }) => {
         {mode}
       </Button>
       <Main>
+        <Nav>
+          {pageContext?.breadcrumb ? (
+            <Breadcrumb
+              crumbs={pageContext?.breadcrumb?.crumbs}
+              crumbSeparator=" - "
+              crumbLabel={pageContext?.frontmatter?.title || "Home"}
+            />
+          ) : null}
+        </Nav>
         {pageContext?.frontmatter ? (
           <TitleAndDate>
             <Link
