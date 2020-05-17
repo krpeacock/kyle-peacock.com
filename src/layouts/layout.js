@@ -7,9 +7,9 @@ import "prismjs/themes/prism-twilight.css";
 import { TitleAndDate, Date as BlogDate } from "../components/BlogComponents";
 import { Link } from "gatsby";
 import SEO from "../components/seo";
-const queryString = require("query-string");
 import * as Sentry from "@sentry/browser";
 import ErrorBoundary from "../components/ErrorBoundary";
+const queryString = require("query-string");
 
 if (process.env.GATSBY_SENTRY_URL) {
   Sentry.init({ dsn: process.env.GATSBY_SENTRY_URL });
@@ -115,7 +115,7 @@ const Button = styled.button`
 export default ({ children, pageContext, location }) => {
   console.log(location);
   const parsed = queryString.parse(location?.search);
-  const [mode, setMode] = useState(parsed?.mode);
+  const [mode, setMode] = useState(parsed?.mode || "light");
   useEffect(() => {
     setMode(store.get("mode") || "light");
   }, []);

@@ -47,8 +47,8 @@ export const Column = styled.div`
   flex-direction: column;
 `;
 
-export const BlogImage = ({ src, alt, children }) => (
-  <Column>
+export const BlogImage = ({ src, alt, children, style }) => (
+  <Column style={style}>
     <StyledImage src={src} alt={alt} />
     <Description>{children}</Description>
   </Column>
