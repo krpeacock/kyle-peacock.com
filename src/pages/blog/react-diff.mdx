@@ -1,0 +1,32 @@
+---
+title: "React Diff Viewer"
+path: "react-diff"
+description: "Simple React encapsulation of the JS diff package"
+tags: ["diff", "jsdiff", "react", "string comparison"]
+date: 2020-05-23
+---
+
+import vcImg from "../../images/vscode-version-control.png";
+import { BlogImage, Description } from "../../components/BlogComponents";
+
+Kyle Matthews, author of the Gatsbyjs project, tweeted asking whether anyone had made a React component making use of the `diff` package from NPM. Since I had made one for work a few weeks back, and since this website is largely powered by the framework that he put out into the world for free, I thought I'd rewrite a version of the diff component and share it.
+
+This feature is inspired by various string comparison tools, commonly used to help make sense of Git versioning. GitHub, VSCode, and some other tools have some realy good examples of this.
+
+<BlogImage src={vcImg} alt="example diff of a VSCode editor">
+  Example provided int the VSCode docs
+</BlogImage>
+
+My use case never didn't require the "line-by-line" style comparison for git, but was more focused on an expectation of finding small differences between different people's inputs. I went with an approach that could be customized to either show a diff by letters or by words.
+
+Here's the example I built!
+
+<iframe
+  src="https://codesandbox.io/embed/react-jsdiff-l4ydo?fontsize=14&hidenavigation=1&theme=dark"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  title="React JSDiff"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+I don't think that this bears too much more explanation, but maybe I'll circle back and expand on it some other time.
