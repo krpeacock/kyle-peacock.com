@@ -7,10 +7,12 @@ const styles = {
   added: {
     color: "green",
     backgroundColor: "#b5efdb",
+    textShadow: "none",
   },
   removed: {
     color: "red",
     backgroundColor: "#fec4c0",
+    textShadow: "none",
   },
 };
 
