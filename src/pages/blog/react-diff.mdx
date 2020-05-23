@@ -6,11 +6,12 @@ tags: ["diff", "jsdiff", "react", "string comparison"]
 date: 2020-05-23
 ---
 
+import Diff from "../../components/Diff";
+import PrismExample from "../../components/PrismExample";
 import vcImg from "../../images/vscode-version-control.png";
 import { BlogImage, Description } from "../../components/BlogComponents";
 
 Kyle Matthews, author of the Gatsbyjs project, tweeted asking whether anyone had made a React component making use of the `diff` package from NPM. Since I had made one for work a few weeks back, and since this website is largely powered by the framework that he put out into the world for free, I thought I'd rewrite a version of the diff component and share it.
-
 This feature is inspired by various string comparison tools, commonly used to help make sense of Git versioning. GitHub, VSCode, and some other tools have some realy good examples of this.
 
 <BlogImage src={vcImg} alt="example diff of a VSCode editor">
@@ -28,5 +29,107 @@ Here's the example I built!
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
+<h2 id="prismjs">Use with Prism JS</h2>
 
-I don't think that this bears too much more explanation, but maybe I'll circle back and expand on it some other time.
+It's also possible to use this for an inline text diff for code samples using Prism js!
+
+<PrismExample />
+
+This gets a bit tricky, because Prism JS isn't aware of the React lifecycle, and replaces every element inside the target `code` tag with custom spans. That can cause the code to break pretty easily. Fortunately, you can solve this by using multiple `code` tags, on either side of your Diff-ed text.
+
+Also, you will need to modify the React Diff component to run on any text that is included in the string that you want highlighting on. That will end up looking like this:
+
+```js
+// PrismDiff.js
+import React from "react";
+import * as diff from "diff";
+import PropTypes from "prop-types";
+import Prism from "prismjs";
+
+const styles = {
+  added: {
+    color: "green",
+    backgroundColor: "#b5efdb",
+  },
+  removed: {
+    color: "red",
+    backgroundColor: "#fec4c0",
+  },
+};
+
+const PrismDiff = ({ string1 = "", string2 = "", mode = "characters" }) => {
+  let groups = [];
+
+  if (mode === "characters") groups = diff.diffChars(string1, string2);
+  if (mode === "words") groups = diff.diffWords(string1, string2);
+
+  const mappedNodes = groups.map(group => {
+    const { value, added, removed } = group;
+    let nodeStyles;
+    if (added) nodeStyles = styles.added;
+    if (removed) nodeStyles = styles.removed;
+
+    // Using dangerouslySetInnerHTML with the Node rendering API
+    // Note: is dangerous
+    return (
+      <span
+        style={nodeStyles}
+        dangerouslySetInnerHTML={{
+          __html: Prism.highlight(
+            value,
+            Prism.languages.javascript,
+            "javascript"
+          ),
+        }}
+      />
+    );
+  });
+
+  return <span>{mappedNodes}</span>;
+};
+
+PrismDiff.propTypes = {
+  string1: PropTypes.string,
+  string2: PropTypes.string,
+  mode: PropTypes.oneOf(["characters", "words"]),
+};
+
+export default PrismDiff;
+```
+
+```js
+// PrismExample.js
+import React, { useLayoutEffect } from "react";
+import Prism from "prismjs";
+import PrismDiff from "./PrismDiff";
+
+const PrismExample = () => {
+  useLayoutEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
+  return (
+    <pre>
+      <code className="language-javascript">var str = "text before diff";</code>
+      {`
+`}
+      <PrismDiff
+        string1={'const foo = "bar"'}
+        string2={'const professionalVariable = "bar";'}
+        mode="words"
+      />
+      {`
+`}
+      <code className="language-javascript">let textAfterDiff;</code>
+    </pre>
+  );
+};
+
+export default PrismExample;
+```
+
+Hope this helps as you make your own content!
+
+There is also an official Prism js plugin that supports highlighting for line diffs, but I don't think it handles the string comparison for you.
+
+https://prismjs.com/plugins/diff-highlight/
