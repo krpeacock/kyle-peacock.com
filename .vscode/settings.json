@@ -1,6 +1,11 @@
 {
   "cSpell.enableFiletypes": ["mdx"],
-  "cSpell.words": ["coronavirus", "Haight", "covid"],
+  "cSpell.words": [
+    "Haight",
+    "breonna",
+    "coronavirus",
+    "covid"
+  ],
   "auto-close-tag.activationOnLanguage": [
     "xml",
     "php",
@@ -21,5 +26,6 @@
     "HTML (EEx)",
     "HTML (Eex)",
     "plist"
-  ]
+  ],
+  "eslint.enable": true
 }

@@ -70,3 +70,15 @@ export const TitleSection = ({ title, date }) => {
     </TitleAndDate>
   );
 };
+
+export const FlexImages = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 767px) {
+    flex-direction: row;
+    justify-content: space-between;
+    img {
+      width: 48%;
+    }
+  }
+`;
