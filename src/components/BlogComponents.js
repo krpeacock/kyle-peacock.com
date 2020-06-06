@@ -45,14 +45,37 @@ export const StyledImage = styled.img`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
+  a {
+    filter: none;
+    text-decoration: none;
+    border-bottom: none;
+    &:hover {
+      transform: none;
+    }
+  }
 `;
 
-export const BlogImage = ({ src, alt, children, style }) => (
-  <Column style={style}>
-    <StyledImage src={src} alt={alt} />
-    <Description>{children}</Description>
-  </Column>
-);
+export const BlogImage = ({ src, alt, children, style, link }) => {
+  if (link) {
+    return (
+      <Column style={style}>
+        <a href={link}>
+          <StyledImage src={src} alt={alt ?? children} />
+        </a>
+        <a href={link}>
+          <Description>{children}</Description>
+        </a>
+      </Column>
+    );
+  }
+
+  return (
+    <Column style={style}>
+      <StyledImage src={src} alt={alt ?? children} />
+      <Description>{children}</Description>
+    </Column>
+  );
+};
 
 export const TitleSection = ({ title, date }) => {
   const page =
