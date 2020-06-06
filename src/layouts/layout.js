@@ -74,7 +74,7 @@ const GlobalStyle = createGlobalStyle`
     width: fit-content;
     &:focus,
     &:hover {
-      transform: scale(1.1) !important;
+      transform: scale(1.1)t;
     }
   }
   a:visited {
