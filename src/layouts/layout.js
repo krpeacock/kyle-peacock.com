@@ -155,8 +155,10 @@ export default ({ children, pageContext, location }) => {
   const parsed = queryString.parse(location?.search);
   const [mode, setMode] = useState(parsed?.mode || "light");
   const [error, setError] = useState(null);
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     setMode(store.get("mode") || "light");
+    setLoaded(false);
   }, []);
 
   const handleSubmit = async e => {
@@ -223,13 +225,15 @@ export default ({ children, pageContext, location }) => {
         <div
           id="newsletterFrame"
           dangerouslySetInnerHTML={{
-            __html: `<iframe
+            __html: loaded
+              ? `<iframe
         src="https://kylepeacock.substack.com/embed"
         width="320"
         height="180"
         frameBorder="0"
         scrolling="no"
-        />`,
+        />`
+              : null,
           }}
         ></div>
       </Footer>
