@@ -158,7 +158,7 @@ export default ({ children, pageContext, location }) => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     setMode(store.get("mode") || "light");
-    setLoaded(false);
+    setLoaded(true);
   }, []);
 
   const handleSubmit = async e => {
