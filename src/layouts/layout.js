@@ -64,12 +64,13 @@ const GlobalStyle = createGlobalStyle`
         filter: none;
       }
     }
+
     a, button {
     color: var(--text-color);
-    filter: ${props => (props.mode !== "light" ? null : `invert(100%)`)};
+    filter: ${props => (props.mode === "light" ? null : `invert(100%)`)};
     background-image: none;
-    color: blueviolet;
-    border-bottom: 1px solid blueviolet;
+    color: #45d801;
+    border-bottom: 1px solid #45d801;
     text-shadow: none;
     width: fit-content;
     &:focus,
@@ -78,10 +79,13 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   a:visited {
-    color: blueviolet;
+    color: #45d801;
   }
   pre, code {
     text-transform: none;
+  }
+  iframe {
+    filter: ${props => (props.mode === "light" ? null : `invert(100%)`)};
   }
 
   h1, h2, h3, h4, h5, h6, p {
@@ -106,6 +110,10 @@ export const Main = styled.main`
 `;
 
 const Footer = styled.footer`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: baseline;
   bottom: 0;
   padding: 1rem;
   max-width: 100%;
@@ -114,6 +122,18 @@ const Footer = styled.footer`
   clear: both;
   background: var(--background);
   color: var(--text-color);
+  #newsletterFrame {
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    width: 320px;
+    iframe {
+      position: absolute;
+      top: -36px;
+      background: transparent;
+      margin-bottom: 0;
+    }
+  }
 `;
 const Button = styled.button`
   --size: 2.5rem;
@@ -134,9 +154,24 @@ export default ({ children, pageContext, location }) => {
   console.log(location);
   const parsed = queryString.parse(location?.search);
   const [mode, setMode] = useState(parsed?.mode || "light");
+  const [error, setError] = useState(null);
   useEffect(() => {
     setMode(store.get("mode") || "light");
   }, []);
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    fetch("https://kylepeacock.substack.com/api/v1/free?nojs=true", {
+      method: "POST",
+      body: new FormData(e.target),
+    })
+      .then(() => {})
+      .catch(error => {
+        setError(error);
+        debugger;
+      });
+  };
+
   console.log(pageContext);
   return (
     <ErrorBoundary>
@@ -183,7 +218,21 @@ export default ({ children, pageContext, location }) => {
         ) : null}
         {children}
       </Main>
-      <Footer>&copy; Kyle Peacock {new Date().getFullYear()}</Footer>
+      <Footer mode={mode}>
+        <span>&copy; Kyle Peacock {new Date().getFullYear()}</span>
+        <div
+          id="newsletterFrame"
+          dangerouslySetInnerHTML={{
+            __html: `<iframe
+        src="https://kylepeacock.substack.com/embed"
+        width="320"
+        height="180"
+        frameBorder="0"
+        scrolling="no"
+        />`,
+          }}
+        ></div>
+      </Footer>
     </ErrorBoundary>
   );
 };
