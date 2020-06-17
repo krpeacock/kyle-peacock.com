@@ -111,7 +111,8 @@ export const Main = styled.main`
 
 const Footer = styled.footer`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column-reverse;
+  justify-content: center;
   justify-content: space-between;
   align-items: baseline;
   bottom: 0;
@@ -122,11 +123,18 @@ const Footer = styled.footer`
   clear: both;
   background: var(--background);
   color: var(--text-color);
+  @media (min-width: 767px) {
+    flex-flow: row wrap;
+  }
   #newsletterFrame {
     height: 100px;
     overflow: hidden;
     position: relative;
     width: 320px;
+    margin: auto;
+    @media (min-width: 767px) {
+      margin: initial;
+    }
     iframe {
       position: absolute;
       top: -36px;
@@ -227,7 +235,7 @@ export default ({ children, pageContext, location }) => {
           dangerouslySetInnerHTML={{
             __html: loaded
               ? `<iframe
-        src="https://kylepeacock.substack.com/embed"
+            src="https://kylepeacock.substack.com/embed"
         width="320"
         height="180"
         frameBorder="0"
