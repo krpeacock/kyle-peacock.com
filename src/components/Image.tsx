@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import GatsbyImg from "gatsby-image";
 import styled from "styled-components";
-import dialogPolyfill from "dialog-polyfill";
 
 const StyledFigure = styled.figure`
   display: flex;
@@ -61,7 +60,7 @@ export const Image = (props: Props) => {
 
   useEffect(() => {
     if (dialogRef.current) {
-      dialogPolyfill.registerDialog(dialogRef.current);
+      // dialogPolyfill.registerDialog(dialogRef.current);
     }
   }, [dialogRef]);
 

@@ -169,7 +169,6 @@ const Button = styled.button`
 `;
 
 export default ({ children, pageContext, location, data }) => {
-  console.log(location, data);
   const parsed = queryString.parse(location?.search);
   const [mode, setMode] = useState(parsed?.mode || "light");
   const [error, setError] = useState(null);
@@ -192,7 +191,6 @@ export default ({ children, pageContext, location, data }) => {
       });
   };
 
-  console.log(pageContext);
   return (
     <ErrorBoundary>
       <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />

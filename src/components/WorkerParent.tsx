@@ -12,18 +12,16 @@ function WorkerParent(props: Props) {
   useEffect(() => {
     console.log("Loading countworker");
     (async () => {
-      if (typeof window !== "undefined") {
-        const countListenerWorker = await import(
-          "worker-loader!./countListener.worker.ts"
-        );
-        const loaded = new countListenerWorker.default();
-        console.log("Worker loaded", loaded);
-        loaded.onmessage = event => {
-          const next = event.data.next;
-          setCount(next);
-        };
-        setWorker(loaded);
-      }
+      const countListenerWorker = await import(
+        "worker-loader!./countListener.worker.ts"
+      );
+      const loaded = new countListenerWorker.default();
+      console.log("Worker loaded", loaded);
+      loaded.onmessage = event => {
+        const next = event.data.next;
+        setCount(next);
+      };
+      setWorker(loaded);
     })();
   }, []);
 
