@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3e9f222dbac77bcc256eeb50ff5d388dac8fc54afad3dbb4c04d4bd006560b34
-size 277
+// Worker.ts
+const ctx: Worker = self as any;
+
+// Respond to message from parent thread
+ctx.addEventListener("message", event => {
+  // Read number from data
+  let count: number = event.data.count || 0;
+
+  // respond with next value
+  ctx.postMessage({ next: count + 1 });
+});

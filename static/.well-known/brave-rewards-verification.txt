@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:69ffd85510ce7a114632d98503ef5dcbca9c85708bbdb581d2e8d2d2a2ee3775
-size 151
+This is a Brave Rewards publisher verification file.
+
+Domain: kyle-peacock.com
+Token: 840891bf23f238f2d4fe3fe59e9df31f9198f01eae24ec8f900841c7f7c2826d

@@ -1,3 +1,55 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b2b37d81a7991244504eeec5634b76b2b3e471a970fbc5f8f034706c97e9159f
-size 1309
+import React from "react";
+import * as diff from "diff";
+import PropTypes from "prop-types";
+import Prism from "prismjs";
+
+const styles = {
+  added: {
+    color: "green",
+    backgroundColor: "#b5efdb",
+    textShadow: "none",
+  },
+  removed: {
+    color: "red",
+    backgroundColor: "#fec4c0",
+    textShadow: "none",
+  },
+};
+
+const PrismDiff = ({ string1 = "", string2 = "", mode = "characters" }) => {
+  let groups = [];
+
+  if (mode === "characters") groups = diff.diffChars(string1, string2);
+  if (mode === "words") groups = diff.diffWords(string1, string2);
+
+  const mappedNodes = groups.map(group => {
+    const { value, added, removed } = group;
+    let nodeStyles;
+    if (added) nodeStyles = styles.added;
+    if (removed) nodeStyles = styles.removed;
+    // Using dangerouslySetInnerHTML with the Node rendering API
+    // Note: is dangerous
+    return (
+      <span
+        style={nodeStyles}
+        dangerouslySetInnerHTML={{
+          __html: Prism.highlight(
+            value,
+            Prism.languages.javascript,
+            "javascript"
+          ),
+        }}
+      />
+    );
+  });
+
+  return <span>{mappedNodes}</span>;
+};
+
+PrismDiff.propTypes = {
+  string1: PropTypes.string,
+  string2: PropTypes.string,
+  mode: PropTypes.oneOf(["characters", "words"]),
+};
+
+export default PrismDiff;

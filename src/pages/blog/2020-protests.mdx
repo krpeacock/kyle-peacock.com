@@ -1,3 +1,64 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6458b3ff15c71a351dd94a75856bbfcdde799f66adbdd33699cf289b499bb216
-size 6239
+---
+title: "2020 Protests"
+path: "2020-protests"
+date: 2020-06-06
+featuredImage: "../images/Breonna_Taylor.jpeg"
+description: "Taking a moment to reflect and to say the names of Breonna Taylor and George Floyd"
+---
+
+import Breonna from "../../images/Breonna_Taylor.jpeg";
+import George from "../../images/George_Floyd.jpg";
+import after_curfew from "../../images/after_curfew.jpeg";
+import median_wealth from "../../images/median_wealth.jpeg";
+import { FlexImages, BlogImage } from "../../components/BlogComponents";
+import Helmet from "react-helmet";
+
+<FlexImages>
+  <img src={Breonna} alt="Say Her Name, Breonna Taylor" />
+  <img src={George} alt="Justice for George Floyd" />
+</FlexImages>
+<Helmet
+meta={[
+{
+name: `og:image`,
+content: `https://kyle-peacock.com` + Breonna,
+},
+]}
+/>
+
+Y'all, it's been a minute.
+
+On March 13, police officers broke into Breonna Taylor, a 26 year old woman's apartment, in a no-knock raid after midnight. Her boyfriend, a licensed gun-owner, fired at the unknown intruders, and the police shot Breonna 5 times in bed, killing her. She was an emergency room technician, a black woman, who had recently been telling her friends and family of her plans to start a family. Yesterday would have been her 27th birthday.
+
+<!-- prettier-ignore -->
+On Memorial Day, May 25th, we lost a man named George Floyd. George was known as a community leader and mentor to young men, played club basketball, and was an early performer in Houston's hip-hop scene. He had five children. In 2007, George took a plea deal for 5 years for taking part in an armed robbery. He was released after 4 years, getting involved with Resurrection Houston, a local church group. He moved to Minneapolis in 2014, and worked as a truck driver and most recently as a security guard, until he a was laid off due to covid-19. Police arrested George for allegedly passing a counterfeit &dollar;20 bill. George was never tried for that charge, because the arresting officer, Derek Chauvin, kneeled on George's neck for 8 minutes and 43 seconds. George died 5 minutes into the hold, after crying out "I can't breathe", "Mama", and "please" repeatedly, but Chauvin continued kneeling on George's neck for an additional three minutes after George had no pulse.
+
+These are not the only names we should be remembering, just two of the most recent.
+
+I've joined thousands of my neighbors in the streets this week, putting my body on the line to protest the systemic racism in the USA, as well as its preeminent realization: our cities' police force. We have not reached this point due to a couple isolated incidents, but rather through an unbroken chain of violence and suppression that ties back to the institution of slavery, through segregation, through Jim Crow laws, through the creation of our police force as slave patrols, through housing discrimination, "tough on crime" politicians, the war on drugs, mass incarceration, and to the situation we find ourselves in, here in 2020. This is not a surprise.
+
+<BlogImage
+  src={median_wealth}
+  link="https://www.washingtonpost.com/business/2020/06/04/economic-divide-black-households/"
+>
+  We have not significantly reduced Black poverty since the Civil Rights
+  movement
+</BlogImage>
+
+To many people I know, however, this does come as a surprise. It is possible to have a set of experiences in America where you have few if any negative experiences with your local police. Maybe they've come by to let you know that the neighbors want you to keep it down, or you've been pulled over for speeding. In either case, it seemed reasonable, and you knew you weren't following the rules, anyway.
+
+If that's been your experience - if you've never feared for your life during a police encounter - you're probably white. In those moments, you were being judged by the color of your skin to be an upright citizen. You never had your citizenship status questioned. If you got upset or anxious, the officer understood that you were in a stressful situation. You were safe in those instances, not because our laws or constitutional rights guaranteed you respect or safety. You were safe because the officer didn't perceive you as a criminal, or a threat. That was my experience growing up in suburban Walnut Creek.
+
+<BlogImage src={after_curfew}>
+  Me in a group of (mostly white) protestors out past curfew in SF
+</BlogImage>
+
+It takes a lot of work and communication to get past those default beliefs. I had relatively little exposure to that information while I was growing up and attending an Evangelical church. As a Californian, I had an education in history that at least recognized historical injustices against indigenous peoples and black Americans, but those lessons had relatively little to say about anything beyond the Civil Rights movement. For me, it took patient conversations with friends, encouragement, and a lot of listening.
+
+The reality is that there are an incredible number of people of color who have done an incredible job communicating their experiences and the ways that racism is alive and well in America. There is so much more to say about what steps we need to take to move toward a just society, but here are some resources you can consider looking into if you are interested in having a better understanding of where we are right now.
+
+[NPR - Books, films and podcasts on racism](https://www.npr.org/sections/codeswitch/2020/06/06/871023438/this-list-of-books-films-and-podcasts-about-racism-is-a-start-not-a-panacea)
+
+[Places to consider donating](https://nymag.com/strategist/article/where-to-donate-for-black-lives-matter.html)
+
+One final thought, for now. As we're out in the streets right now, we're chanting a wide variety of phrases, but one in particular is noteworthy. "No justice, no peace" echoes off the buildings in cities around the world. It's an observation - it is impossible for injustice to go unanswered forever without the rage and pain ultimately boiling over into open rioting. However, "no justice, no peace" is also a promise. It's a promise to not allow superficial tranquility to stand in the way of making real structural changes, and to surrender white power so that black power can be realized. We can't let this generation tragedy go unanswered.

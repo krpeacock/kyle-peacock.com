@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:790a4dede00cb6e44d67fa228e53bff3de4993201387af6a575468a7cc1e34f1
-size 92
+{
+  "plugins": ["react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"]
+}

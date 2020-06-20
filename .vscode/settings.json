@@ -1,3 +1,34 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4b52a98c00e11fa7e53af82ad7a860c95ac8bb6a29bda0c1fe5f8225bac02e0c
-size 534
+{
+  "cSpell.enableFiletypes": ["mdx"],
+  "cSpell.words": [
+    "Haight",
+    "breonna",
+    "coronavirus",
+    "covid",
+    "headshot",
+    "sennheiser",
+    "spudger"
+  ],
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "blade",
+    "ejs",
+    "jinja",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml",
+    "HTML (EEx)",
+    "HTML (Eex)",
+    "plist"
+  ],
+  "eslint.enable": true
+}
