@@ -1,3 +1,73 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f51eaef5cfd8f24de10def6f7370a59f84fd32d85d1339647cbb5ae2cb1507ae
-size 2143
+{
+  "name": "kyle-peacock.com",
+  "private": true,
+  "description": "A Simple Personal Website",
+  "version": "0.1.0",
+  "author": "Kyle Peacock <kylpeacock@gmail.com>",
+  "dependencies": {
+    "@anansi/babel-preset": "^1.2.2",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/register": "^7.9.0",
+    "@mapbox/rehype-prism": "^0.4.0",
+    "@mdx-js/loader": "^1.6.1",
+    "@mdx-js/mdx": "^1.6.1",
+    "@mdx-js/react": "^1.6.1",
+    "@sentry/browser": "^5.15.5",
+    "@types/styled-components": "^5.1.0",
+    "dialog-polyfill": "^0.5.1",
+    "diff": "^4.0.2",
+    "eslint": "^7.1.0",
+    "eslint-plugin-react": "^7.20.0",
+    "gatsby": "^2.21.29",
+    "gatsby-image": "^2.4.3",
+    "gatsby-plugin-breadcrumb": "^9.0.3",
+    "gatsby-plugin-manifest": "^2.4.3",
+    "gatsby-plugin-mdx": "^1.2.7",
+    "gatsby-plugin-offline": "^2.2.10",
+    "gatsby-plugin-react-helmet": "^3.3.1",
+    "gatsby-plugin-sharp": "^2.6.3",
+    "gatsby-plugin-styled-components": "^3.3.1",
+    "gatsby-source-filesystem": "^2.3.3",
+    "gatsby-transformer-remark": "^2.8.14",
+    "gatsby-transformer-sharp": "^2.5.2",
+    "prism-react-renderer": "^1.1.0",
+    "prismjs": "^1.20.0",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.12.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "store": "^2.0.12",
+    "styled-components": "^4.4.1",
+    "typography": "^0.16.19",
+    "typography-theme-fairy-gates": "^0.16.19"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "format": "prettier --write \"src/**/*.js\"",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+  },
+  "devDependencies": {
+    "eslint-config-recommended": "^4.0.0",
+    "gatsby-plugin-typescript": "^2.4.2",
+    "prettier": "^1.19.1",
+    "worker-loader": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "quokka": {
+    "babel": true
+  }
+}
