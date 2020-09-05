@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/kyle/.nvm/versions/node/v12.16.1/bin/node /Users/kyle/.yarn/bin/yarn.js build
+  /Users/kyle/.nvm/versions/node/v12.16.1/bin/node /Users/kyle/.yarn/bin/yarn.js start
 
 PATH: 
   /Users/kyle/.netlify/helper/bin:/Users/kyle/.yarn/bin:/Users/kyle/.config/yarn/global/node_modules/.bin:/Users/kyle/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/kyle/.netlify/helper/bin:/Users/kyle/.yarn/bin:/Users/kyle/.config/yarn/global/node_modules/.bin:/Users/kyle/.nvm/versions/node/v12.16.1/bin:/Users/kyle/.cargo/bin
@@ -14356,7 +14356,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c gatsby build
+  Arguments: -c npm run develop
   Directory: /Users/kyle/code/kyle-peacock.com
   Output:
   
