@@ -3,6 +3,18 @@ title: "Air Quality Meter - Step 1: the Display"
 description: "Getting started on building a portable air quality meter"
 path: "air-quality/display"
 date: 2020-09-05
+tags:
+  [
+    "air quality",
+    "sensor",
+    "project",
+    "display",
+    "LCD",
+    "16x2",
+    "Arduino",
+    "Raspberry Pi",
+    "python",
+  ]
 ---
 
 import {
@@ -17,7 +29,7 @@ This is the start of a new project that I'm figuring out as I go. My end goal is
 
 ## Background
 
-As a bit of background, I have pretty bad asthma, that's been getting worse every year do to California's worrying trend of having terrible, multi-week forest fires every year now. "Fire season" has always been a familiar phrase here, but growing up, it was more of a threat, and less a promise. I recommend reading about how indigenous peoples in California, including the have a tradition of using [controlled burns](https://www.theguardian.com/us-news/2019/nov/21/wildfire-prescribed-burns-california-native-americans) that managed the fires and fostered the beautiful forests here, before California outlawed the practice because colonialism.
+As a bit of background, I have pretty bad asthma, that's been getting worse every year do to California's worrying trend of having terrible, multi-week forest fires every year now. "Fire season" has always been a familiar phrase here, but growing up, it was more of a threat, and less a promise. I recommend reading about how indigenous peoples in California, including Yurok, Karuk, Hupa, Miwok, Chumash tribes, have a tradition of using [controlled burns](https://www.theguardian.com/us-news/2019/nov/21/wildfire-prescribed-burns-california-native-americans) that managed the fires and fostered the beautiful forests here, before California outlawed the practice because colonialism.
 
 Anyway, I've become fairly reliant on the [PurpleAir](http://purpleair.com/) website, where people can buy a fairly affordable (\$230 - but this kind of thing used to cost way more) wifi-connected air quality meter that gets shared out to a map, which shares real-time air quality that often shares results that are within a couple blocks from you if a neighbor decided to buy a device. However, that's not enough for me. I want to be able to wave around a handheld meter like a ghost hunter on TV, divining whether the air outside my apartment is safe, or whether my windows are leaking smoke. So, that's where we're kicking off.
 
@@ -219,6 +231,6 @@ while True:
 
 Now, we can press buttons on the LCD Shield, process those codes in Python, and respond by updating the screen with the code!
 
-Since we can also pass new line characters, I can no predictably write to all the available spaces using two 16 character strings joined by a `\n` newline character.
+Since we can also pass new line characters, I can now predictably write to all the available spaces using two 16 character strings joined by a `\n` newline character.
 
 I'm satisfied with this functionality for now, so stay tuned for part 2 where I'll wire up the air quality sensor!
