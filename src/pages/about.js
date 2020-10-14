@@ -35,7 +35,10 @@ const AboutPage = ({ location }) => (
         <span>e</span>, building internal tools for customers.
       </p>
       <p>
-        In my spare time, I've contributed to civic projects at{" "}
+        In my spare time, I enjoy exploring Golden Gate Park, and I volunteer
+        weekly as an educator for{" "}
+        <a href="https://www.codetenderloin.org/">Code Tenderloin</a>. I've
+        contributed to civic projects at{" "}
         <a href="https://codeforsanfrancisco.org/">Code for San Francisco</a>,
         where I've built{" "}
         <a href="https://tenantprotections.org">
@@ -69,12 +72,37 @@ const AboutPage = ({ location }) => (
         and <a href="https://www.audiusa.com/myaudi">Audi USA</a>, where I
         re-skinned the My Audi experience. I spent a brief contract at{" "}
         <a href="https://www.splunk.com/">Splunk</a> before moving on to{" "}
-        <a href="https://www.cuyana.com">Cuyana</a>
+        <a href="https://www.cuyana.com">Cuyana</a>.
       </p>
       <a href="https://docs.google.com/document/d/17bodJJkgD76tYKhIOg-cEJlXrRGoOWpcKzUobClP5y8/edit?usp=sharing">
         My Resume
       </a>
       <br />
+      <h2>So, what's my deal?</h2>
+      <p>
+        To me, coding is a trade skill, and less of an identity. There are
+        plenty of fun and interesting puzzles to solve in applying technology,
+        but that's always been less interesting to me than questions about how
+        we relate to each other and what leads to human flourishing.
+      </p>
+      <p>
+        To that end, I've found that I keep coming back to a few things so far,
+        as I'm building my career. The web is a fantastic tool for telling
+        stories and connecting people, and it was well-designed to be accessible
+        to people by default. As applications get more complicated, though, we
+        tend to overlook and accidentally exclude people who access the web
+        differently from how we do. That's led me to listen and learn from
+        experts on how to build things to always be accessible by default, and
+        to keep listening as better approaches are introduced.
+      </p>
+      <p>
+        I've also found that art and storytelling are intrinsically motivating
+        to me. Equipping someone with the ability to bring their photography or
+        copywriting to be shared with the world is always exciting. Music, art,
+        and sharing information are all at the core of what I think can make the
+        internet a beautiful place, and I was raised to be a guest who always
+        tries to leave a place nicer than how I found it.
+      </p>
       <br />
       <Link to="/">Go back to the homepage</Link>
     </Container>
