@@ -170,11 +170,11 @@ const Button = styled.button`
 
 export default ({ children, pageContext, location, data }) => {
   const parsed = queryString.parse(location?.search);
-  const [mode, setMode] = useState(parsed?.mode || "light");
+  const [mode, setMode] = useState(parsed?.mode || "dark");
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    setMode(store.get("mode") || "light");
+    setMode(store.get("mode") || "dark");
     setLoaded(true);
   }, []);
 

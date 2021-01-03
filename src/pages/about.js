@@ -4,16 +4,10 @@ import { Link } from "gatsby";
 import Layout from "../layouts/layout";
 import SEO from "../components/seo";
 import styled from "styled-components";
+import NotCoinbase from "../components/NotCoinbase";
 
 const Container = styled.section`
   padding: 1rem;
-  .anti-seo {
-    display: inline-flex;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    margin: 0;
-  }
 `;
 
 const AboutPage = ({ location }) => (
@@ -22,17 +16,11 @@ const AboutPage = ({ location }) => (
     <Container>
       <h1>About me</h1>
       <p>
-        I'm currently a software engineer, working for <span>C</span>
-        <span>o</span>
-        <span className="anti-seo">as in the </span>
-        <span>i</span>
-        <span>n</span>
-        <span>b</span>
-        <span className="anti-seo">You know how it be though </span>
-        <span>a</span>
-        <span>s</span>
-        <span className="anti-seo">mixing it up</span>
-        <span>e</span>, building internal tools for customers.
+        I'm a software engineer, working for the{" "}
+        <a href="https://dfinity.org">DFINITY Foundation</a>, working to launch
+        Internet 3.0 on the Internet Computer Protocol. I identify as
+        genderqueer and use he/him pronouns, and am married to an awesome
+        partner {"🥰"} who works for the city of SF.
       </p>
       <p>
         In my spare time, I enjoy exploring Golden Gate Park, and I volunteer
@@ -74,6 +62,11 @@ const AboutPage = ({ location }) => (
         <a href="https://www.splunk.com/">Splunk</a> before moving on to{" "}
         <a href="https://www.cuyana.com">Cuyana</a>.
       </p>
+      <p>
+        Most recently, I spent 2020 working at <NotCoinbase /> building internal
+        tools and working on accessibillity updates to their website.
+      </p>
+      <br />
       <a href="https://docs.google.com/document/d/17bodJJkgD76tYKhIOg-cEJlXrRGoOWpcKzUobClP5y8/edit?usp=sharing">
         My Resume
       </a>
