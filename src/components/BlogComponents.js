@@ -53,6 +53,9 @@ export const Column = styled.div`
       transform: none;
     }
   }
+  img {
+    max-width: 100%;
+  }
 `;
 
 export const BlogImage = ({ src, alt, children, style, link }) => {
@@ -102,6 +105,7 @@ export const FlexImages = styled.div`
     justify-content: space-between;
     img {
       width: 48%;
+      max-width: 100%;
     }
   }
 `;
