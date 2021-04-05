@@ -84,6 +84,12 @@ const GlobalStyle = createGlobalStyle`
   pre, code {
     text-transform: none;
   }
+  code {
+    padding: .2em .4em;
+    transform: scale(85%);
+    background-color: rgba(240, 246, 252, 0.15);
+    border-radius: 6px;
+  }
   iframe {
     filter: ${props => (props.mode === "light" ? null : `invert(100%)`)};
   }
