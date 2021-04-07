@@ -162,6 +162,8 @@ Next, we'll need to update Gatsby with an alias that points to dynamically gener
 
 <GatsbyNode />
 
+Note - there is a portion of `@dfinity/agent` that requires us to add in a plugin to resolve node buffer during compilation. I have an open issue to remove that dependency.
+
 Additionally, we'll add a proxy to `gatsby-config.js` file, proxying `localhost:8000`, which is the default address for our `dfx` replica.
 
 ```jsx
