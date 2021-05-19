@@ -73,6 +73,7 @@ const GlobalStyle = createGlobalStyle`
     border-bottom: 1px solid #45d801;
     text-shadow: none;
     text-transform: none;
+    text-decoration: none;
     width: fit-content;
     &:focus,
     &:hover {
