@@ -91,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: rgba(240, 246, 252, 0.15);
     border-radius: 6px;
   }
-  iframe {
+  #newsletterFrame iframe {
     filter: ${props => (props.mode === "light" ? null : `invert(100%)`)};
   }
 
