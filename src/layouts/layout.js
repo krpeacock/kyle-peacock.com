@@ -85,6 +85,9 @@ const GlobalStyle = createGlobalStyle`
   pre, code {
     text-transform: none;
   }
+  pre[class*="language-"] {
+    margin-bottom: 1rem;
+  }
   code {
     padding: .2em .4em;
     transform: scale(85%);

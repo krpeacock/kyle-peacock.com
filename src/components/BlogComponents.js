@@ -58,25 +58,36 @@ export const Column = styled.div`
   }
 `;
 
-export const BlogImage = ({ src, alt, children, style, link }) => {
+export const BlogImage = ({
+  src,
+  alt,
+  children,
+  style,
+  link,
+  css,
+  ...rest
+}) => {
+  const StyledColumn = styled(Column)`
+    ${css}
+  `;
   if (link) {
     return (
-      <Column style={style}>
+      <StyledColumn style={style} {...rest}>
         <a href={link}>
           <StyledImage src={src} alt={alt ?? children} />
         </a>
         <a href={link}>
           <Description>{children}</Description>
         </a>
-      </Column>
+      </StyledColumn>
     );
   }
 
   return (
-    <Column style={style}>
+    <StyledColumn style={style} {...rest}>
       <StyledImage src={src} alt={alt ?? children} />
       <Description>{children}</Description>
-    </Column>
+    </StyledColumn>
   );
 };
 
