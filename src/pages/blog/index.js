@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useStaticQuery, Link } from "gatsby";
+import { useStaticQuery, Link, graphql } from "gatsby";
 import {
   TitleAndDate,
   BlogHeader,
