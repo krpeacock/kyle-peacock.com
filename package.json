@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "eslint-config-recommended": "^4.1.0",
+    "gatsby-plugin-sass": "^4.5.0",
     "gatsby-plugin-typescript": "^3.5.0",
     "prettier": "^2.3.0",
     "worker-loader": "^3.0.8"
