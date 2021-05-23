@@ -42,11 +42,24 @@ typography.injectStyles();
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans');
   :root {
-    --background:  ${props => (props.mode === "light" ? "white" : "#04141b")};
-    --text-color: ${props =>
+    --cancan: #D594B3;
+    --peacock-green: #28494C;
+    --red-violet: #CC3596;
+    --pink: #ed83e4;
+    --light-blue: #86bcf9;
+    --purple: #b28ff8;
+    --kabul: #6A4D44;
+    --dark-bg: #18171a;
+    --background:  ${(props) =>
+      props.mode === "light" ? "white" : "var(--dark-bg)"};
+    --text-color: ${(props) =>
       props.mode === "light" ? "black" : "rgba(236, 236, 236, 0.85)"};
-    --title-color: ${props =>
+    --title-color: ${(props) =>
       props.mode === "light" ? "#415161" : "rgba(236, 236, 236, 0.85)"};
+    --contrast-color: var(--red-violet);
+    --button-background: ${(props) =>
+      props.mode === "light" ? "var(--peacock-green)" : "var(--cancan)"};
+
     font-family: 'Open Sans', sans-serif;
   }  
   body {
@@ -55,7 +68,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    text-transform: ${props => (props.capitalize ? "none" : "lowercase")};
+    text-transform: ${(props) => (props.capitalize ? "none" : "lowercase")};
     background: var(--background);
     color: var(--text-color);
     img, picture {
@@ -67,10 +80,9 @@ const GlobalStyle = createGlobalStyle`
 
     a, button {
     color: var(--text-color);
-    filter: ${props => (props.mode === "light" ? null : `invert(100%)`)};
     background-image: none;
-    color: #45d801;
-    border-bottom: 1px solid #45d801;
+    color: var(--contrast-color);
+    border-bottom: 1px solid var(--contrast-color);
     text-shadow: none;
     text-transform: none;
     text-decoration: none;
@@ -81,13 +93,21 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   a:visited {
-    color: #45d801;
+    color: var(--contrast-color);
   }
   pre, code {
     text-transform: none;
   }
   pre[class*="language-"] {
     margin-bottom: 1rem;
+    border-color: var(--peacock-green);
+    background: var(--dark-bg);
+    .token.keyword, .token.property, .token.selector, .token.constant, .token.symbol, .token.builtin {
+      color: var(--pink);
+    }
+    .token.attr-name, .token.attr-value, .token.string, .token.char, .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable, .token.inserted {
+      color: var(--light-blue);
+    }
   }
   code {
     padding: .2em .4em;
@@ -95,8 +115,13 @@ const GlobalStyle = createGlobalStyle`
     background-color: rgba(240, 246, 252, 0.15);
     border-radius: 6px;
   }
-  #newsletterFrame iframe {
-    filter: ${props => (props.mode === "light" ? null : `invert(100%)`)};
+  #newsletterFrame {
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--dark-bg);
+  }
+  blockquote {
+    border-left: 0.54375rem solid var(--red-violet);
   }
 
   h1, h2, h3, h4, h5, h6, p {
@@ -148,17 +173,19 @@ const Footer = styled.footer`
     flex-flow: row wrap;
   }
   #newsletterFrame {
-    height: 100px;
+    height: 132px;
     overflow: hidden;
     position: relative;
-    width: 320px;
+    border: 2px solid var(--peacock-green);
+    width: 342px;
     margin: auto;
+    margin-bottom: 1rem;
     @media (min-width: 767px) {
       margin: initial;
     }
     iframe {
       position: absolute;
-      top: -36px;
+      top: -20px;
       background: transparent;
       margin-bottom: 0;
     }
@@ -173,8 +200,9 @@ const Button = styled.button`
   cursor: pointer;
   right: 10px;
   z-index: 1;
-  border: 1px solid black;
-  background-color: white;
+  border: 1px solid transparent;
+  background-color: var(--peacock-green);
+  color: white;
   font-size: calc(var(--size) / 3.5);
   border-radius: 100%;
 `;
@@ -189,14 +217,14 @@ export default ({ children, pageContext, location, data }) => {
     setLoaded(true);
   }, []);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     fetch("https://kylepeacock.substack.com/api/v1/free?nojs=true", {
       method: "POST",
       body: new FormData(e.target),
     })
       .then(() => {})
-      .catch(error => {
+      .catch((error) => {
         setError(error);
         debugger;
       });
