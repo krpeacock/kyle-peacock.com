@@ -1,0 +1,64 @@
+---
+title: "Certified Assets"
+path: "dfinity/certified-assets"
+date: 2021-06-10
+description: "Updates to the asset canister for added security through cryptography"
+---
+
+This post mostly consists of me summarizing a talk from Roman Kashitsyn and Hans Larsen. Hopefully slides will be available at some point. Apologies in advance if I get something wrong, but I do feel like this info is worth putting out there in some form or another.
+
+What's the point? This is a way that a user can request data from a single source and know for sure whether that code reflects the state of the full replica without manually comparing the results of 2/3+1 at request time. 
+
+## Replica Certificates
+
+The whole process starts with the replica, or an individual service that will implement certified variables. We now support these certified variables in our default asset canister.
+
+### Data model
+
+This model has a contract between the replica and the client. We're using a model known as labeled trees. Similar concept to JSON - each nested thing gets a label. Any node will ether be data, a fork, or a child. Pretty straightforward.
+
+Next we take the labeled tree and encode it into a hash tree. This is important for constructing proofs, because it simplifies the model in ways that are over my head. 
+
+Select portions of the full state of the replica, including certified data, request_status, are then compared through the IC's core process of distributed signing.
+
+The hash tree is then exchanged with the other nodes of your canister. The different replicas will sign the computed hash with their interpretation of the state of the replica. The consensus will reach a 2/3 + 1 agreement on the state, and then they can produce the certified tree. 
+
+#### The algorithmic proof
+
+Okay, this part is even more technical. There's a slide about it, but it's basically about pruning the tree to not include the full value of the tree, but to replace the less relevant portions like time and request status with hashes to improve performance. By the end of the process (called confederation), all you need to know are the canister and its certified data.
+
+Props to the PHD's for pulling this off - it seems pretty elegant.
+
+## Certified Variables
+
+Next, we're getting into how you use this. In Rust, we have a method called `set_certified_data` that certifies data every time that the structure changes during updates. During queries, you can fetch `data_certificate` which will represent the signed hash tree result from earlier. 
+
+Here's an example in Rust of a simple counter.
+
+```rs
+thread_local! { static COUNTER: Cell<u64> = Cell::new(0); }
+struct CertifiedCounter {
+    certificate: ByteBuf,
+    value: u64,
+}
+
+#[update]
+fn increment() => u64 { COUNTER.with
+
+}
+```
+
+## Certified Assets Canister
+
+For each asset, requested via `http_assets`, there is a hash of the data. The asset canister now has a root represnetation of the certified data, with all of the assets being represented in the same model as we described above.
+
+Recomputing the hash tree from scratch each time would make asset uploads logarithmicaly slower, so we have an open-source approach for patching the tree, using 
+<!-- TODO: Link here -->
+
+## Certificate Validation (ServiceWorker Strategy)
+
+The most common case for certifying data right now is to fetch assets. So for anything on `ic0.app`, we are sending back a serviceworker that will read a certificate from the HTTP response. The client-side code can verify a special header called `ic-certificate` using the `rootkey` of the mainnet.
+
+We can verify that the tree works by curling an asset and running it through `sha256sum`. 
+
+Stuff happens, yadda yadda.
