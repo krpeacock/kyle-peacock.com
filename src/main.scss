@@ -57,6 +57,9 @@ a:visited {
 pre, code {
   text-transform: none;
 }
+code[class*="language-"] {
+  padding:0;
+}
 pre[class*="language-"] {
   margin-bottom: 1rem;
   border-color: var(--peacock-green);
