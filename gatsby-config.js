@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const rehypePrism = require("@mapbox/rehype-prism");
+
 module.exports = {
   siteMetadata: {
     title: `Kyle Peacock's website`,
@@ -25,17 +26,23 @@ module.exports = {
         path: `${__dirname}/src/pages/`,
       },
     },
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
           default: require.resolve("./src/layouts/layout.js"),
         },
-        rehypePlugins: [rehypePrism],
+        rehypePlugins: [
+          rehypePrism,
+          require("rehype-slug"),
+          // To pass options, use a 2-element array with the
+          // configuration in an object in the second element
+          [require("rehype-autolink-headings"), { behavior: "wrap", class: "booga" }],
+        ],
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
     `gatsby-image`,

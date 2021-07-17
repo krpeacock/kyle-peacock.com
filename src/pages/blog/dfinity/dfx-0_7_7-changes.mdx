@@ -1,0 +1,122 @@
+---
+title: "Dfx 0.7.7 Changes"
+path: "dfinity/dfx-0_7_7-changes"
+date: 2021-07-16
+description: "Explaining the changes coming to frontend development in dfx 0.7.7"
+---
+
+import { BlogImage } from "../../../components/BlogComponents";
+import typeInference from "../../../images/dfinity/type-inference.png"
+
+The SDK team has an upcoming release canidate for `dfx` that you can install today by running 
+
+```shell
+DFX_VERSION=0.7.7 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+```
+
+## Type Inference Update
+
+This is the main change I want to address. Starting with `dfx` `0.7.7`, `dfx` will now provide you with generated declaration files that automatically provide you with correct typing based on your app's candid service. In your JavaScript or Typescript application, you will simply be able to run
+
+```js
+import { hello } from '../declarations/hello';
+```
+
+and your IDE (tested in VSCode and JetBrains) will know your full service, with tab completion and the ability to infer return types from calls to your API.
+
+<BlogImage src={typeInference}>
+    Example of IntelliSense for an asset canister's service methods
+</BlogImage>
+
+These methods will allow frontend developers to interact nicely with the interface, and even know all the detail of what their return types will look like while working in the code. It's even more powerful in TypeScript applications!
+
+To make this possible, there are some changes to the codegen that we will create for you. 
+
+### Change to index file
+Previously, under `.dfx/local/canisters/<canister-name>`, we would output a `<canister-name>.js` file. Going forward, to avoid duplicating the directory name, this file will be renamed to `index.js`.
+
+Here's what that file will look like now, for a `hello` project.
+
+```js
+import { Actor, HttpAgent } from "@dfinity/agent";
+
+// Imports candid interface
+import { idlFactory } from './hello.did.js';
+// CANISTER_ID is replaced by webpack based on node enviroment
+export const canisterId = process.env.HELLO_CANISTER_ID;
+
+/**
+ * 
+ * @param {string | Principal} canisterId Canister ID of Agent
+ * @param {{agentOptions?: import("@dfinity/agent").HttpAgentOptions; actorOptions?: import("@dfinity/agent").ActorConfig}} [options]
+ * @return {import("@dfinity/agent").ActorSubclass<import("./hello.did.js")._SERVICE>}
+ */
+ export const createActor = (canisterId, options) => {
+  const agent = new HttpAgent({ ...options?.agentOptions });
+  
+  // Fetch root key for certificate validation during development
+  if(process.env.NODE_ENV !== "production") agent.fetchRootKey();
+
+  // Creates an actor with using the candid interface and the HttpAgent
+  return Actor.createActor(idlFactory, {
+    agent,
+    canisterId,
+    ...options?.actorOptions,
+  });
+};
+  
+/**
+ * A ready-to-use agent for the hello canister
+ * @type {import("@dfinity/agent").ActorSubclass<import("./hello.did.js")._SERVICE>}
+ */
+ export const hello = createActor(canisterId);
+```
+
+Previously, we exported the IDL, a hardcoded `canisterId`, and then had you assemble the actor yourself. Now, we are setting you up with a `createActor` export and a `hello` export. The `createActor` function accepts a `canisterId` and `options`, and automatically sets you up with the `idlFactory` from `./hello.did.js`.
+
+If you have used recent versions of `@dfinity/agent`, you probably also noticed that we have added logic to fix the common `fetchRootKey` error that has been in place since Genesis. The `createActor` function will call `agent.fetchRootKey` for you during local development, but will not call it in production. This gives you the ease of not thinking about the root certificate, with the security benefits of your code only trusting a valid subnet that signs calls with the root key of the NNS, hardcoded into `@dfinity/agent`.
+
+The return type of createActor is an `ActorSubclass`, linked with the `_SERVICE` interface from the adjacent `.d.ts` file. This is accomplished using JSDoc comments. Finally, at the bottom, we export a `hello` actor, which sets you up with an already created actor for situations where you don't need to configure a specific `identity`, `host`, or other options to the `HttpAgent`.
+
+Speaking of the `.d.ts` file..
+
+### TypeScript Declaration Changes
+
+1. The `<canister-name>.d.ts` file has been renamed to `<canister-name>.did.d.ts`.
+
+This change was suggested on [our forum](https://forum.dfinity.org/t/bug-report-dfx-auto-gen-canister-d-ts-wrong-naming/4468). The types are in reference to the IDL interface from `.did.js`, so it's correct for the type declaration file to reflect its peer instead of the index.js
+
+Additionally, we have updated `dfx` to the latest versions of Candid and Motoko. The main thing to mention here is that the output of `<canister-name>.did.d.ts` may have changed slightly, and that the service is no longer a default export.
+
+## Changes to dfx new
+
+To accommodate these changes, we have made some changes to the `dfx new` project. Most of the changes are to `webpack.config.js` and to `package.json`, but I'll go through them one-by-one.
+
+### Copying the declarations
+
+This is a pattern that I personally now recommend - committing your codegen files to your source code. It's how we operated for the Cycles Wallet, Internet Identity, and other internal projects on an ad-hoc basis, and it turned out to be the only reliable way to support type inferenece without fragile path references in `tsconfig.json`.
+
+In the new `package.json`, we provide you with a `"copy:types"` script that looks like this: 
+
+```json
+"copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete src/declarations"
+```
+
+This script copies the contents of your canisters in `.dfx/local/canistsers` and copies them to their own directories in `src/declaraations`, ignoring the `wasm` module.
+
+From that point on, you'll be able to import directly from `src/declarations/<canister-name>`, and your editor will be able to behave normally, without needing bundler aliases or unusual typescript configuration.
+
+The `dfx new` project also has logic to sync the types whenever you run `npm run build` or `npm start`. This is the easiest workflow if you are doing fullstack work for now - build your file and the next time you start the frontend server, you'll get the new interfaces.
+
+> Note: more details about syncing in the [migrating section](#migrating-your-project)
+
+### Webpack dev server
+
+At last, give you a pleasantly-configured dev server set up out of the box. `npm start` will start the server directly at `http://localhost:8080`, and you can simply open it, without needing to enter a `canisterId` query parameter at `localhost:8000`. 
+
+Changes to your `assets` directory or `src` in the `<canister-name>_assets` directory will kick off hot-reload updates to the browser. API calls to will be proxied to `localhost:8000`, so you can interact with the local replica seamlessly. 
+
+## Migrating your project
+
+## Dfx call output
+
