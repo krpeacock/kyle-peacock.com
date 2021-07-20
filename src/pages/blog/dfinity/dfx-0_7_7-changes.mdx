@@ -118,5 +118,16 @@ Changes to your `assets` directory or `src` in the `<canister-name>_assets` dire
 
 ## Migrating your project
 
+If you have an existing project, you may need to make some adjustments when upgrading to 0.7.7+.
+
+As I've mentioned, we are moving toward a pattern of development where the generated files no longer live in `.dfx` but instead will live as source code. 
+
+### Environment variables
+
+If it is difficult or not worthwhile for you to use the webpack config that we provide in the `dfx new` project, You will need to have your own strategy for the following:
+
+1. Identifying canister ids. The output no longer hardcodes the canister ids into JavaScript, so you will need to provide that code using your own strategy. 
++ If you are u
+
 ## Dfx call output
 
