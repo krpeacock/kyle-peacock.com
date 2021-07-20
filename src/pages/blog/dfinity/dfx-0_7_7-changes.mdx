@@ -1,18 +1,41 @@
 ---
 title: "Dfx 0.7.7 Changes"
 path: "dfinity/dfx-0_7_7-changes"
-date: 2021-07-16
+date: 2021-07-20
 description: "Explaining the changes coming to frontend development in dfx 0.7.7"
 ---
 
 import { BlogImage } from "../../../components/BlogComponents";
 import typeInference from "../../../images/dfinity/type-inference.png"
 
+* [Overview](#overview)
+* [Type Inference Update](#type-inference-update)
+* [Change to index file](#change-to-index-file)
+  * [TypeScript Declaration Changes](#typescript-declaration-changes)
+* [Changes to dfx new](#changes-to-dfx-new)
+  * [Copying the declarations](#copying-the-declarations)
+  * [Webpack dev server](#webpack-dev-server)
+* [Migrating your project](#migrating-your-project)
+  * [Environment variables](#environment-variables)
+  * [Minimal Update](#minimal-update)
+
+
+## Overview
+
 The SDK team has an upcoming release canidate for `dfx` that you can install today by running 
 
-```shell
+```
 DFX_VERSION=0.7.7 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ```
+
+`dfx 0.7.7` will be our first promoted candidate in a while. There are some small bug fixes and updates to Motoko and Candid, but I want to explain some frontend changes that will be coming. I know that I'll be causing some trouble, and that I won't get it right the first time around, but I think these changes will help make developing for the IC simpler for most people, and it takes us in the direction of making more things "just work".
+
+The big ticket items are - 
+* automatic TypeScript support and tab completion for your actors
+* Nicely configured Webpack dev server in `dfx new`
+* Resolving the `fetchRootKey` bug.
+
+This will be the most disruptive set of changes to frontend development, but I hope that this writeup helps make sense of the decisions I've made, and makes the upgrade mild.
 
 ## Type Inference Update
 
@@ -38,6 +61,7 @@ Previously, under `.dfx/local/canisters/<canister-name>`, we would output a `<ca
 Here's what that file will look like now, for a `hello` project.
 
 ```js
+// src/declarations/hello/index.js
 import { Actor, HttpAgent } from "@dfinity/agent";
 
 // Imports candid interface
@@ -124,10 +148,76 @@ As I've mentioned, we are moving toward a pattern of development where the gener
 
 ### Environment variables
 
-If it is difficult or not worthwhile for you to use the webpack config that we provide in the `dfx new` project, You will need to have your own strategy for the following:
+With webpack, we are providing those environment variables by using an EnvironmentPlugin. At the top of `webpack.config.js`, we read from the root `canister_ids.json` and the one inside `.dfx/local` to map the canister IDs into environment variables, and then replace the `process.env` values in the code during development or at build time.
 
-1. Identifying canister ids. The output no longer hardcodes the canister ids into JavaScript, so you will need to provide that code using your own strategy. 
-+ If you are u
+```js
+// webpack.config.js
+let localCanisters, prodCanisters, canisters;
 
-## Dfx call output
+try {
+  localCanisters = require(path.resolve(".dfx", "local", "canister_ids.json"));
+} catch (error) {
+  console.log("No local canister_ids.json found. Continuing production");
+}
 
+function initCanisterIds() {
+  try {
+    prodCanisters = require(path.resolve("canister_ids.json"));
+  } catch (error) {
+    console.log("No production canister_ids.json found. Continuing with local");
+  }
+
+  const network =
+    process.env.DFX_NETWORK ||
+    (process.env.NODE_ENV === "production" ? "ic" : "local");
+
+  canisters = network === "local" ? localCanisters : prodCanisters;
+
+  for (const canister in canisters) {
+    process.env[canister.toUpperCase() + "_CANISTER_ID"] =
+      canisters[canister][network];
+  }
+}
+initCanisterIds();
+```
+
+If it is difficult or not worthwhile for you to use the webpack config that we provide in the `dfx new` project, here are somt things to consider:
+
+1. Identifying canister ids. The output no longer hardcodes the canister ids into JavaScript, so you will need to provide that code using your own strategy. Other bundlers that allow for custom scripting should be able to re-use the webpack config logic.
+2. Determining `NODE_ENV`. During development, the app should call `agent.fetchRootKey()`, but it should not fetch the root key in production. See [Change to the index file](#change-to-index-file).
+3. Copying the codegen is optional. You still have access to the `.did.js` and `.did.d.ts` files in `.dfx`, so you can choose to ignore the new `index.js` format if it is inconvenient, and continue providing your own Actor.createActor pattern as before. 
+4. Return types - if you do not want to use the dfx-provided files, consider using the JSDoc comments that we have come up with. If the code knows that your actor has a type of `ActorSubclass<_SERVICE>`, for your particular service, the development process is significantly enhanced in compatible editors.
+
+
+### Minimal Update
+
+Finally, if you are looking to minimally modify your project, here is all you need to do, assuming you are starting from the 0.7.2 starter:
+
+You can continue using a query parameter in your URL, you can access it via 
+
+```js
+// src/example_assets/src/index.js
+import { idlFactory as example_idl } from 'dfx-generated/example/example.did.js';
+import canisterIds from '../../../.dfx/local/canister_ids.json'
+
+const example_id = new URLSearchParams(window.location.search).get("exampleId") || canisterIds.example.local;
+
+const agent = new HttpAgent();
+agent.fetchRootKey();
+const example = Actor.createActor(example_idl, { agent, canisterId: example_id });
+```
+
+And you can modify the `aliases` reducer to point to the path, rather than hardcoding the old `<canister-name>.js` file
+
+```js
+// webpack.config.js
+
+// Old
+["dfx-generated/" + name]: path.join(outputRoot, name + ".js"),
+// New
+["dfx-generated/" + name]: path.join(outputRoot),
+```
+
+Then, you can simply `dfx deploy` like normal and visit your working site with [http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai](http://localhost:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai&exampleId=rrkah-fqaaa-aaaaa-aaaaq-cai).
+
+Hope this all helps, and feel free to reach out at [https://forum.dfinity.org/](https://forum.dfinity.org/) or to email me at <a href="mailto:kyle.peacock@dfinity.org">kyle.peacock@dfinity.org</a> if you have further questions.
