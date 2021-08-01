@@ -38,7 +38,7 @@ module.exports = {
           require("rehype-slug"),
           // To pass options, use a 2-element array with the
           // configuration in an object in the second element
-          [require("rehype-autolink-headings"), { behavior: "wrap", class: "booga" }],
+          [require("rehype-autolink-headings"), { behavior: "wrap" }],
         ],
       },
     },
