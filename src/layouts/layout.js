@@ -4,13 +4,20 @@ import Typography from "typography";
 import fairyGatesTheme from "typography-theme-fairy-gates";
 import store from "store";
 import "prismjs/themes/prism-twilight.css";
-import { TitleAndDate, Date as BlogDate } from "../components/BlogComponents";
+import {
+  TitleAndDate,
+  Date as BlogDate,
+  StyledImage,
+  Description,
+  Column,
+} from "../components/BlogComponents";
 import { Link } from "gatsby";
 import SEO from "../components/seo";
 import * as Sentry from "@sentry/browser";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { Breadcrumb } from "gatsby-plugin-breadcrumb";
 import "../main.scss";
+import { MDXProvider } from "@mdx-js/react";
 const queryString = require("query-string");
 
 const Nav = styled.nav`
@@ -161,66 +168,105 @@ export default ({ children, pageContext, location, data }) => {
 
   return (
     <ErrorBoundary>
-      <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
-      <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
-      <Button
-        type="button"
-        onClick={() => {
-          let newMode = mode === "light" ? "dark" : "light";
-          store.set("mode", newMode);
-          return setMode(newMode);
-        }}
-        title="toggle dark mode"
-      >
-        {mode}
-      </Button>
-      <Main>
-        <Nav>
-          {pageContext?.breadcrumb ? (
-            <Breadcrumb
-              crumbs={pageContext?.breadcrumb?.crumbs}
-              crumbSeparator=" - "
-              crumbLabel={pageContext?.frontmatter?.title || "Home"}
-            />
+      <MDXProvider components={components}>
+        <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
+        <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
+        <Button
+          type="button"
+          onClick={() => {
+            let newMode = mode === "light" ? "dark" : "light";
+            store.set("mode", newMode);
+            return setMode(newMode);
+          }}
+          title="toggle dark mode"
+        >
+          {mode}
+        </Button>
+        <Main>
+          <Nav>
+            {pageContext?.breadcrumb ? (
+              <Breadcrumb
+                crumbs={pageContext?.breadcrumb?.crumbs}
+                crumbSeparator=" - "
+                crumbLabel={pageContext?.frontmatter?.title || "Home"}
+              />
+            ) : null}
+          </Nav>
+          {pageContext?.frontmatter ? (
+            <TitleAndDate>
+              <Link
+                to={`./${pageContext?.frontmatter?.path}`}
+                style={{ textDecoration: "none" }}
+              >
+                <h1>{pageContext?.frontmatter?.title}</h1>
+              </Link>
+              <BlogDate>
+                {(() => {
+                  const dt = new Date(pageContext?.frontmatter?.date)
+                    .toDateString()
+                    .split(" ");
+                  return `${dt[1]} ${dt[2]}, ${dt[3]}`;
+                })()}
+              </BlogDate>
+            </TitleAndDate>
           ) : null}
-        </Nav>
-        {pageContext?.frontmatter ? (
-          <TitleAndDate>
-            <Link
-              to={`./${pageContext?.frontmatter?.path}`}
-              style={{ textDecoration: "none" }}
-            >
-              <h1>{pageContext?.frontmatter?.title}</h1>
-            </Link>
-            <BlogDate>
-              {(() => {
-                const dt = new Date(pageContext?.frontmatter?.date)
-                  .toDateString()
-                  .split(" ");
-                return `${dt[1]} ${dt[2]}, ${dt[3]}`;
-              })()}
-            </BlogDate>
-          </TitleAndDate>
-        ) : null}
-        {children}
-      </Main>
-      <Footer mode={mode}>
-        <span>&copy; Kyle Peacock {new Date().getFullYear()}</span>
-        <div
-          id="newsletterFrame"
-          dangerouslySetInnerHTML={{
-            __html: loaded
-              ? `<iframe
+          {children}
+        </Main>
+        <Footer mode={mode}>
+          <span>&copy; Kyle Peacock {new Date().getFullYear()}</span>
+          <div
+            id="newsletterFrame"
+            dangerouslySetInnerHTML={{
+              __html: loaded
+                ? `<iframe
             src="https://kylepeacock.substack.com/embed"
         width="320"
         height="180"
         frameBorder="0"
         scrolling="no"
         />`
-              : null,
-          }}
-        ></div>
-      </Footer>
+                : null,
+            }}
+          ></div>
+        </Footer>
+      </MDXProvider>
     </ErrorBoundary>
   );
+};
+
+export const BlogImage = ({
+  src,
+  alt,
+  children,
+  style,
+  link,
+  css,
+  ...rest
+}) => {
+  const StyledColumn = styled(Column)`
+    ${css}
+  `;
+  if (link) {
+    return (
+      <StyledColumn style={style} {...rest}>
+        <a href={link}>
+          <StyledImage src={src} alt={alt} />
+        </a>
+        <a href={link}>
+          <Description>{alt}</Description>
+        </a>
+      </StyledColumn>
+    );
+  }
+
+  return (
+    <StyledColumn style={style} {...rest}>
+      <StyledImage src={src} alt={alt} />
+      <Description>{alt}</Description>
+    </StyledColumn>
+  );
+};
+
+const components = {
+  img: BlogImage,
 };

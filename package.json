@@ -59,6 +59,7 @@
     "gatsby-plugin-sass": "^4.10.0",
     "gatsby-plugin-typescript": "^3.10.0",
     "gatsby-remark-autolink-headers": "^4.7.0",
+    "gatsby-remark-images": "^5.7.0",
     "gatsby-remark-prismjs": "^5.7.0",
     "prettier": "^2.3.2",
     "rehype-autolink-headings": "^5.1.0",
