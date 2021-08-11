@@ -18,6 +18,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { Breadcrumb } from "gatsby-plugin-breadcrumb";
 import "../main.scss";
 import { MDXProvider } from "@mdx-js/react";
+import { page_visits } from "../declarations/page_visits";
 const queryString = require("query-string");
 
 const Nav = styled.nav`
@@ -151,6 +152,25 @@ export default ({ children, pageContext, location, data }) => {
         : "light";
     setMode(store.get("mode") || defaultMode);
     setLoaded(true);
+
+    if (
+      window &&
+      window?.location?.href &&
+      window?.location?.href.includes("localhost") === false
+    ) {
+      const deviceType =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+          ? { Mobile: null }
+          : { Desktop: null };
+
+      page_visits
+        .log(window?.location?.href, deviceType)
+        .then(async (response) => {
+          console.log(response);
+        });
+    }
   }, []);
 
   const handleSubmit = async (e) => {
