@@ -76,50 +76,60 @@ const Summary = (props: { summary: VisitSummary }) => {
   );
 };
 
-async function fetchSummaries(): Promise<VisitSummary[]> {
-  const keys = await page_visits?.getKeys();
-  const summaries = [];
-  for (const route of keys) {
-    const summary: Result_1 = await page_visits?.getSummary(route);
-    if ("ok" in summary) {
-      summaries.push(summary.ok);
-    }
-  }
-  if (window.location.host.indexOf("localhost") >= 0) {
-    return summaries;
-  }
-  return summaries.filter((summary) =>
-    window.location.host.includes(summary.route)
-  );
+async function fetchSummaries(addSummary) {
+  const keys = (await page_visits?.getKeys())?.filter((route) => {
+    if (window.location.host.includes("localhost")) return true;
+
+    return route.includes(window.location.host);
+  });
+
+  keys.forEach((route) => {
+    page_visits?.getSummary(route).then((summary) => {
+      if ("ok" in summary) {
+        addSummary(summary.ok);
+      }
+    });
+  });
 }
 
-function Visits() {
-  const [summaries, setSummaries] = React.useState<VisitSummary[]>(null);
-  React.useEffect(() => {
-    fetchSummaries().then((summaries) => {
-      setSummaries(summaries);
-    });
-  }, [setSummaries]);
+class Visits extends React.Component {
+  state = {
+    summaries: [],
+  };
 
-  return (
-    <Layout pageContext={null} location={null} data={null}>
-      <h1>Page Visits</h1>
-      <section
-        style={{
-          display: "flex",
-          flexFlow: "row wrap",
-          gap: "1rem",
-          justifyContent: "space-evenly",
-        }}
-      >
-        {summaries
-          ? summaries.map((summary) => (
-              <Summary summary={summary} key={summary.route} />
-            ))
-          : null}
-      </section>
-    </Layout>
-  );
+  addSummary(summary) {
+    this.setState({
+      summaries: [...this.state.summaries, summary].sort((a, b) =>
+        a.total > b.total ? a : b
+      ),
+    });
+  }
+
+  componentDidMount() {
+    fetchSummaries(this.addSummary.bind(this));
+  }
+
+  render() {
+    return (
+      <Layout pageContext={null} location={null} data={null}>
+        <h1>Page Visits</h1>
+        <section
+          style={{
+            display: "flex",
+            flexFlow: "row wrap",
+            gap: "1rem",
+            justifyContent: "space-evenly",
+          }}
+        >
+          {this.state.summaries
+            ? this.state.summaries.map((summary) => (
+                <Summary summary={summary} key={summary.route} />
+              ))
+            : null}
+        </section>
+      </Layout>
+    );
+  }
 }
 
 export default Visits;
