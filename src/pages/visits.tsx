@@ -24,10 +24,10 @@ const Summary = (props: { summary: VisitSummary }) => {
 };
 
 async function fetchSummaries(): Promise<VisitSummary[]> {
-  const keys = await page_visits.getKeys();
+  const keys = await page_visits?.getKeys();
   const summaries = [];
   for (const route of keys) {
-    const summary: Result_1 = await page_visits.getSummary(route);
+    const summary: Result_1 = await page_visits?.getSummary(route);
     if ("ok" in summary) {
       summaries.push(summary.ok);
     }

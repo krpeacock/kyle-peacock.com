@@ -1,5 +1,4 @@
 import { Actor, HttpAgent } from "@dfinity/agent";
-
 // Imports and re-exports candid interface
 import { idlFactory } from "./page_visits.did.js";
 export { idlFactory } from "./page_visits.did.js";
@@ -12,6 +11,9 @@ export const canisterId = "q4j37-xqaaa-aaaab-qadrq-cai";
  * @return {import("@dfinity/agent").ActorSubclass<import("./page_visits.did.js")._SERVICE>}
  */
 export const createActor = (canisterId, options) => {
+  if (typeof window === "undefined") {
+    return null;
+  }
   const agent = new HttpAgent({
     ...options?.agentOptions,
     host: "https://ic0.app",

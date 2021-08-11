@@ -166,7 +166,7 @@ export default ({ children, pageContext, location, data }) => {
           : { Desktop: null };
 
       page_visits
-        .log(window?.location?.href, deviceType)
+        ?.log(window?.location?.href, deviceType)
         .then(async (response) => {
           console.log(response);
         });

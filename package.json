@@ -21,6 +21,7 @@
     "diff": "^5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.24.0",
+    "fetch": "^1.1.0",
     "gatsby": "^3.10.2",
     "gatsby-image": "^3.10.0",
     "gatsby-plugin-breadcrumb": "^12.1.1",
