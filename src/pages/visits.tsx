@@ -39,10 +39,6 @@ const Article = styled.article`
   grid-template-rows: auto auto 1fr;
 `;
 
-const Label = (props: LabelRenderProps) => {
-  return <p>{props.dataEntry}</p>;
-};
-
 const Summary = (props: { summary: VisitSummary }) => {
   const { summary } = props;
   return (

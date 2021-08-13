@@ -141,6 +141,7 @@ const Button = styled.button`
 
 export default ({ children, pageContext, location, data }) => {
   const parsed = queryString.parse(location?.search);
+  const [visits, setVisits] = React.useState(null);
   const [mode, setMode] = useState(parsed?.mode || "dark");
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -158,6 +159,10 @@ export default ({ children, pageContext, location, data }) => {
       window?.location?.href &&
       window?.location?.href.includes("localhost") === false
     ) {
+      page_visits.getSummary(window.location.href).then((visitSummary) => {
+        setVisits(visitSummary.total);
+      });
+
       const deviceType =
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
@@ -233,7 +238,10 @@ export default ({ children, pageContext, location, data }) => {
           {children}
         </Main>
         <Footer mode={mode}>
-          <span>&copy; Kyle Peacock {new Date().getFullYear()}</span>
+          <section>
+            <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
+            {visits ? <p>This page has been viewed {visits} times</p> : null}
+          </section>
           <div
             id="newsletterFrame"
             dangerouslySetInnerHTML={{

@@ -1,0 +1,57 @@
+---
+title: "Page View Tracking"
+path: "page-views"
+date: 2021-08-11
+description: "Anonymous and open page view tracking for kyle-peacock.com"
+---
+
+import FileEmbed from '../../../components/FileEmbed';
+
+I've been putting some decent effort into creating content for this blog lately, and I decided it would be nice to start tracking hits to the site. Most analytics platforms have terrible privacy practices or cost a bunch of money, so I decided to simply build my own.
+
+Since I've been learning Motoko programming for my Coding with Kyle series (now available on [YouTube](https://www.youtube.com/playlist?list=PLuhDt1vhGcrfQGLWqhUo9-DFD5JaHqCh1)), I decided to go ahead and build this using the Internet Computer as a cheap and open backend.
+
+## Tracking as little as possible
+
+Really, all I care about is getting a sense of what people are looking at, and what kind of a device they're coming from. 
+
+To that end, I came up with this simple structure for my data: 
+
+```rust
+stable var visitSummaries : Trie.Trie<Route, VisitSummary> = Trie.empty();
+
+stable var logs : [VisitRecord] = [];
+```
+
+Basically, what we have here is a `Trie`, which I'm using like a key-value Map of routes, which are URL's, and a Summary of the visits of that route. Then, I'm also keeping a log of records, as a simple array. 
+
+The types look like this: 
+
+```rust
+type Route = Text;
+
+type DeviceType = { #Mobile; #Desktop };
+
+type VisitRecord = {
+    deviceType: DeviceType;
+    time: Time.Time;
+    route: Route;
+};
+
+type VisitSummary = {
+    route: Route;
+    total: Nat32;
+    mobile: Nat32;
+    desktop: Nat32;
+};
+```
+
+Pretty straightforward - the Route is a string, just the URL. DeviceType is a Motoko Variant, which will be one of the attributes, either `#Mobile` or `#Desktop`. Then, I have two different records that I update when someone visits a page - a simple log with the deviceType, a timestamp, and the route, as well as a summary of each route.
+
+This allows me to quickly pull up a summary of each route, with things like the total visits, and the mobile / desktop distribution. The logs will let me do more rigorous data exploration down the road if I so choose. 
+
+Here's the rest of the code, and a link to [the repo](https://github.com/krpeacock/page-visits).
+
+
+<FileEmbed language="mo" fileName="main.mo" url="https://raw.githubusercontent.com/krpeacock/page-visits/main/src/page_visits/main.mo"/>
+
