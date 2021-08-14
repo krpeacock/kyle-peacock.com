@@ -19,7 +19,9 @@ import { Breadcrumb } from "gatsby-plugin-breadcrumb";
 import "../main.scss";
 import { MDXProvider } from "@mdx-js/react";
 import { page_visits } from "../declarations/page_visits";
+import { Search } from "../components/Search";
 const queryString = require("query-string");
+import { Provider, defaultTheme } from '@adobe/react-spectrum'
 
 const Nav = styled.nav`
   display: flex;
@@ -51,14 +53,14 @@ typography.injectStyles();
 const GlobalStyle = createGlobalStyle`
   :root {
     --background:  ${(props) =>
-      props.mode === "light" ? "white" : "var(--dark-bg)"};
+    props.mode === "light" ? "white" : "var(--dark-bg)"};
     --text-color: ${(props) =>
-      props.mode === "light" ? "black" : "rgba(236, 236, 236, 0.85)"};
+    props.mode === "light" ? "black" : "rgba(236, 236, 236, 0.85)"};
     --title-color: ${(props) =>
-      props.mode === "light" ? "#415161" : "rgba(236, 236, 236, 0.85)"};
+    props.mode === "light" ? "#415161" : "rgba(236, 236, 236, 0.85)"};
     --contrast-color: var(--red-violet);
     --button-background: ${(props) =>
-      props.mode === "light" ? "var(--peacock-green)" : "var(--cancan)"};
+    props.mode === "light" ? "var(--peacock-green)" : "var(--cancan)"};
     text-transform: ${(props) => (props.capitalize ? "none" : "lowercase")};
   }
 `;
@@ -145,10 +147,11 @@ export default ({ children, pageContext, location, data }) => {
   const [mode, setMode] = useState(parsed?.mode || "dark");
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     const defaultMode =
       window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
+        window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
     setMode(store.get("mode") || defaultMode);
@@ -178,85 +181,75 @@ export default ({ children, pageContext, location, data }) => {
     }
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    fetch("https://kylepeacock.substack.com/api/v1/free?nojs=true", {
-      method: "POST",
-      body: new FormData(e.target),
-    })
-      .then(() => {})
-      .catch((error) => {
-        setError(error);
-        debugger;
-      });
-  };
-
   return (
     <ErrorBoundary>
       <MDXProvider components={components}>
-        <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
-        <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
-        <Button
-          type="button"
-          onClick={() => {
-            let newMode = mode === "light" ? "dark" : "light";
-            store.set("mode", newMode);
-            return setMode(newMode);
-          }}
-          title="toggle dark mode"
-        >
-          {mode}
-        </Button>
-        <Main>
-          <Nav>
-            {pageContext?.breadcrumb ? (
-              <Breadcrumb
-                crumbs={pageContext?.breadcrumb?.crumbs}
-                crumbSeparator=" - "
-                crumbLabel={pageContext?.frontmatter?.title || "Home"}
-              />
+        <Provider theme={defaultTheme}>
+          <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
+          <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
+          <Search />
+          <Button
+            type="button"
+            onClick={() => {
+              let newMode = mode === "light" ? "dark" : "light";
+              store.set("mode", newMode);
+              return setMode(newMode);
+            }}
+            title="toggle dark mode"
+          >
+            {mode}
+          </Button>
+          <Main>
+            <Nav>
+              {pageContext?.breadcrumb ? (
+                <Breadcrumb
+                  crumbs={pageContext?.breadcrumb?.crumbs}
+                  crumbSeparator=" - "
+                  crumbLabel={pageContext?.frontmatter?.title || "Home"}
+                />
+              ) : null}
+            </Nav>
+            {pageContext?.frontmatter ? (
+              <TitleAndDate>
+                <Link
+                  to={`./${pageContext?.frontmatter?.path}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <h1>{pageContext?.frontmatter?.title}</h1>
+                </Link>
+                <BlogDate>
+                  {(() => {
+                    const dt = new Date(pageContext?.frontmatter?.date)
+                      .toDateString()
+                      .split(" ");
+                    return `${dt[1]} ${dt[2]}, ${dt[3]}`;
+                  })()}
+                </BlogDate>
+              </TitleAndDate>
             ) : null}
-          </Nav>
-          {pageContext?.frontmatter ? (
-            <TitleAndDate>
-              <Link
-                to={`./${pageContext?.frontmatter?.path}`}
-                style={{ textDecoration: "none" }}
-              >
-                <h1>{pageContext?.frontmatter?.title}</h1>
-              </Link>
-              <BlogDate>
-                {(() => {
-                  const dt = new Date(pageContext?.frontmatter?.date)
-                    .toDateString()
-                    .split(" ");
-                  return `${dt[1]} ${dt[2]}, ${dt[3]}`;
-                })()}
-              </BlogDate>
-            </TitleAndDate>
-          ) : null}
-          {children}
-        </Main>
-        <Footer mode={mode}>
-          <section>
-            <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
-            {visits ? <p>This page has been viewed {visits} times</p> : null}
-          </section>
-          <div
-            id="newsletterFrame"
-            dangerouslySetInnerHTML={{
-              __html: loaded
-                ? `<iframe
+            {children}
+          </Main>
+          <Footer mode={mode}>
+            <section>
+              <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
+              {visits ? <p>This page has been viewed {visits} times</p> : null}
+            </section>
+            <div
+              id="newsletterFrame"
+              dangerouslySetInnerHTML={{
+                __html: loaded
+                  ? `<iframe
             src="https://kylepeacock.substack.com/embed"
         width="320"
         height="180"
         frameBorder="0"
         scrolling="no"
         />`
-                : null,
-            }}
-          ></div>
-        </Footer>
+                  : null,
+              }}
+            ></div>
+          </Footer>
+        </Provider>
       </MDXProvider>
     </ErrorBoundary>
   );

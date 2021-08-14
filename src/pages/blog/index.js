@@ -67,8 +67,6 @@ const Blog = () => {
       }
     `
   );
-
-  console.log(data);
   return (
     <>
       <Picture>
