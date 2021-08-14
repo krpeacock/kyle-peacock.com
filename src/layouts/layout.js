@@ -21,7 +21,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { page_visits } from "../declarations/page_visits";
 import { Search } from "../components/Search";
 const queryString = require("query-string");
-import { Provider, defaultTheme } from '@adobe/react-spectrum'
+import { Provider, defaultTheme } from "@adobe/react-spectrum";
 
 const Nav = styled.nav`
   display: flex;
@@ -53,15 +53,21 @@ typography.injectStyles();
 const GlobalStyle = createGlobalStyle`
   :root {
     --background:  ${(props) =>
-    props.mode === "light" ? "white" : "var(--dark-bg)"};
+      props.mode === "light" ? "white" : "var(--dark-bg)"};
     --text-color: ${(props) =>
-    props.mode === "light" ? "black" : "rgba(236, 236, 236, 0.85)"};
+      props.mode === "light" ? "black" : "rgba(236, 236, 236, 0.85)"};
     --title-color: ${(props) =>
-    props.mode === "light" ? "#415161" : "rgba(236, 236, 236, 0.85)"};
+      props.mode === "light" ? "#415161" : "rgba(236, 236, 236, 0.85)"};
     --contrast-color: var(--red-violet);
     --button-background: ${(props) =>
-    props.mode === "light" ? "var(--peacock-green)" : "var(--cancan)"};
+      props.mode === "light" ? "var(--peacock-green)" : "var(--cancan)"};
     text-transform: ${(props) => (props.capitalize ? "none" : "lowercase")};
+  }
+  body {
+    background-color: var(--background);
+  }
+  #provider {
+    background-color: var(--background);
   }
 `;
 
@@ -131,16 +137,22 @@ const Button = styled.button`
   --size: 2.5rem;
   height: var(--size);
   width: var(--size);
-  position: absolute;
-  top: 10px;
   cursor: pointer;
-  right: 10px;
   z-index: 1;
   border: 1px solid transparent;
   background-color: var(--peacock-green);
   color: white;
   font-size: calc(var(--size) / 3.5);
   border-radius: 100%;
+`;
+
+const Flex = styled.div`
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-end;
+  gap: 1rem;
+  align-items: center;
+  background-color: var(--background-color);
 `;
 
 export default ({ children, pageContext, location, data }) => {
@@ -186,72 +198,75 @@ export default ({ children, pageContext, location, data }) => {
   return (
     <ErrorBoundary>
       <MDXProvider components={components}>
-        <Provider theme={defaultTheme} colorScheme={mode}>
-          <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
-          <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
-          <Search />
-          <Button
-            type="button"
-            onClick={() => {
-              let newMode = mode === "light" ? "dark" : "light";
-              store.set("mode", newMode);
-              return setMode(newMode);
-            }}
-            title="toggle dark mode"
-          >
-            {mode}
-          </Button>
-          <Main>
-            <Nav>
-              {pageContext?.breadcrumb ? (
-                <Breadcrumb
-                  crumbs={pageContext?.breadcrumb?.crumbs}
-                  crumbSeparator=" - "
-                  crumbLabel={pageContext?.frontmatter?.title || "Home"}
-                />
-              ) : null}
-            </Nav>
-            {pageContext?.frontmatter ? (
-              <TitleAndDate>
-                <Link
-                  to={`./${pageContext?.frontmatter?.path}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <h1>{pageContext?.frontmatter?.title}</h1>
-                </Link>
-                <BlogDate>
-                  {(() => {
-                    const dt = new Date(pageContext?.frontmatter?.date)
-                      .toDateString()
-                      .split(" ");
-                    return `${dt[1]} ${dt[2]}, ${dt[3]}`;
-                  })()}
-                </BlogDate>
-              </TitleAndDate>
+        <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
+        <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
+
+        <Provider id="provider" theme={defaultTheme} colorScheme={mode}>
+          <Flex>
+            <Search />
+            <Button
+              type="button"
+              onClick={() => {
+                let newMode = mode === "light" ? "dark" : "light";
+                store.set("mode", newMode);
+                return setMode(newMode);
+              }}
+              title="toggle dark mode"
+            >
+              {mode}
+            </Button>
+          </Flex>
+        </Provider>
+        <Main>
+          <Nav>
+            {pageContext?.breadcrumb ? (
+              <Breadcrumb
+                crumbs={pageContext?.breadcrumb?.crumbs}
+                crumbSeparator=" - "
+                crumbLabel={pageContext?.frontmatter?.title || "Home"}
+              />
             ) : null}
-            {children}
-          </Main>
-          <Footer mode={mode}>
-            <section>
-              <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
-              {visits ? <p>This page has been viewed {visits} times</p> : null}
-            </section>
-            <div
-              id="newsletterFrame"
-              dangerouslySetInnerHTML={{
-                __html: loaded
-                  ? `<iframe
+          </Nav>
+          {pageContext?.frontmatter ? (
+            <TitleAndDate>
+              <Link
+                to={`./${pageContext?.frontmatter?.path}`}
+                style={{ textDecoration: "none" }}
+              >
+                <h1>{pageContext?.frontmatter?.title}</h1>
+              </Link>
+              <BlogDate>
+                {(() => {
+                  const dt = new Date(pageContext?.frontmatter?.date)
+                    .toDateString()
+                    .split(" ");
+                  return `${dt[1]} ${dt[2]}, ${dt[3]}`;
+                })()}
+              </BlogDate>
+            </TitleAndDate>
+          ) : null}
+          {children}
+        </Main>
+        <Footer mode={mode}>
+          <section>
+            <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
+            {visits ? <p>This page has been viewed {visits} times</p> : null}
+          </section>
+          <div
+            id="newsletterFrame"
+            dangerouslySetInnerHTML={{
+              __html: loaded
+                ? `<iframe
             src="https://kylepeacock.substack.com/embed"
         width="320"
         height="180"
         frameBorder="0"
         scrolling="no"
         />`
-                  : null,
-              }}
-            ></div>
-          </Footer>
-        </Provider>
+                : null,
+            }}
+          ></div>
+        </Footer>
       </MDXProvider>
     </ErrorBoundary>
   );
