@@ -74,6 +74,7 @@ export const Main = styled.main`
   min-height: 100vh;
   height: 100%;
   padding: 1rem;
+  background: var(--background);
   @media (min-width: 376px) {
     text-align: left;
   }
@@ -122,6 +123,7 @@ const Footer = styled.footer`
       top: -20px;
       background: transparent;
       margin-bottom: 0;
+      max-width: 100%;
     }
   }
 `;
@@ -151,7 +153,7 @@ export default ({ children, pageContext, location, data }) => {
   useEffect(() => {
     const defaultMode =
       window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
+      window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
     setMode(store.get("mode") || defaultMode);
@@ -184,7 +186,7 @@ export default ({ children, pageContext, location, data }) => {
   return (
     <ErrorBoundary>
       <MDXProvider components={components}>
-        <Provider theme={defaultTheme}>
+        <Provider theme={defaultTheme} colorScheme={mode}>
           <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
           <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
           <Search />

@@ -93,6 +93,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  margin-top: 1rem;
   > a, > a:visited {
     text-decoration: none;
     color: var(--text-color);
@@ -105,4 +106,25 @@ h1, h2, h3, h4, h5, h6 {
 .row {
   display: flex;
   flex-direction: row;
+}
+
+.space-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iframe-container {
+  overflow: hidden;
+  /* 16:9 aspect ratio */
+  padding-top: 56.25%;
+  position: relative;
+}
+
+.iframe-container iframe {
+   border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
 }
