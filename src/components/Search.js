@@ -28,17 +28,18 @@ const AnimatedSection = styled.section`
 
 const SearchDiv = styled.div`
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 1.5rem;
-  input {
-    margin-bottom: 1rem;
-    padding: 1rem 8px;
+  gap: 1rem;
+  flex-direction: column;
+  form {
+    width: 100%;
+    margin-right: auto;
   }
 `;
 
 export const Search = () => {
+  const [value, setValue] = React.useState("");
   const [search, setSearch] = React.useState("");
 
   const searchData = useStaticQuery(
@@ -62,6 +63,7 @@ export const Search = () => {
   );
 
   const handleChange = (value) => {
+    setValue(value);
     if (value.length > 2) {
       setSearch(value);
     } else {
@@ -77,17 +79,21 @@ export const Search = () => {
           <Dialog size="L">
             <Content>
               <SearchDiv>
-                <Form width="auto">
-                  <SearchField
-                    onChange={handleChange}
-                    autoFocus
-                    label="Search"
-                    width="auto"
-                  />
-                </Form>
                 <Button variant="secondary" onPress={close}>
                   Close
                 </Button>
+                <Form>
+                  <SearchField
+                    onChange={handleChange}
+                    onClear={() => {
+                      if (!value) {
+                        close();
+                      }
+                    }}
+                    autoFocus
+                    label="Search"
+                  />
+                </Form>
               </SearchDiv>
               <Divider />
               <AnimatedSection hasResults={searchResults.length}>
