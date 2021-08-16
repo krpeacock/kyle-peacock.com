@@ -11,7 +11,7 @@ import {
 } from "@adobe/react-spectrum";
 import { useStaticQuery, graphql } from "gatsby";
 import { useFlexSearch } from "react-use-flexsearch";
-import { Post } from "../pages/blog";
+import { Post } from "./LayoutComponents";
 import styled from "styled-components";
 
 const Result = ({ result }) => {

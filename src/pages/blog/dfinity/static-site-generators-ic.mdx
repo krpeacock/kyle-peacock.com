@@ -19,9 +19,10 @@ import {
 <style>{`main{text-transform: none;}`}</style>
 <BlocksProvider>
 
-## Update - video recording!
+## Updates
 
-I delivered a talk for our Genesis event, walking through the process of this blog post. That video recording is now available here:
+* [Small changes](#0_8_0-changes) to migrate this starter to `dfx 0.8.0`.
+* I delivered a talk for our Genesis event, walking through the process of this blog post. That video recording is now available here:
 
 <div class="iframe-container">
 <iframe
@@ -38,13 +39,13 @@ I delivered a talk for our Genesis event, walking through the process of this bl
 
 ## Intro
 
-Following up on my recent post announcing http-powered canisters, I want to walk through what it takes to build a frontend application on the Internet Computer whil taking advantage of the new features we support. If it seems simple, that's great! We worked to make this workflow approachable to engineers who are already used to hosting static assets on Netlify, Fastly, or S3 buckets.
+Following up on my recent post announcing http-powered canisters, I want to walk through what it takes to build a frontend application on the Internet Computer while taking advantage of the new features we support. If it seems simple, that's great! We worked to make this workflow approachable to engineers who are already used to hosting static assets on Netlify, Fastly, or S3 buckets.
 
 For the sake of this demo, I'll be using Gatsby.js, the framework I use to maintain this blog.
 
 ## Getting Started
 
-To begin, I run the command `npm init gatsby`. I'm prompted with "What would you like to call your site?", and I'll call this `contact_book`. I'll use that name for the folder to create as well. Next I'm prompted whether I'll be using a CMS, and I answer "No". I'll select `styled-components` from the styling system prompt as a preference, skip the other optional features, and then we're on our way with a fresh project!
+To begin, I run the command `npm init gatsby`. I'm prompted with "What would you like to call your site?", and I'll call this `phone_book`. I'll use that name for the folder to create as well. Next I'm prompted whether I'll be using a CMS, and I answer "No". I'll select `styled-components` from the styling system prompt as a preference, skip the other optional features, and then we're on our way with a fresh project!
 
 <BlogImage src={gatsbyInit}>The Gatsby new project CLI</BlogImage>
 
@@ -91,28 +92,25 @@ Because Gatsby compiles its build output into the `public` directory, our `dfx.j
 
 ### Installing dfx
 
-Going forward, you'll be able to follow the documentation at [sdk.dfinity.org](https://sdk.dfinity.org/docs/index.html), but if you are reading this soon after it's published, you'll need to run this command to install the latest preview build of `dfx`.
+You can follow quickstart guide at https://dfinity.org/developers/, or [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/krpeacock/ic-vcf-gatsby)
 
 ```shell-session
-DFX_VERSION=0.7.0-beta.2 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 ```
 
-You'll be prompted to agree to install that version, and you should be good to go!
+You'll be prompted to agree to install the latest version, and you should be good to go!
 
 ### Deploy your site
 
-Start by running `npm run build` to compile your website. You can now run `dfx deploy --network=ic` from the same directory as your `dfx.json` to publish your website to the Sodium network.
+You will need to fund your production Canister. I recommend going to https://faucet.dfinity.org and following the directions there to get set up with a Cycles Wallet.
+
+Alternately, I've written a blog post on creating a canister using the NNS app, which you can read at https://kyle-peacock.com/blog/dfinity/your-first-canister/.
+
+Start by running `npm run build` to compile your website. You can now run `dfx deploy --network=ic` from the same directory as your `dfx.json` to publish your website to the Sodium network. 
+
+> Note: if you used the NNS guide, you will deploy with `dfx deploy --network=ic --no-wallet`
 
 Once your site deploy is finished, you can find your canister id by running `dfx canister id www`, and then navigating to `https://{canisterId}.ic0.app`.
-
-<h2 id="fund-update">Update - how to fund your first canister</h2>
-
-We now have [a guide](https://sdk.dfinity.org/docs/quickstart/network-quickstart.html) on how to pay for and set up your first canister. The basic flow (for now) basically looks like:
-
-* Register your identity with the ledger canister
-* Use the ledger to create an empty canister
-* Install a cycles wallet to that canister
-* Set that wallet as your wallet.
 
 ---
 
@@ -135,7 +133,7 @@ Now, let's customize the code here a bit. I want to build a contact book, so let
 
 Basically, we have a form that can allow a user to create a contact, an input to search for contacts by email address, and a component to render a saved contact.
 
-There are any number of ways that we could persist this information - I might initially start by writing the data to `localStorage`, Firebase, or MongoDB Atlas as simple text, encoded using `JSON.stringify()`. Today, I'll persist that data using a smart contract on the Internet computer.
+There are any number of ways that we could persist this information - I might initially start by writing the data to `localStorage`, Firebase, or MongoDB Atlas as simple text, encoded using `JSON.stringify()`. Here, I'll show how to persist that data using a smart contract on the Internet computer.
 
 ## Adding a backend
 
@@ -159,7 +157,7 @@ Without diving too far into the details here, this code uses a `stable var` to p
 
 We then implement our `set` and `get` interfaces, and add `preupgrade` and `postupgrade` hooks, again to persist data across upgrades.
 
-I'll save this to a new folder in my `src` directory, at `src/backend/contact_book/Main.mo`. This code is written in Motoko, a language maintained by Dfinity to specifically cater to the features of the Internet Computer. The IC supports any language tha can compile to Web Assembly, and Rust and C are other popular choices for canister development. For more information on Motoko, check out [the docs](https://sdk.dfinity.org/docs/language-guide/motoko.html).
+I'll save this to a new folder in my `src` directory, at `src/backend/phone_book/Main.mo`. This code is written in Motoko, a language maintained by Dfinity to specifically cater to the features of the Internet Computer. The IC supports any language tha can compile to Web Assembly, and Rust and C are other popular choices for canister development. For more information on Motoko, check out [the docs](https://sdk.dfinity.org/docs/language-guide/motoko.html).
 
 ### Configure dfx.json
 
@@ -169,11 +167,11 @@ Now, we need to configure `dfx` to be aware of our new canister. We'll add a new
 // dfx.json
 {
   "canisters": {
-    "contact_book": {
-      "main": "src/backend/contact_book/Main.mo"
+    "phone_book": {
+      "main": "src/backend/phone_book/Main.mo"
     },
     "www": {
-      "dependencies": ["contact_book"],
+      "dependencies": ["phone_book"],
       "type": "assets",
       "source": ["public"]
     }
@@ -182,13 +180,33 @@ Now, we need to configure `dfx` to be aware of our new canister. We'll add a new
 
 ```
 
+### Configure package.json
+
+We can add logic to copy code declarations from the Canister's interface, by pulling them from `.dfx/local`. To handle this, we will add a `copy:types` script to `package.json`, and have it run before the `npm start` and `npm build` scripts.
+
+```json
+"scripts": {
+  ...
+    "copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete src/declarations",
+    "prestart": "npm run copy:types",
+    "prebuild": "npm run copy:types",
+}
+```
+
+Now, we can deploy our backend locally, and generate those types.
+
+```shell-session
+dfx deploy phone_book
+npm run copy:types
+```
+
+Now, those files should be available under `src/declarations/phone_book`.
+
 ### Configure Gatsby
 
-Next, we'll need to update Gatsby with an alias that points to dynamically generated code from `dfx` that will be located in a hidden `.dfx` folder in your project. We'll create a `gatsby-node.js` file in the root of our project, and write some code that will use our settings in `dfx.json` to import our custom interfaces for our new backend.
+Next, we'll need to update Gatsby with an alias that points to our declarations. We'll create a `gatsby-node.js` file in the root of our project, and write some code that will use our settings in `dfx.json` to import our custom interfaces for our new backend.
 
 <GatsbyNode />
-
-Note - there is a portion of `@dfinity/agent` that requires us to add in a plugin to resolve node buffer during compilation. I have an open issue to remove that dependency.
 
 Additionally, we'll add a proxy to `gatsby-config.js` file, proxying `localhost:8000`, which is the default address for our `dfx` replica.
 
@@ -207,38 +225,16 @@ module.exports = {
 
 ```
 
-### Using @dfinity/agent
-
-Now that we've aliased our `dfx` generated resources, we can import them and use them in our codebase. So, next I'll create `src/actor.js`, and import `@dfinity/agent` and from `dfx-generated/contact_book`
-
-```jsx
-// actor.js
-import { Actor, HttpAgent } from "@dfinity/agent";
-import {
-  idlFactory,
-  canisterId,
-} from "dfx-generated/contact_book";
-
-const agent = new HttpAgent();
-const actor = Actor.createActor(idlFactory, { agent, canisterId });
-
-export default actor;
-```
-
-Here we create an an agent and pass it to an Actor constructor, along with the `idlFactory` and `canisterId` from our code generated from the backend interface.
-
-Then, we export our actor, which has two methods, `set` and `get` that are already configured with a promise-based API to make type-safe calls to our canister backend.
-
-### Finally, we wire it up. 
+### Finally, wiring up @dfinity/agent
 
 We'll modify our `index.js` page with logic to store submissions from the form on our canister, using the `email` field.
 
-I'll import the actor (doing this as a dynamic import to avoid initializing the HttpAgent during server-side rendering for Gatsby)
+I'll import the actor (doing this as a dynamic import to avoid initializing the HttpAgent during server-side rendering for Gatsby) from the auto-generated type generation that `dfx` provides us using the Candid declarations. 
 
 ```jsx
 React.useEffect(() => {
-  import("../actor").then((module) => {
-    setActor(module.default);
+  import("../declarations/phone_book").then((module) => {
+    setActor(module.phone_book);
   });
 }, []);
 ```
@@ -286,9 +282,8 @@ Now that we've adapted our codebase, our project structure looks like this:
 ├── package-lock.json
 ├── package.json
 └── src
-    ├── actor.js
     ├── backend
-    │   └── contact_book
+    │   └── phone_book
     │       └── Main.mo
     ├── images
     │   └── icon.png
@@ -308,3 +303,11 @@ If all goes well, you should be able to test the application locally by submitti
 And that should be it! You can try these steps yourself, download this example project from https://github.com/krpeacock/ic-vcf-gatsby, or use this guide as a reference to get started with your own projects! We can't wait to see what you build!
 
 </BlocksProvider>
+
+<h2 id="0_8_0-changes">0.8.0 Changes</h2>
+
+Updated Aug 16, 2021
+
+In previous versions of this post, I was manually creating an actor file, and I was using a webpack alias to fetch the declarations from `.dfx/local`. I've updated `node-config.js` to use the new `0.8.0` declarations, which are a little simpler, but require a dynamic canister Id from the bundler, depending on whether your code is being run for local development, or pointing to the Internet Computer mainnet. 
+
+You should be able to clone the application and follow this guide as it is now with no trouble.
