@@ -38,7 +38,7 @@
     "gatsby-transformer-sharp": "^3.10.0",
     "mdx-blocks": "^0.0.15",
     "prism-react-renderer": "^1.2.1",
-    "prismjs": "^1.24.1",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.7.2",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
