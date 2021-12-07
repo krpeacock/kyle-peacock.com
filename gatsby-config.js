@@ -40,7 +40,15 @@ module.exports = {
           // configuration in an object in the second element
           [require("rehype-autolink-headings"), { behavior: "wrap" }],
         ],
-        gatsbyRemarkPlugins: [`gatsby-remark-images`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              linkImagesToOriginal: false,
+              wrapperStyle: "margin-bottom: 1rem;",
+            },
+          },
+        ],
       },
     },
     `gatsby-transformer-sharp`,

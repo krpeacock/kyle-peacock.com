@@ -4,7 +4,7 @@ import { useStaticQuery, Link, graphql } from "gatsby";
 import {
   TitleAndDate,
   BlogHeader,
-  Date as BlogDate,
+  BlogDate,
 } from "../../components/BlogComponents";
 import banner from "../../images/Peacockbanner.png";
 import Layout from "../../layouts/layout";
@@ -25,6 +25,7 @@ const Blog = () => {
                 path
                 series
                 tags
+                isPrivate
               }
             }
           }
@@ -38,7 +39,11 @@ const Blog = () => {
         <img src={banner} alt="image with a Peacock logo" />
       </Picture>
       <Layout>
-        <Posts edges={data?.allMdx?.edges} />
+        <Posts
+          edges={data?.allMdx?.edges.filter(
+            (edge) => !edge.node.frontmatter.isPrivate
+          )}
+        />
       </Layout>
     </>
   );

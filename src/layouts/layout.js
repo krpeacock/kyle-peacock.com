@@ -6,7 +6,7 @@ import store from "store";
 import "prismjs/themes/prism-twilight.css";
 import {
   TitleAndDate,
-  Date as BlogDate,
+  BlogDate,
   StyledImage,
   Description,
   Column,

@@ -27,7 +27,7 @@ export const BlogHeader = styled.h3`
   }
 `;
 
-export const Date = styled.p`
+export const BlogDate = styled.p`
   font-size: 14px;
   margin-bottom: 0;
 `;
@@ -92,18 +92,13 @@ export const BlogImage = ({
 };
 
 export const TitleSection = ({ title, date }) => {
-  const page =
-    "/blog/" +
-    title
-      .toLowerCase()
-      .split(" ")
-      .join("-");
+  const page = "/blog/" + title.toLowerCase().split(" ").join("-");
   return (
     <TitleAndDate>
       <Link to={page} style={{ textDecoration: "none" }}>
         <BlogHeader>{title}</BlogHeader>
       </Link>
-      <Date>{date}</Date>
+      <BlogDate>{date}</BlogDate>
     </TitleAndDate>
   );
 };

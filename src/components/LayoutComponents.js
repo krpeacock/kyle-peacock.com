@@ -1,5 +1,7 @@
+import { Link } from "gatsby";
 import * as React from "react";
 import styled from "styled-components";
+import { BlogHeader, BlogDate, TitleAndDate } from "./BlogComponents";
 
 export const Picture = styled.picture`
   display: flex;
