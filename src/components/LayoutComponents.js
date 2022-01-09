@@ -22,12 +22,15 @@ const Article = styled.article`
   margin-bottom: 1rem;
   picture {
     margin-bottom: auto;
-    width: 10rem;
     max-height: 8rem;
     display: flex;
+    width: 6rem;
+    @media (min-width: 767px) {
+      width: 10rem;
+    }
     img {
       max-width: 100%;
-      object-fit: contain;
+      object-fit: fill;
     }
   }
   h3 {
