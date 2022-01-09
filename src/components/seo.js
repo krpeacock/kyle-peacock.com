@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
-import ogImage from "../images/Peacockbanner.png";
+import defaultImage from "../images/Peacockbanner.png";
 
-function SEO({ description, lang, meta, tags, title }) {
+function SEO(props) {
+  const { description, lang, meta, tags, title, featuredImage } = props;
+  const image = featuredImage ? featuredImage : defaultImage;
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description;
         return (
@@ -53,7 +55,7 @@ function SEO({ description, lang, meta, tags, title }) {
               },
               {
                 name: `og:image`,
-                content: `https://kyle-peacock.com${ogImage}`,
+                content: `https://kyle-peacock.com${image}`,
               },
               {
                 name: `og:image:alt`,

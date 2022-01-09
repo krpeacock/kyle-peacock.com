@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import * as React from "react";
 import styled from "styled-components";
 import { BlogHeader, BlogDate, TitleAndDate } from "./BlogComponents";
+import defaultImage from "../images/Peacockbanner.png";
 
 export const Picture = styled.picture`
   display: flex;
@@ -14,12 +15,38 @@ export const Picture = styled.picture`
   }
 `;
 
+const Article = styled.article`
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 1rem;
+  margin-bottom: 1rem;
+  picture {
+    margin-bottom: auto;
+    width: 10rem;
+    max-height: 8rem;
+    display: flex;
+    img {
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
+  h3 {
+    margin-top: 0;
+  }
+`;
+
 export const Post = ({ post }) => {
   const frontmatter = post.node.frontmatter;
-  const { title, description, date, path, series, tags } = frontmatter;
+  const { title, description, date, path, series, tags, featuredImage } =
+    frontmatter;
+  console.log(frontmatter);
   const dt = new Date(date).toDateString().split(" ");
+  const image = featuredImage ? featuredImage : defaultImage;
   return (
-    <article key={post?.node?.id}>
+    <Article key={post?.node?.id}>
+      <picture>
+        <img src={image} alt="featured image" />
+      </picture>
       <TitleAndDate>
         <Link
           to={`/blog/${path}`}
@@ -30,7 +57,7 @@ export const Post = ({ post }) => {
         <BlogDate>{`${dt[1]} ${dt[2]}, ${dt[3]}`}</BlogDate>
         <p>{description}</p>
       </TitleAndDate>
-    </article>
+    </Article>
   );
 };
 

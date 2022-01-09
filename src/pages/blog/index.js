@@ -26,6 +26,7 @@ const Blog = () => {
                 series
                 tags
                 isPrivate
+                featuredImage
               }
             }
           }
