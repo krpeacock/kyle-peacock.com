@@ -193,11 +193,12 @@ const Layout = ({ children, pageContext, location }) => {
         });
     }
   }, []);
+  const frontmatter = pageContext?.frontmatter ?? {};
 
   return (
     <ErrorBoundary>
       <MDXProvider components={components}>
-        <SEO title="Kyle Peacock's website" {...pageContext?.frontmatter} />
+        <SEO title="Kyle Peacock's website" {...frontmatter} />
         <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
 
         <Provider id="provider" theme={defaultTheme} colorScheme={mode}>
