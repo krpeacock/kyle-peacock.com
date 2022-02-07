@@ -1,11 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
-import { useStaticQuery, Link, graphql } from "gatsby";
-import {
-  TitleAndDate,
-  BlogHeader,
-  BlogDate,
-} from "../../components/BlogComponents";
+import { useStaticQuery, graphql } from "gatsby";
 import banner from "../../images/Peacockbanner.png";
 import Layout from "../../layouts/layout";
 import { Picture, Posts } from "../../components/LayoutComponents";

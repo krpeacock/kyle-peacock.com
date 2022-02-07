@@ -42,13 +42,12 @@ export const Post = ({ post }) => {
   const frontmatter = post.node.frontmatter;
   const { title, description, date, path, series, tags, featuredImage } =
     frontmatter;
-  console.log(frontmatter);
   const dt = new Date(date).toDateString().split(" ");
   const image = featuredImage ? featuredImage : defaultImage;
   return (
     <Article key={post?.node?.id}>
       <picture>
-        <img src={image} alt="featured image" />
+        <img src={image} alt="" />
       </picture>
       <TitleAndDate>
         <Link

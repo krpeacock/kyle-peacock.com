@@ -59,7 +59,6 @@ const ContactCard = ({ card }) => {
       <DataList>
         {Object.entries(card.data).map(([key, value]) => {
           const [_field, _data] = value;
-          console.log(value);
           if (value._field === "photo") {
             return (
               <React.Fragment key={value._field}>

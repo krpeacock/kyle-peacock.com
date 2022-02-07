@@ -11,7 +11,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -131,7 +130,6 @@ module.exports = {
         // containing properties to index. The objects must contain the `ref`
         // field above (default: 'id'). This is required.
         normalizer: ({ data }) => {
-          console.log(data.allMdx.edges[0].node.frontmatter);
           return data.allMdx.edges.map((edge) => ({
             id: edge.node.id,
             path: edge.node.frontmatter.path,

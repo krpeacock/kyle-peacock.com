@@ -20,8 +20,8 @@ import "../main.scss";
 import { MDXProvider } from "@mdx-js/react";
 import { page_visits } from "../declarations/page_visits";
 import { Search } from "../components/Search";
-const queryString = require("query-string");
 import { Provider, defaultTheme } from "@adobe/react-spectrum";
+const queryString = require("query-string");
 
 const Nav = styled.nav`
   display: flex;
@@ -155,11 +155,10 @@ const Flex = styled.div`
   background-color: var(--background-color);
 `;
 
-export default ({ children, pageContext, location, data }) => {
+const Layout = ({ children, pageContext, location }) => {
   const parsed = queryString.parse(location?.search);
   const [visits, setVisits] = React.useState(null);
   const [mode, setMode] = useState(parsed?.mode || "dark");
-  const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -308,3 +307,5 @@ export const BlogImage = ({
 const components = {
   img: BlogImage,
 };
+
+export default Layout;
