@@ -1,0 +1,35 @@
+---
+title: "ASPLOS Talk Outline"
+path: "dfinity/asplos-talk-outline"
+date: 2022-01-20
+featuredImage: "/images/dfinity-logo.jpg"
+description: "Outline for a talk I (will/have) presented at ASPLOS 2022 on the full picture of how dapps are built on the Internet Computer"
+---
+
+## Trustless Web Applications on the Internet Computer
+
+### Architectural Overview of the Internet Computer
+
+Much of this segment is borrowed from [IC Whitepaper](https://dfinity.org/whitepaper.pdf), which was written by [Victor Shoup](https://www.shoup.net/), a Principal Researcher at the Dfinity Foundation.
+
+#### What is the Internet Computer?
+
+The Internet Computer (IC) is a platform for executing smart contracts in WebAssembly across a global network of nodes running in independent data centers. This platform was designed from the ground up to be able to scale horizontally, avoiding the scaling and bandwidth challenges presented on Ethereum-like blockchains.
+
+Today, close to a year since the Genesis Mainnet launch event, there are many applications running on the Internet Computer. Social media sites like [DSCVR](https://dscvr.one), [Distrikt](https://distrikt.app), NFT Marketplaces such as [Entrepot.app](https://entrepot.app), and more are running their services on IC canisters. That statement is perhaps understated - to be clear, every aspect of those applications is running on a blockchain platform. This includes:
+* Frontend Assets
+    * HTML, JS, and CSS, and often images
+* No database
+    * All user data and state is held directly in smart contracts
+* All queries and updates are direct calls to the Internet Computer
+
+#### How is this possible?
+
+
+
+
+### Serving Certified Web Content
+
+### Anonymous Authentication with Internet Identity
+
+### Access Control Strategies
