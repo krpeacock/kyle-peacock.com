@@ -32,6 +32,7 @@ const IndexPage = ({ location }) => (
       <Link to="about">about me</Link>
       <Link to="blog">my blog</Link>
       <Link to="portfolio">stuff I've made</Link>
+      <Link to="provenance">is it kyle? (socials and provenance)</Link>
     </GoTo>
   </Layout>
 );

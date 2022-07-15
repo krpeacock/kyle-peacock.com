@@ -203,6 +203,9 @@ const Layout = ({ children, pageContext, location }) => {
 
         <Provider id="provider" theme={defaultTheme} colorScheme={mode}>
           <Flex>
+            <a href="/" style={{ marginRight: "auto" }}>
+              Home
+            </a>
             <Search />
             <Button
               type="button"
