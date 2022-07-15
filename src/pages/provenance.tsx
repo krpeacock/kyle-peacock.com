@@ -33,6 +33,27 @@ const Section = styled.section`
   }
 `;
 
+const CopyButton = ({ text }) => {
+  const [displayText, setDisplayText] = React.useState("copy");
+  const clickHandler = () => {
+    navigator.clipboard.writeText(text);
+    setDisplayText("copied!");
+    setTimeout(() => {
+      setDisplayText("copy");
+    }, 5000);
+  };
+  return (
+    <button
+      type="button"
+      onClick={clickHandler}
+      disabled={displayText === "copied!"}
+      style={{ marginBottom: "1rem" }}
+    >
+      {displayText}
+    </button>
+  );
+};
+
 const Provenance = ({ location }) => (
   <Layout location={location} pageContext={{}}>
     <SEO title="provenace" />
@@ -75,13 +96,19 @@ const Provenance = ({ location }) => (
           <a href="#public-keys">Public Keys</a>
         </h3>
         <dl>
-          <dt>Plug</dt>
+          <dt>
+            <p>Plug</p>
+            <CopyButton text="ycrxc-wiiym-cghia-slzam-ouyhd-4xojs-vrrug-fvcqd-aibag-22sup-pqe" />
+          </dt>
           <dd>
             <pre>
               ycrxc-wiiym-cghia-slzam-ouyhd-4xojs-vrrug-fvcqd-aibag-22sup-pqe
             </pre>
           </dd>
-          <dt>DFX</dt>
+          <dt>
+            <p>DFX</p>
+            <CopyButton text="jhnlf-yu2dz-v7beb-c77gl-76tj7-shaqo-5qfvi-htvel-gzamb-bvzx6-yqe" />
+          </dt>
           <dd>
             <pre>
               jhnlf-yu2dz-v7beb-c77gl-76tj7-shaqo-5qfvi-htvel-gzamb-bvzx6-yqe
