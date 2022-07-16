@@ -39,10 +39,10 @@ Add `"test": "vitest"` to your `package.json` scripts.
 ### Actor setup
 
 Create a folder for your tests. I place mine in `<project-root>/src/e2e`. Inside of `e2e`, create a 
-utility to create your agent using the generated declarations, named `agent.js`. Note: I'm mixing use of JS and TS files here because there are a couple annoying TS warnings with these imports that aren't worth fixing.
+utility to create your agent using the generated declarations, named `actor.js`. Note: I'm mixing use of JS and TS files here because there are a couple annoying TS warnings with these imports that aren't worth fixing.
 
 ```js
-// agent.js
+// actor.js
 import { Actor, HttpAgent } from "@dfinity/agent";
 import fetch from "isomorphic-fetch";
 import canisterIds from ".dfx/local/canister_ids.json";
