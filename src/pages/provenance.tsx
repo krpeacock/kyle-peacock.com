@@ -87,6 +87,8 @@ const Provenance = ({ location }) => (
               <li>peacock.icp</li>
             </ul>
           </dd>
+          <dt>Dmail</dt>
+          <dd>pavus@dmail.ai</dd>
           <dt>Eth</dt>
           <dd>pavus.eth</dd>
         </dl>
