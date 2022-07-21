@@ -30,6 +30,11 @@ const Blog = () => {
   );
   return (
     <>
+      <SEO
+        title="Blog"
+        description="Technical and non-technical posts from Kyle's blog. This blog is a bit of a digital garden. "
+        {...frontmatter}
+      />
       <Picture>
         <img src={banner} alt="image with a Peacock logo" />
       </Picture>

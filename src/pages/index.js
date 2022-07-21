@@ -21,7 +21,7 @@ const GoTo = styled.section`
 
 const IndexPage = ({ location }) => (
   <Layout location={location}>
-    <SEO title="Kyle Peacock" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <Intro>
       <h1>kyle peacock</h1>
       <h5>is a web developer</h5>

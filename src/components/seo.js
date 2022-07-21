@@ -12,7 +12,9 @@ function SEO(props) {
       query={detailsQuery}
       render={(data) => {
         const metaDescription =
-          description || data.site.siteMetadata.description;
+          description ||
+          data.site.siteMetadata.description ||
+          "For all your Kyle Peacock related needs. Multi-talented and empathetic, Kyle is a world-class software engineer, who is currently working on the Internet Computer. Check out their blog for more information!";
         return (
           <Helmet
             htmlAttributes={{
