@@ -194,7 +194,7 @@ const Layout = ({ children, pageContext, location }) => {
 
   return (
     <ErrorBoundary>
-      <MDXProvider components={components}>
+      <MDXProvider>
         <SEO {...frontmatter} />
         <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
 
@@ -261,39 +261,5 @@ const Layout = ({ children, pageContext, location }) => {
 const StyledColumn = styled(Column)`
   ${(props) => (props ? props.css : null)}
 `;
-
-export const BlogImage = ({
-  src,
-  alt,
-  children,
-  style,
-  link,
-  css,
-  ...rest
-}) => {
-  if (link) {
-    return (
-      <StyledColumn style={style} css={css} {...rest}>
-        <a href={link}>
-          <StyledImage src={src} alt={alt} />
-        </a>
-        <a href={link}>
-          <Description>{alt}</Description>
-        </a>
-      </StyledColumn>
-    );
-  }
-
-  return (
-    <StyledColumn style={style} css={css} {...rest}>
-      <StyledImage src={src} alt={alt} />
-      <Description>{alt}</Description>
-    </StyledColumn>
-  );
-};
-
-const components = {
-  img: BlogImage,
-};
 
 export default Layout;

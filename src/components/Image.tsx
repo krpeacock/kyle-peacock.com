@@ -30,6 +30,8 @@ type Props = {
 };
 
 export const Image = (props: Props) => {
+  console.clear();
+  console.log("image rendered");
   const { relativePath, alt, children, portrait = false } = props;
   const data = useStaticQuery(graphql`
     {
@@ -50,7 +52,7 @@ export const Image = (props: Props) => {
     }
   `);
 
-  const foundFile = data.allFile.images.find(image => {
+  const foundFile = data.allFile.images.find((image) => {
     return image.relativePath === relativePath;
   });
   const dialogRef = useRef();
