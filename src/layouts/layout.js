@@ -13,7 +13,6 @@ import {
 } from "../components/BlogComponents";
 import { Link } from "gatsby";
 import SEO from "../components/seo";
-import * as Sentry from "@sentry/browser";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { Breadcrumb } from "gatsby-plugin-breadcrumb";
 import "../main.scss";
@@ -38,10 +37,6 @@ const Nav = styled.nav`
     }
   }
 `;
-
-if (process.env.GATSBY_SENTRY_URL) {
-  Sentry.init({ dsn: process.env.GATSBY_SENTRY_URL });
-}
 
 const black = "black";
 fairyGatesTheme.headerColor = black;
@@ -193,7 +188,9 @@ const Layout = ({ children, pageContext, location }) => {
         });
     }
   }, []);
-  const frontmatter = pageContext?.frontmatter ?? {};
+  const frontmatter = pageContext?.frontmatter ?? {
+    title: "Kyle Peacock's website",
+  };
 
   return (
     <ErrorBoundary>
@@ -255,25 +252,15 @@ const Layout = ({ children, pageContext, location }) => {
             <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
             {visits ? <p>This page has been viewed {visits} times</p> : null}
           </section>
-          <div
-            id="newsletterFrame"
-            dangerouslySetInnerHTML={{
-              __html: loaded
-                ? `<iframe
-            src="https://kylepeacock.substack.com/embed"
-        width="320"
-        height="180"
-        frameBorder="0"
-        scrolling="no"
-        />`
-                : null,
-            }}
-          ></div>
         </Footer>
       </MDXProvider>
     </ErrorBoundary>
   );
 };
+
+const StyledColumn = styled(Column)`
+  ${(props) => (props ? props.css : null)}
+`;
 
 export const BlogImage = ({
   src,
@@ -284,12 +271,9 @@ export const BlogImage = ({
   css,
   ...rest
 }) => {
-  const StyledColumn = styled(Column)`
-    ${css}
-  `;
   if (link) {
     return (
-      <StyledColumn style={style} {...rest}>
+      <StyledColumn style={style} css={css} {...rest}>
         <a href={link}>
           <StyledImage src={src} alt={alt} />
         </a>
@@ -301,7 +285,7 @@ export const BlogImage = ({
   }
 
   return (
-    <StyledColumn style={style} {...rest}>
+    <StyledColumn style={style} css={css} {...rest}>
       <StyledImage src={src} alt={alt} />
       <Description>{alt}</Description>
     </StyledColumn>

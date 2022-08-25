@@ -32,7 +32,8 @@ export const BlogDate = styled.p`
   margin-bottom: 0;
 `;
 
-export const Description = styled.p`
+export const Description = styled.em`
+  display: block;
   text-align: center;
 `;
 
@@ -58,6 +59,10 @@ export const Column = styled.div`
   }
 `;
 
+const StyledColumn = styled(Column)`
+  ${(props) => (props ? props.css : null)}
+`;
+
 export const BlogImage = ({
   src,
   alt,
@@ -67,26 +72,23 @@ export const BlogImage = ({
   css,
   ...rest
 }) => {
-  const StyledColumn = styled(Column)`
-    ${css}
-  `;
   if (link) {
     return (
-      <StyledColumn style={style} {...rest}>
+      <StyledColumn style={style} css={css} {...rest}>
         <a href={link}>
           <StyledImage src={src} alt={alt ?? children} />
         </a>
         <a href={link}>
-          <Description>{children}</Description>
+          <Description>{children ?? alt}</Description>
         </a>
       </StyledColumn>
     );
   }
 
   return (
-    <StyledColumn style={style} {...rest}>
+    <StyledColumn style={style} css={css} {...rest}>
       <StyledImage src={src} alt={alt ?? children} />
-      <Description>{children}</Description>
+      <Description>{children ?? alt}</Description>
     </StyledColumn>
   );
 };

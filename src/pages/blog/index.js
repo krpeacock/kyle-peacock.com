@@ -3,8 +3,9 @@ import { useStaticQuery, graphql } from "gatsby";
 import banner from "../../images/Peacockbanner.png";
 import Layout from "../../layouts/layout";
 import { Picture, Posts } from "../../components/LayoutComponents";
+import SEO from "../../components/seo";
 
-const Blog = () => {
+const Blog = ({ pageContext }) => {
   const data = useStaticQuery(
     graphql`
       query PostsQuery {
@@ -28,6 +29,7 @@ const Blog = () => {
       }
     `
   );
+  const frontmatter = pageContext?.frontmatter ?? {};
   return (
     <>
       <SEO
@@ -36,7 +38,7 @@ const Blog = () => {
         {...frontmatter}
       />
       <Picture>
-        <img src={banner} alt="image with a Peacock logo" />
+        <img src={banner} alt="Peacock logo" />
       </Picture>
       <Layout>
         <Posts

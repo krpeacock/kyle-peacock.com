@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as Sentry from "@sentry/browser";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -11,25 +10,17 @@ class ErrorBoundary extends Component {
     return { hasError: true };
   }
 
-  componentDidCatch(error, errorInfo) {
-    Sentry.withScope(scope => {
-      scope.setExtras(errorInfo);
-      const eventId = Sentry.captureException(error);
-      this.setState({ eventId });
-    });
-  }
+  componentDidCatch(error, errorInfo) {}
 
   render() {
     if (this.state.hasError) {
       //render fallback UI
       return (
-        <button
-          onClick={() =>
-            Sentry.showReportDialog({ eventId: this.state.eventId })
-          }
-        >
-          Report feedback
-        </button>
+        <div>
+          <h2>Error encountered</h2>
+          <a href="/">Return Home</a>
+          <a href="/blog">Return to Blog</a>
+        </div>
       );
     }
 
