@@ -227,7 +227,7 @@ const Layout = ({ children, pageContext, location }) => {
               />
             ) : null}
           </Nav>
-          {pageContext?.frontmatter ? (
+          {pageContext?.frontmatter?.title ? (
             <TitleAndDate>
               <Link
                 to={`./${pageContext?.frontmatter?.path}`}
