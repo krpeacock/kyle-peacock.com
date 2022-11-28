@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: ENFILE: file table overflow, scandir '/Users/kyle/code/kyle-peacock.com/node_modules/@parcel/node-resolver-core/test/fixture/node_modules/.pnpm/source-pnpm@1.0.0'
+  Error: ENFILE: file table overflow, scandir '/Users/kyle/code/kyle-peacock.com/node_modules/gatsby-plugin-image/node_modules/gatsby-plugin-utils/dist'
 
 npm manifest: 
   {

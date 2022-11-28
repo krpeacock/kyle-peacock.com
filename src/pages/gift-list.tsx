@@ -74,20 +74,26 @@ const GiftItem = (props: GiftProps) => {
     <Provider theme={defaultTheme}>
       <div
         style={{
-          width: "350px",
+          width: "calc(300px + 2rem)",
           display: "flex",
           border: "1px solid #acac",
-          padding: "24px",
+          padding: "1.5rem 1rem",
           flexDirection: "column",
           alignContent: "space-evenly",
           marginBottom: "1rem",
         }}
       >
         <a href={link} style={{ textDecoration: "none", borderBottom: "none" }}>
-          <picture
-            style={{ display: "flex", aspectRatio: "1", width: "300px" }}
-          >
-            <img src={image} alt={alt} style={{ aspectRatio: "1" }} />
+          <picture style={{ display: "flex", aspectRatio: "1", width: "100%" }}>
+            <img
+              src={image}
+              alt={alt}
+              style={{
+                aspectRatio: "1",
+                objectFit: "cover",
+                marginBottom: "0",
+              }}
+            />
           </picture>
           <h3>{title}</h3>
         </a>
@@ -96,7 +102,7 @@ const GiftItem = (props: GiftProps) => {
           {price ? ` - $${price}` : null}
         </p>
         {audio ? (
-          <audio controls style={{ background: "white", marginBottom: "1rem" }}>
+          <audio controls style={{ marginBottom: "1rem", colorScheme: "dark" }}>
             <source src={audio} type="" />
           </audio>
         ) : null}
@@ -119,7 +125,7 @@ const Section = styled.section`
   flex-flow: row wrap;
   gap: 1rem;
   align-content: space-evenly;
-  justify-content: space-between;
+  justify-content: start;
   width: 100%;
   margin-bottom: 2rem;
 `;

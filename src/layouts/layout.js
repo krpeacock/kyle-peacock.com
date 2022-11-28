@@ -84,10 +84,10 @@ export const Main = styled.main`
     margin: auto;
   }
   @media (min-width: 1080px) {
-    width: 980px;
+    width: 1000px;
   }
   @media (min-width: 1280px) {
-    width: 1080px;
+    width: 1200px;
   }
 `;
 
