@@ -4,14 +4,13 @@ import { Actor, HttpAgent } from "@dfinity/agent";
 import { idlFactory } from "./gift_list.did.js";
 export { idlFactory } from "./gift_list.did.js";
 
-// CANISTER_ID is replaced by webpack based on node environment
-export const canisterId = "rrkah-fqaaa-aaaaa-aaaaq-cai";
+export const canisterId = "eoexx-syaaa-aaaab-qahzq-cai";
 
 export const createActor = (
   canisterId,
   options = {
     agentOptions: {
-      host: "http://127.0.0.1:8000",
+      host: "https:ic0.app",
     },
   }
 ) => {
