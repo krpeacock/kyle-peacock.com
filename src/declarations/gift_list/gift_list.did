@@ -1,0 +1,24 @@
+type Status = 
+ variant {
+   bought;
+   unbought;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type Gift = 
+ record {
+   id: text;
+   modifiedBy: opt principal;
+   status: Status;
+ };
+service : {
+  getControllers: () -> (vec principal);
+  getGift: (text) -> (opt Gift) query;
+  getGifts: () -> (vec Gift) query;
+  greet: (text) -> (text);
+  registerGift: (text) -> ();
+  updateGift: (text, Status) -> (Result);
+}

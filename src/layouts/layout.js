@@ -188,14 +188,13 @@ const Layout = ({ children, pageContext, location }) => {
         });
     }
   }, []);
-  const frontmatter = pageContext?.frontmatter ?? {
-    title: "Kyle Peacock's website",
-  };
 
   return (
     <ErrorBoundary>
       <MDXProvider>
-        <SEO {...frontmatter} />
+        {pageContext?.frontmatter?.title ? (
+          <SEO {...pageContext?.frontmatter} />
+        ) : null}
         <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
 
         <Provider id="provider" theme={defaultTheme} colorScheme={mode}>
@@ -216,37 +215,38 @@ const Layout = ({ children, pageContext, location }) => {
               {mode}
             </Button>
           </Flex>
-        </Provider>
-        <Main>
-          <Nav>
-            {pageContext?.breadcrumb ? (
-              <Breadcrumb
-                crumbs={pageContext?.breadcrumb?.crumbs}
-                crumbSeparator=" - "
-                crumbLabel={pageContext?.frontmatter?.title || "Home"}
-              />
+
+          <Main>
+            <Nav>
+              {pageContext?.breadcrumb ? (
+                <Breadcrumb
+                  crumbs={pageContext?.breadcrumb?.crumbs}
+                  crumbSeparator=" - "
+                  crumbLabel={pageContext?.frontmatter?.title || "Home"}
+                />
+              ) : null}
+            </Nav>
+            {pageContext?.frontmatter?.title ? (
+              <TitleAndDate>
+                <Link
+                  to={`./${pageContext?.frontmatter?.path}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <h1>{pageContext?.frontmatter?.title}</h1>
+                </Link>
+                <BlogDate>
+                  {(() => {
+                    const dt = new Date(pageContext?.frontmatter?.date)
+                      .toDateString()
+                      .split(" ");
+                    return `${dt[1]} ${dt[2]}, ${dt[3]}`;
+                  })()}
+                </BlogDate>
+              </TitleAndDate>
             ) : null}
-          </Nav>
-          {pageContext?.frontmatter?.title ? (
-            <TitleAndDate>
-              <Link
-                to={`./${pageContext?.frontmatter?.path}`}
-                style={{ textDecoration: "none" }}
-              >
-                <h1>{pageContext?.frontmatter?.title}</h1>
-              </Link>
-              <BlogDate>
-                {(() => {
-                  const dt = new Date(pageContext?.frontmatter?.date)
-                    .toDateString()
-                    .split(" ");
-                  return `${dt[1]} ${dt[2]}, ${dt[3]}`;
-                })()}
-              </BlogDate>
-            </TitleAndDate>
-          ) : null}
-          {children}
-        </Main>
+            {children}
+          </Main>
+        </Provider>
         <Footer mode={mode}>
           <section>
             <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
