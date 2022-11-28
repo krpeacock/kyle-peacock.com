@@ -84,13 +84,24 @@ const GiftItem = (props: GiftProps) => {
         }}
       >
         <a href={link} style={{ textDecoration: "none", borderBottom: "none" }}>
-          <picture style={{ display: "flex", aspectRatio: "1", width: "100%" }}>
+          <picture
+            style={{
+              display: "flex",
+              aspectRatio: "1",
+              width: "100%",
+
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
             <img
               src={image}
               alt={alt}
               style={{
+                background: "white",
+                backgroundBlendMode: "normal",
                 aspectRatio: "1",
-                objectFit: "cover",
+                objectFit: "contain",
                 marginBottom: "0",
               }}
             />
@@ -141,28 +152,6 @@ const GiftList = ({ location }) => {
       <h2>Clothing</h2>
       <Section>
         <GiftItem
-          id="coat"
-          image="https://cdn.shopify.com/s/files/1/0313/7821/products/NMET003183_LUXE_DEADSTOCK_CASHMERE_TAILORED_COAT_BLACK_4597_1440x.jpg?v=1669134749"
-          alt="Black Cashmere Coat"
-          title="Tailored coat by Naadam"
-          description="Size Large, in Black"
-          price={695}
-          note="Shoot for the moon, right?"
-          link="https://naadam.co/products/tailored-coat?variant=39521291272288"
-          linkText="Naadam"
-        />
-        <GiftItem
-          id="sweater"
-          image="https://cdn.shopify.com/s/files/1/0313/7821/products/ME02122_THE_ESSENTIAL__75_CASHMERE_SWEATER_MEN_S_OATMEAL_003_1440x.jpg?v=1644292342"
-          alt="White Cashmere Sweater"
-          title="Essential Sweater by Naadam"
-          description="Size Large, in Oatmeal or Saffron"
-          price={75}
-          note="I own one of these and it's incredibly cozy and soft"
-          link="https://naadam.co/products/the-essential-75-cashmere-sweater-mens?variant=32474760544352"
-          linkText="Naadam"
-        />
-        <GiftItem
           id="joggers"
           alt="White Joggers"
           image="https://vuori.imgix.net/s/files/1/0022/4008/6074/products/V438HPT_39adbf89-df71-43f6-9876-8e7ddc65fd19_1200x_crop_center.jpg.webp?ixlib=js-3.7.0&w=800&auto=format&dpr=2&q=50&s=5317922157c6af70c1bd2684542736e0"
@@ -182,15 +171,58 @@ const GiftList = ({ location }) => {
           linkText="Leatherology"
           image="https://www.leatherology.com/media/webImg/Thin-Bifold-Wallet-Black-115-515_fullsize.jpg?width=1100"
         />
+        <GiftItem
+          id="sweater"
+          image="https://cdn.shopify.com/s/files/1/0313/7821/products/ME02122_THE_ESSENTIAL__75_CASHMERE_SWEATER_MEN_S_OATMEAL_003_1440x.jpg?v=1644292342"
+          alt="White Cashmere Sweater"
+          title="Essential Sweater by Naadam"
+          description="Size Large, in Oatmeal or Saffron"
+          price={75}
+          note="I own one of these and it's incredibly cozy and soft"
+          link="https://naadam.co/products/the-essential-75-cashmere-sweater-mens?variant=32474760544352"
+          linkText="Naadam"
+        />
+        <GiftItem
+          id="coat"
+          image="https://cdn.shopify.com/s/files/1/0313/7821/products/NMET003183_LUXE_DEADSTOCK_CASHMERE_TAILORED_COAT_BLACK_4597_1440x.jpg?v=1669134749"
+          alt="Black Cashmere Coat"
+          title="Tailored coat by Naadam"
+          description="Size Large, in Black"
+          price={695}
+          note="Shoot for the moon, right?"
+          link="https://naadam.co/products/tailored-coat?variant=39521291272288"
+          linkText="Naadam"
+        />
       </Section>
-      <h2>Electronics</h2>
+      <h2>Electronics / Games</h2>
       <Section>
+        <GiftItem
+          link="https://www.bestbuy.com/site/microsoft-xbox-wireless-controller-for-xbox-series-x-xbox-series-s-xbox-one-windows-devices-carbon-black/6430655.p?skuId=6430655&ref=212&loc=1&ref=212&loc=1&gclsrc=ds"
+          id="controller"
+          title="Xbox Controller"
+          image="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6430/6430655_sd.jpg;maxHeight=640;maxWidth=550"
+          linkText="Best Buy"
+          description="Controller for PC Gaming - currently $20 off!"
+          price={30}
+          alt="xbox controller"
+        />
+        <GiftItem
+          link="https://store.steampowered.com/app/1817190/Marvels_SpiderMan_Miles_Morales/"
+          linkText="Steam"
+          image="https://vignette.wikia.nocookie.net/spidermanps4/images/9/93/Miles_Morales_front_cover_(US).png/revision/latest?cb=20200709212103"
+          id="spider-man"
+          description="Spider-Man game for PC"
+          price={50}
+          title="Spider-Man Miles Morales"
+          alt="spider-man"
+        />
         <GiftItem
           id="color-lights"
           title="Hue Color Lights"
           alt="light bulb"
           description="4x A60 - E27 smart bulb - 1100"
-          link="https://www.philips-hue.com/en-in/p/hue-white-and-color-ambiance-a60---e27-smart-bulb---1100/8719514457812"
+          price={152}
+          link="https://www.amazon.com/Philips-Hue-Bluetooth-Compatible-Assistant/dp/B09W64MC6K/ref=sr_1_3?keywords=philips+hue+e27&qid=1669656890&sr=8-3&ufe=app_do%3Aamzn1.fos.08f69ac3-fd3d-4b88-bca2-8997e41410bb"
           linkText="Philips Hue"
           note="Four of these for the TV's entertainment zone"
           image="https://www.assets.signify.com/is/image/PhilipsLighting/09779d369c29481ab9daac2f00bb7f39?wid=1500&hei=1125&qlt=82"
@@ -199,8 +231,9 @@ const GiftList = ({ location }) => {
           id="white-lights"
           title="Hue White Lights"
           alt="light bulb"
+          price={20 * 8}
           description="8x A60 - E27 White Ambiance"
-          link="https://www.philips-hue.com/en-in/p/hue-white-ambiance-single-bulb-e27/8718696670361"
+          link="https://www.amazon.com/Philips-Hue-Ambiance-Equivalent-Assistant/dp/B01F6T4R0S/ref=sr_1_5?crid=7G8RFV04CX1U&keywords=philips%2Bhue%2Bwhite%2Bambiance%2Be27&qid=1669657019&sprefix=philips%2Bhue%2Be27%2Caps%2C141&sr=8-5&th=1"
           linkText="Philips Hue"
           note="8 for the kitchen"
           image="https://www.assets.signify.com/is/image/PhilipsLighting/01a9625d384441d9abfba9b9009c11e2?wid=1500&hei=1125&qlt=82"
