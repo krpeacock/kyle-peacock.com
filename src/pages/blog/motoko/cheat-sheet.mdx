@@ -13,9 +13,15 @@ I'm making this for my own reference, but I hope it helps you out as well!
 #### Variables
 
 ```rust
+// Constant variable
 let foo = "";
+// Stable constant
+stable let foo = "";
 
+// Mutable variable
 var foo = "";
+// Stable mutable
+stable var foo = "";
 ```
 
 #### Conditionals
@@ -47,14 +53,25 @@ var foo = "";
 foo := "new text";
 ```
 
+#### Loops
+
+```swift
+let items = ["fizz", "buzz", "fizzBuzz"];
+
+for(val in items.vals()){
+    Debug.print(debug_show val);
+}
+```
+
 #### Imports
 
 ```dart
 // base library
 import Nat "mo:base/Nat";
-
 // canister import
 import Whoami "canister:whoami";
+// package import
+import IC "mo:management-canister";
 ```
 
 #### Management Canister
@@ -110,7 +127,30 @@ let arr = [1,2,3];
 
 ### Iter
 
+```rust
+import Iter "mo:base/Iter";
+
+let iter = Iter.make();
+let fromArr = Iter.fromArray(arr);
+
+let arr2 = Iter.toArray(fromArr);
+```
+
 ### Buffer
+
+```rust
+import Buffer "mo:base/Buffer";
+
+let arr = [1,2,3];
+let buf = Buffer.Buffer<T>(size);
+
+for(x in arr.vals()){
+    buf.add(x);
+}
+
+let newArr = buf.toArray();
+
+```
 
 ### Trie
 
