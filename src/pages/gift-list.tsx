@@ -123,7 +123,7 @@ const GiftItem = (props: GiftProps) => {
         </a>
         {status ? (
           <Checkbox onChange={handleToggle} isSelected={status == "bought"}>
-            Bought
+            Reserved
           </Checkbox>
         ) : null}
       </div>
@@ -182,17 +182,16 @@ const GiftList = ({ location }) => {
           link="https://naadam.co/products/the-essential-75-cashmere-sweater-mens?variant=32474760544352"
           linkText="Naadam"
         />
-        {/* <GiftItem
+        <GiftItem
           id="boot"
-          image="https://n.nordstrommedia.com/id/sr3/b4e2bf5d-9569-4035-81de-1e9fbf881886.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838"
+          image="https://www.allenedmonds.com/blob/product-images/39099/ec/40/22671/ec4022671_single_large.jpg"
           alt="Discovery Chelsea Boot"
-          title="Essential Sweater by Naadam"
-          description="Size Large, in Oatmeal or Saffron"
-          price={75}
-          note="I own one of these and it's incredibly cozy and soft"
-          link="https://naadam.co/products/the-essential-75-cashmere-sweater-mens?variant=32474760544352"
-          linkText="Naadam"
-        /> */}
+          title="Allen Edmonds Chelsea Boot"
+          description="Size 11.5, in Black"
+          price={300}
+          link="https://www.allenedmonds.com/product/mens-discovery-chelsea-boot-3023493/black-ec4022671"
+          linkText="Allen Edmonds"
+        />
         {/* <GiftItem
           id="coat"
           image="https://cdn.shopify.com/s/files/1/0313/7821/products/NMET003183_LUXE_DEADSTOCK_CASHMERE_TAILORED_COAT_BLACK_4597_1440x.jpg?v=1669134749"
@@ -259,14 +258,14 @@ const GiftList = ({ location }) => {
           note="8 for the kitchen"
           image="https://www.assets.signify.com/is/image/PhilipsLighting/01a9625d384441d9abfba9b9009c11e2?wid=1500&hei=1125&qlt=82"
         />
-        <GiftItem
+        {/* <GiftItem
           id="motion-lights"
           image="https://m.media-amazon.com/images/I/51ep1HsEzfL._AC_SL1500_.jpg"
           alt="light"
           link="https://www.amazon.com/TOOWELL-Motion-Operated-Bathroom-Photocell/dp/B07VCS93T5/ref=sr_1_12?crid=3UMAPINY5ULZH&keywords=motion+light+hallway&qid=1669594433&sprefix=motion+light+hallway%2Caps%2C267&sr=8-12"
           title="Hallway Lights"
           description="I'd like 2 of these for the stairs"
-        />
+        /> */}
       </Section>
       <h2>Misc</h2>
       <Section>
