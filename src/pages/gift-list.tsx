@@ -182,7 +182,18 @@ const GiftList = ({ location }) => {
           link="https://naadam.co/products/the-essential-75-cashmere-sweater-mens?variant=32474760544352"
           linkText="Naadam"
         />
-        <GiftItem
+        {/* <GiftItem
+          id="boot"
+          image="https://n.nordstrommedia.com/id/sr3/b4e2bf5d-9569-4035-81de-1e9fbf881886.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838"
+          alt="Discovery Chelsea Boot"
+          title="Essential Sweater by Naadam"
+          description="Size Large, in Oatmeal or Saffron"
+          price={75}
+          note="I own one of these and it's incredibly cozy and soft"
+          link="https://naadam.co/products/the-essential-75-cashmere-sweater-mens?variant=32474760544352"
+          linkText="Naadam"
+        /> */}
+        {/* <GiftItem
           id="coat"
           image="https://cdn.shopify.com/s/files/1/0313/7821/products/NMET003183_LUXE_DEADSTOCK_CASHMERE_TAILORED_COAT_BLACK_4597_1440x.jpg?v=1669134749"
           alt="Black Cashmere Coat"
@@ -192,7 +203,7 @@ const GiftList = ({ location }) => {
           note="Shoot for the moon, right?"
           link="https://naadam.co/products/tailored-coat?variant=39521291272288"
           linkText="Naadam"
-        />
+        /> */}
       </Section>
       <h2>Electronics / Games</h2>
       <Section>
@@ -205,6 +216,16 @@ const GiftList = ({ location }) => {
           description="Controller for PC Gaming - currently $20 off!"
           price={30}
           alt="xbox controller"
+        />
+        <GiftItem
+          id="rocksmith"
+          title="RockSmith+ for PC"
+          image="https://image.api.playstation.com/cdn/UP0001/CUSA00692_00/VTNj338PhnTylYEQHEImizJpXZTlaldG.png"
+          link="https://www.walmart.com/ip/Ubisoft-Rocksmith-Real-Tone-USB-11-25ft-Audio-Cable-PS3-PS4-Xbox-PC-Mac/17753709?athcpid=17753709&athpgid=AthenaItempage&athcgid=null&athznid=PWSMT&athieid=v0&athstid=CS020&athguid=WaTZWJqHE86C7SNScbwD7zze_nWz_OAGwA5Y&athancid=null&athena=true"
+          description="Requires both the cable and the game"
+          linkText="Walmart"
+          price={65}
+          alt="rocksmith game"
         />
         <GiftItem
           link="https://store.steampowered.com/app/1817190/Marvels_SpiderMan_Miles_Morales/"
