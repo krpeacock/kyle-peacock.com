@@ -237,6 +237,16 @@ const GiftList = ({ location }) => {
           alt="spider-man"
         />
         <GiftItem
+          link="https://store.steampowered.com/app/1210320/Potion_Craft_Alchemist_Simulator/"
+          linkText="Steam"
+          image="https://i.blogs.es/dfcdc2/potioncraft/840_560.jpeg"
+          id="potion-craft"
+          description="A potion brewing game"
+          price={12}
+          title="Potion Craft"
+          alt="potion-craft"
+        />
+        <GiftItem
           id="color-lights"
           title="Hue Color Lights"
           alt="light bulb"
