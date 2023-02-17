@@ -226,7 +226,8 @@ const Layout = ({ children, pageContext, location }) => {
                 />
               ) : null}
             </Nav>
-            {pageContext?.frontmatter?.title ? (
+            {pageContext?.frontmatter?.title &&
+            !pageContext.disableTitleAndDate ? (
               <TitleAndDate>
                 <Link
                   to={`./${pageContext?.frontmatter?.path}`}
