@@ -71,6 +71,10 @@ const AboutPage = ({ location }) => (
         My Resume
       </a>
       <br />
+      <a rel="me" href="https://social.coop/@kyle">
+        Mastodon
+      </a>
+      <br />
       <h2>So, what's my deal?</h2>
       <p>
         To me, coding is a trade skill, and less of an identity. There are
