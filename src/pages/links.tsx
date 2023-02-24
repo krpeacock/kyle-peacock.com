@@ -8,7 +8,6 @@ interface Props {
 
 function Links(props: Props) {
   const { location } = props;
-
   return (
     <Layout
       pageContext={{
@@ -20,6 +19,11 @@ function Links(props: Props) {
       location={location}
     >
       <h1>It's me, Kyle</h1>
+      <img
+        src="/images/profile.jpg"
+        alt="artistic profile"
+        style={{ maxWidth: "400px" }}
+      />
       <View>
         <p>
           Enjoying ETHDenver? I'll be available at the{" "}
@@ -34,6 +38,7 @@ function Links(props: Props) {
         </p>
         <Button
           variant="cta"
+          UNSAFE_style={{ marginRight: "1rem" }}
           onPress={() =>
             //   scroll to the workshop section
             document.getElementById("workshop")?.scrollIntoView()
@@ -41,6 +46,9 @@ function Links(props: Props) {
         >
           Workshop Info
         </Button>
+        <a href={`/kyle-peacock.vcf`} download="kyle-peacock.vcf">
+          Download My Contact
+        </a>
       </View>
       <hr />
 
@@ -58,12 +66,15 @@ function Links(props: Props) {
         <li>
           <a href="https://linkedin.com/in/krpeacock">My LinkedIn</a>
         </li>
+        <li>
+          <a href="https://discord.com/users/Kyle#8394">Discord</a>
+        </li>
       </ul>
 
-      <h2>Where to find me:</h2>
-
       <section id="workshop">
-        <h3>Workshop: </h3>
+        <a href="https://events.ethdenver.com/event-hosts/attendease/networking/experience/3cf0f6c1-0247-4e8a-96f9-4740d28b969d/9911a8a4-fdbd-46f7-9946-ef47e0904c07">
+          <h2>Deploying Dapps on the Internet Computer: A Hands-On Workshop</h2>
+        </a>
         <p>Will be in the Vib Hotel Ballroom at 9:00am on on Monday the 27th</p>
         <p>
           Event Link:{" "}
@@ -86,25 +97,6 @@ function Links(props: Props) {
         <p>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3066.6049563012307!2d-104.97981888411924!3d39.77097720258119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c7904e81aaaab%3A0x2f9de3fabf39cd49!2sV%C4%ABb%20Hotel%20By%20Best%20Western%20Denver%20Rino!5e0!3m2!1sen!2sus!4v1676594388688!5m2!1sen!2sus"
-            width="350"
-            height="250"
-            style={{ border: 0 }}
-            allowFullScreen={false}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </p>
-      </section>
-      <section id="buidl-hub">
-        <h3>BUIDLHub: </h3>
-        <p>
-          I'll be hanging out at the Dfinity-sponsored coworking space at
-          BUIDLHub from Feb 24th to March 1, typically in the mornings from 10am
-          - 1pm
-        </p>
-        <p>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198.2613319982742!2d-104.97946742718854!3d39.770406428698514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c7904a82e95a1%3A0xa6dd78d5e14fbd4d!2sGreat%20Divide%20Barrel%20Bar!5e0!3m2!1sen!2sus!4v1676594163642!5m2!1sen!2sus"
             width="350"
             height="250"
             style={{ border: 0 }}
