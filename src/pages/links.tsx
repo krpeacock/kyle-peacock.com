@@ -20,7 +20,7 @@ function Links(props: Props) {
     >
       <h1>It's me, Kyle</h1>
       <img
-        src="/images/profile.jpg"
+        src="/images/profile.jpeg"
         alt="artistic profile"
         style={{ maxWidth: "400px" }}
       />
