@@ -94,7 +94,7 @@ export const Main = styled.main`
 const Footer = styled.footer`
   display: flex;
   flex-flow: column-reverse;
-  justify-content: center;
+  align-items: baseline;
   justify-content: space-between;
   align-items: baseline;
   bottom: 0;
@@ -115,7 +115,9 @@ const Footer = styled.footer`
     border: 2px solid var(--peacock-green);
     width: 342px;
     margin: auto;
+    margin-top: auto;
     margin-bottom: 1rem;
+    overflow: hidden;
     @media (min-width: 767px) {
       margin: initial;
     }
@@ -252,6 +254,15 @@ const Layout = ({ children, pageContext, location }) => {
           <section>
             <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
             {visits ? <p>This page has been viewed {visits} times</p> : null}
+          </section>
+          <section id="newsletterFrame">
+            <iframe
+              src="https://kylepeacock.substack.com/embed"
+              height="175"
+              style={{ border: "none", background: "white" }}
+              frameBorder="0"
+              scrolling="no"
+            ></iframe>
           </section>
         </Footer>
       </MDXProvider>
