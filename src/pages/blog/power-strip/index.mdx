@@ -6,20 +6,6 @@ featuredImage: "/images/power-strip-guts.jpg"
 date: 2016-07-19
 ---
 
-import { Image } from "../../components/Image.tsx";
-import guts from "../../images/power-strip-guts.jpg";
-import prototype from "../../images/strip-prototype.jpg";
-import stripApp from "../../images/strip-app.png";
-import gutted from "../../images/gutted-strip.jpg";
-import relays from "../../images/strip-with-relays.jpg";
-import wiring from "../../images/strip-wiring.jpg";
-import piZero from "../../images/pi-zero.jpg";
-import gloryShot from "../../images/glory-shot.jpg";
-import backwardPins from "../../images/backward-pins.jpg";
-import exposedWiring from "../../images/exposed-wiring.jpg";
-import tidying from "../../images/tidying.jpg";
-import headOn from "../../images/strip-head-on.jpg";
-
 It's been a couple months coming now, but I'm nearing version 1.0 of my
 power strip! You may be asking a few questions now, like "what power strip?"
 Well, after feeling frustrated about having to walk across the room to turn
@@ -28,9 +14,7 @@ solution.
 Starting with a power strip I found on Amazon, I began by taking it apart
 and looking at what I had to work with.
 
-<Image relativePath="power-strip-guts.jpg" alt="power strip opened up">
-  First look inside the strip
-</Image>
+![power strip opened up](./power-strip-guts.jpg)
 
 Fortunately, this strip happened to leave a lot of space to work with. I
 began by disconnecting the physical relays. I had a series of 8
@@ -38,9 +22,13 @@ electronically controlled relays, which I wired the outlets to after making
 sure I was properly handling mains-level current. With a few rudimentary
 python scripts in place, I had a working prototype! It looked like this:
 
-<Image relativePath="strip-prototype.jpg">
-  Yes, the rubber band was necessary
-</Image>
+
+![strip prototype](./strip-prototype.jpg)
+  
+> Yes, the rubber band was necessary
+
+
+
 
 With that in place, I created a rudimentary Node server with a web view and
 used the strip that way for about a month. The server knew how to call ten
@@ -56,7 +44,9 @@ hardware. For the server, I decided to continue using Node.js with Express,
 and I decided that React.js had a philosophy of state that would suit this
 project particularly well.
 
-<Image relativePath="strip-app.png">The first version of my new view</Image>
+![strip app](./strip-app.png)
+
+> The first version of my new view
 
 Using a switch animation I found on codePen (credited on the site and on
 github), I rebuilt the code in React and made it modular, creating one of
@@ -64,20 +54,24 @@ the chief pieces of my view. Simple is better for an interface like this,
 and I wanted a UI that I would enjoy using from this point on. The next step
 was to take the power strip apart and do it better.
 
-<Image relativePath="gutted-strip.jpg">A new hope</Image>
+![A new hope](./gutted-strip.jpg)
+
+> A new hope
 
 This time, I removed all of the physical switches, and carved out the
 support structures that surrounded them. I would need all the space I could
 get inside the strip for my next step.
+![The new relays](./strip-with-relays.jpg)
 
-<Image relativePath="strip-with-relays.jpg">The new relays</Image>
+> The new relays
 
 With these relays off eBay, I was effectively able to split the larger block
 I had used the first time, and now the relays could control their respective
 outlets from inside the power strip. Space was tight, but I was committed to
 fitting everything within the original housing.
+![I make it look easy, right?](./strip-wiring.jpg)
 
-<Image relativePath="strip-wiring.jpg">I make it look easy, right?</Image>
+> I make it look easy, right?
 
 The next steps required a live wire that would connect to each of the
 relays, and for each relay to have another wire completing the circuit with
@@ -86,7 +80,9 @@ unless they also receive a signal on their input pins. So, by default, the
 relays break the circuit for each outlet unless they are told to connect it
 again.
 
-<Image relativePath="pi-zero.jpg">The new brains</Image>
+![The new brains](./pi-zero.jpg)
+
+> The new brains
 
 While I had originally been using a Raspberry Pi 1B, I got a notification
 that there were a few Raspberry Pi Zeroes in stock on Adafruit. I picked one
@@ -96,7 +92,9 @@ backwards for this device. It forced me to do some mental gymnastics for
 identifying pins, but it was necessary for how the pi would fit on the
 completed product.
 
-<Image relativePath="glory-shot.jpg">"Creative" use of a soldering iron</Image>
+!["Creative" use of a soldering iron](./glory-shot.jpg)
+
+> "Creative" use of a soldering iron
 
 After creating an opening here on the side of the case, I had a space for
 the GPIO pins to point directly inside of the casing. Here, the Pi's ports
@@ -105,14 +103,14 @@ configuration. This way, I wouldn't need to open up the device constantly if
 something went wrong.
 
 <div className="gallery">
-  <img src={backwardPins} alt="showing the GPIO pins" />
-  <Description>Connecting the backwards GPIO pins</Description>
-  <img src={exposedWiring} alt="Wiring up the relays" />
-  <Description>Wiring up the relays</Description>
-  <img src={tidying} alt="pi attached to the switch" />
-  <Description>
+  <img src="./backward-pins.jpg" alt="showing the GPIO pins" />
+  <p>Connecting the backwards GPIO pins</p>
+  <img src="./strip-wiring.jpg" alt="Wiring up the relays" />
+  <p>Wiring up the relays</p>
+  <img src="tidying.jpg" alt="pi attached to the switch" />
+  <p>
     You can see Pi Zero bolted onto the back with spacers
-  </Description>
+  </p>
 </div>
 
 After selecting and wiring up the pins, I faced a problem. The relays
@@ -126,7 +124,8 @@ of the usb input. It turned out that the pi was limiting the current as it
 passed through the circuit board, and not enough current was making it to
 the relays.
 
-<Image relativePath="strip-head-on.jpg" />
+
+![The final product](./strip-head-on.jpg)
 
 At long last, I was able to close the back of the strip, only to realize
 that I had wanted a couple cables to be directed inside the pi. The power
