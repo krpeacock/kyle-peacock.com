@@ -17,14 +17,13 @@ const AboutPage = ({ location }) => (
       <h1>About me</h1>
       <p>
         I'm a software engineer, working for the{" "}
-        <a href="https://dfinity.org">DFINITY Foundation</a>, working to launch
-        Internet 3.0 on the Internet Computer Protocol. I identify as
-        genderqueer and use he/him pronouns, and am married to an awesome
+        <a href="https://dfinity.org">DFINITY Foundation</a>, building developer tools for the Internet Computer Protocol. I identify as
+        genderqueer and use they/them pronouns, and am married to an awesome
         partner {"🥰"} who works for the city of SF.
       </p>
       <p>
-        In my spare time, I enjoy exploring Golden Gate Park, and I volunteer
-        weekly as an educator for{" "}
+        In my spare time, I enjoy exploring Golden Gate Park, and I've volunteered
+        as an educator for{" "}
         <a href="https://www.codetenderloin.org/">Code Tenderloin</a>. I've
         contributed to civic projects at{" "}
         <a href="https://codeforsanfrancisco.org/">Code for San Francisco</a>,
@@ -41,7 +40,7 @@ const AboutPage = ({ location }) => (
       </p>
       <p>
         I grew up in Walnut Creek and went to college in Illinois where I
-        studied Political Science and Philosophy. My wife and I met in Oxford
+        studied Political Science and Philosophy. My partner and I met in Oxford
         while studying abroad, and we moved back to the bay area in 2015.
       </p>
       <p>
