@@ -1,7 +1,7 @@
 ---
 title: "Make your Canister Pullable"
 path: "dfinity/making-a-canister-pullable"
-date: 2023-08-08
+date: 2023-08-09
 featuredImage: "/images/dfinity-logo.jpg"
 description: "How to enable dfx pull for your canister and thrill your users with a seamless development experience"
 ---
@@ -81,3 +81,20 @@ Breaking down what's happening - you are telling `ic-wasm` to output the result 
 You can verify the custom sections were added with `ic-wasm whoami.wasm metadata dfx` and `ic-wasm whoami.wasm metadata candid:service`.
 
 Then, you need to publish the wasm as above, and `dfx` will be able to consume it.
+
+### Custom Sections If You Have Init Arguments
+
+If the canister you are publishing has init arguments, you should also provide a `candid:args` custom section. This is done for you with `dfx` automatically, but if you are doing it manually, you can use the did file as a reference. For example, if your candid includes the following:
+
+```
+type A = nat;
+service : (A, text) -> {
+  ...
+};
+```
+
+Then your `candid:args` would be `(nat, text)`. You can add this custom section with the following command:
+
+```bash
+ic-wasm --output whoami.wasm whoami.wasm metadata --data "(nat, text)" --visibility public candid:args
+```
