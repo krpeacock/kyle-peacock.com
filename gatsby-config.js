@@ -6,6 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Kyle Peacock's website`,
     description: `For all your Kyle Peacock related needs`,
+    siteUrl: `https://kyle-peacock.com`,
     author: `Kyle Peacock`,
   },
   plugins: [
@@ -138,6 +139,57 @@ module.exports = {
             frontmatter: edge.node.frontmatter,
           }));
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.frontmatter.description,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.slug,
+                });
+              });
+            },
+            query: `
+            {
+              allMdx(sort: {order: DESC, fields: frontmatter___date}) {
+                edges {
+                  node {
+                    slug
+                    frontmatter {
+                      date
+                      description
+                      title
+                      tags
+                    }
+                    excerpt
+                  }
+                }
+              }
+            }
+            `,
+            output: "/rss.xml",
+            title: "Kyle Peacock's RSS Feed",
+          },
+        ],
       },
     },
 
