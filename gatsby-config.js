@@ -163,8 +163,8 @@ module.exports = {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.frontmatter.description,
                   date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.slug,
+                  url: site.siteMetadata.siteUrl + "/" + edge.node.slug,
+                  guid: site.siteMetadata.siteUrl + "/" + edge.node.slug,
                 });
               });
             },
