@@ -42,7 +42,10 @@ You will list the canister by whatever name you want to use in your project, and
 Once you have the canister configured, you can pull it by running two commands:
 - `dfx deps pull`
 - `dfx deps init`
+- `dfx deps deploy`
 
 This will create a `deps` folder with some metadata about the canisters, and allow you to cover any `init` arguments that the canister requires. With the `whoami` example above, no such arguments are required, so you can just run `dfx deploy`, and then `dfx canister call whoami whoami`.
+
+> Note: As of 0.14.4, `dfx deploy` does not automatically deploy your dependencies. You should run `dfx deps deploy` before `dfx deploy` for best results.
 
 That's all you should need to get going! For next steps, check out the [Making a canister pullable](./making-a-canister-pullable) guide.
