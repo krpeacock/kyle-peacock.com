@@ -159,6 +159,7 @@ const GiftList = ({ location }) => {
       <h1>Kyle's Gift List</h1>
 
       <h2>Clothing</h2>
+      <p>It's time for some more dresses!</p>
       <Section>
         <GiftItem
           link="https://cuyana.com/products/silk-slip-dress-v2?variant=44388536189243"
@@ -189,6 +190,16 @@ const GiftList = ({ location }) => {
           price={128}
           title="Cuyana Silk Cami"
           alt="silk-cami"
+        />
+        <GiftItem
+          link="https://www.quince.com/women/women-s-washable-silk-mini-slip-dress?color=black&gender=women&tracker=collection_page__women%2Fsilk__Dresses%20%26%20Skirts__6"
+          linkText="Quince"
+          image="https://images.quince.com/JJsqkXFlH3Wx8mS7cbJVB/d98d0c14f1498986570d8b3ce66f7a09/W-DRS-47-BLK_1335.jpg?w=1600&q=50&h=2000&fm=webp"
+          id="quince-silk-dress"
+          description="Size XL in Black"
+          price={60}
+          title="Quince Silk Mini Slip Dress"
+          alt="quince-silk-dress"
         />
         <GiftItem
           link="https://www.cos.com/en_usd/women/womenswear/dresses/product.corduroy-midi-shirt-dress-green.1168573001.html"
