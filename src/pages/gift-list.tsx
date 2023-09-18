@@ -70,6 +70,15 @@ const GiftItem = (props: GiftProps) => {
     setStatus(status == "bought" ? "unbought" : "bought");
   };
 
+  const formatPrice = (price: number) => {
+    // Don't show cents if it's a whole dollar amount
+    return price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: price % 1 === 0 ? 0 : 2,
+    });
+  };
+
   return (
     <Provider theme={defaultTheme}>
       <div
@@ -110,7 +119,7 @@ const GiftItem = (props: GiftProps) => {
         </a>
         <p>
           {description}
-          {price ? ` - $${price}` : null}
+          {price ? ` - ${formatPrice(price)}` : null}
         </p>
         {audio ? (
           <audio controls style={{ marginBottom: "1rem", colorScheme: "dark" }}>
@@ -151,7 +160,7 @@ const GiftList = ({ location }) => {
 
       <h2>Clothing</h2>
       <Section>
-        <GiftItem 
+        <GiftItem
           link="https://cuyana.com/products/silk-slip-dress-v2?variant=44388536189243"
           linkText="Cuyana"
           image="https://cuyana.com/cdn/shop/products/PDP_White_Hero_900x900_SP22_SilkSlipDress_Rust_9199_1000x.jpg?v=1687317176"
@@ -160,6 +169,16 @@ const GiftList = ({ location }) => {
           price={228}
           title="Cuyana Silk Slip Dress"
           alt="silk-slip-dress"
+        />
+        <GiftItem
+          link="https://www.threadandsprout.com/made-to-order"
+          linkText="Thread & Sprout"
+          image="https://images.squarespace-cdn.com/content/v1/5c54e85b809d8e2901b05b83/1675795581299-F3PKOKSJKWDLKJ15JQH3/Blundstone+Photos-6.jpg?format=750w"
+          id="thread-and-sprout"
+          description="Made to order dress (may not be available before birthday / christmas)"
+          price={340}
+          title="Thread & Sprout Dress"
+          alt="thread-and-sprout"
         />
         <GiftItem
           link="https://cuyana.com/products/silk-cami-v2?variant=44392025522491"
@@ -172,17 +191,17 @@ const GiftList = ({ location }) => {
           alt="silk-cami"
         />
         <GiftItem
-          link="https://www.threadandsprout.com/made-to-order"
-          linkText="Thread & Sprout"
-          image="https://images.squarespace-cdn.com/content/v1/5c54e85b809d8e2901b05b83/1675795581299-F3PKOKSJKWDLKJ15JQH3/Blundstone+Photos-6.jpg?format=750w"
-          id="thread-and-sprout"
-          description="Made to order dress (may not be available before birthday / christmas)"
-          price={340}
-          title="Thread & Sprout Dress"
-          alt="thread-and-sprout"
+          link="https://www.cos.com/en_usd/women/womenswear/dresses/product.corduroy-midi-shirt-dress-green.1168573001.html"
+          linkText="COS"
+          image="http://lp.cosstores.com/app001prod%3Fset=source[/85/c8/85c876e2e010378d71f45cf47b244f42aa807504.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"
+          id="corduroy-dress"
+          description="Size 14 in Green"
+          price={135}
+          title="COS Corduroy Midi Shirt Dress"
+          alt="corduroy-dress"
         />
       </Section>
-      <h2>Games / Gadgets</h2>
+      <h2>Games & Stuff</h2>
       <Section>
         <GiftItem
           link="https://gocycle.com/us/webstore/accessories/gocycle-cateye-reflex-auto-light/"
@@ -214,7 +233,30 @@ const GiftList = ({ location }) => {
           title="HORL 2 Knife Sharpener"
           alt="sharpener"
         />
+        <GiftItem
+          link="https://www.colevalleyqueenanne.com/"
+          linkText="Cole Valley Queen Anne"
+          image="https://cdn.openhomesphotography.com/uploads/737-cole-street.1ee1b517-c40b-681a-9608-02216b1db4f5/batchUploads/ptw.5b6a5eaa-26bb-11ee-a11b-02216b1db4f5/processed/pictures/web/737-cole-street.65883.ptw.003.web.jpg"
+          id="real-estate"
+          description="Might as well ask, right?"
+          title="Real Estate"
+          alt="cole-valley-queen-anne"
+          price={4_500_000}
+        />
       </Section>
+
+      <h2>Sizing Guide</h2>
+      <p>General sizing: XL Women's, L Men's</p>
+      <dl>
+        <dt>Chest</dt>
+        <dd>40</dd>
+        <dt>Waist</dt>
+        <dd>38</dd>
+        <dt>Hips</dt>
+        <dd>40</dd>
+        <dt>Length</dt>
+        <dd>32</dd>
+      </dl>
     </Layout>
   );
 };
