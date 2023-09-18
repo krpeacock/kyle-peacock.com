@@ -193,7 +193,7 @@ const GiftList = ({ location }) => {
         <GiftItem
           link="https://www.cos.com/en_usd/women/womenswear/dresses/product.corduroy-midi-shirt-dress-green.1168573001.html"
           linkText="COS"
-          image="http://lp.cosstores.com/app001prod%3Fset=source[/85/c8/85c876e2e010378d71f45cf47b244f42aa807504.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"
+          image="/images/corduroy-dress.jpg"
           id="corduroy-dress"
           description="Size 14 in Green"
           price={135}
