@@ -17,17 +17,6 @@ type GiftProps = {
   price?: number;
 };
 
-export const gifts = [
-  "coat",
-  "sweater",
-  "joggers",
-  "wallet",
-  "color-lights",
-  "white-lights",
-  "motion-lights",
-  "bell",
-];
-
 const GiftItem = (props: GiftProps) => {
   const [status, setStatus] = React.useState<"bought" | "unbought">();
   const {
@@ -223,6 +212,16 @@ const GiftList = ({ location }) => {
           price={56}
           title="GoCycle Cateye Reflex Auto Light"
           alt="gocycle-lights"
+        />
+        <GiftItem
+          link="https://www.heathceramics.com/collections/mugs-cups/products/large-mug?variant=5421972946977"
+          linkText="Heath Ceramics"
+          image="https://www.heathceramics.com/cdn/shop/products/large-mug-slate-indigo-heath-ceramics_700-0294.jpg?v=1692032885"
+          id="heath-mug"
+          description="Large Mug in Slate / Indigo. Mine cracked 😢"
+          price={45}
+          title="Heath Ceramics Mug"
+          alt="heath-mug"
         />
         <GiftItem
           link="https://store.steampowered.com/app/1888160/ARMORED_CORE_VI_FIRES_OF_RUBICON/"
