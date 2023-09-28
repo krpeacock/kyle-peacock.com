@@ -63,6 +63,21 @@ for(val in items.vals()){
 }
 ```
 
+#### Variants
+
+```swift
+type Foo = {
+    #bar;
+    #baz;
+};
+
+type Complex = {
+    #foo : Foo;
+    #bar : ?Text;
+    #baz : [Nat];
+};
+```
+
 #### Imports
 
 ```dart
