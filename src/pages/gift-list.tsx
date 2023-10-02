@@ -214,6 +214,16 @@ const GiftList = ({ location }) => {
           alt="gocycle-lights"
         />
         <GiftItem
+          link="https://store.steampowered.com/app/865610/Tails_Noir/"
+          linkText="Steam"
+          image="https://rawfury.com/wp-content/uploads/2020/10/TailsNoir_RF_Web_BoxArt.png"
+          id="tails-noir"
+          description="Detective game for PC"
+          price={5}
+          title="Tails Noir"
+          alt="tails-noir"
+        />
+        <GiftItem
           link="https://www.heathceramics.com/collections/mugs-cups/products/large-mug?variant=5421972946977"
           linkText="Heath Ceramics"
           image="https://www.heathceramics.com/cdn/shop/products/large-mug-slate-indigo-heath-ceramics_700-0294.jpg?v=1692032885"
