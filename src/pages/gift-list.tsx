@@ -5,7 +5,7 @@ import { gift_list } from "../declarations/gift_list";
 import { Checkbox, defaultTheme, Provider } from "@adobe/react-spectrum";
 
 type GiftProps = {
-  id: typeof gifts[number];
+  id: string;
   title: string;
   image: string;
   alt: string;
@@ -151,14 +151,22 @@ const GiftList = ({ location }) => {
       <p>It's time for some more dresses!</p>
       <Section>
         <GiftItem
-          link="https://cuyana.com/products/silk-slip-dress-v2?variant=44388536189243"
+          link="https://cuyana.com/products/silk-cami-v2?variant=44711426982203"
           linkText="Cuyana"
-          image="https://cuyana.com/cdn/shop/products/PDP_White_Hero_900x900_SP22_SilkSlipDress_Rust_9199_1000x.jpg?v=1687317176"
-          id="silk-slip-dress"
-          description="Size XL in Rust or Black"
-          price={228}
-          title="Cuyana Silk Slip Dress"
-          alt="silk-slip-dress"
+          image="https://cuyana.com/cdn/shop/files/PDP_1080x1350_ES23_SilkCami_BloodOrange_20255_5aa2359e-cb68-4e66-a3ef-c27c4083ef9c_1000x.jpg?v=1691188028"
+          id="silk-cami"
+          description="Size XL in Blood Orange"
+          price={128}
+          title="Cuyana Silk Cami"
+          alt="silk-cami"
+        />
+        <GiftItem
+          link="https://cuyana.com/products/silk-asymmetrical-skirt?variant=44393458696507"
+          id="silk-skirt"
+          description="Size XL in Black"
+          price={178}
+          title="Cuyana Silk Asymmetrical Skirt"
+          alt="silk-skirt"
         />
         <GiftItem
           link="https://www.threadandsprout.com/made-to-order"
@@ -171,16 +179,6 @@ const GiftList = ({ location }) => {
           alt="thread-and-sprout"
         />
         <GiftItem
-          link="https://cuyana.com/products/silk-cami-v2?variant=44392025522491"
-          linkText="Cuyana"
-          image="https://cuyana.com/cdn/shop/products/PDP_1080x1350_160516_POW_Summer_0385_R_1000x.jpg?v=1687317244"
-          id="silk-cami"
-          description="Size XL in Black"
-          price={128}
-          title="Cuyana Silk Cami"
-          alt="silk-cami"
-        />
-        <GiftItem
           link="https://www.quince.com/women/women-s-washable-silk-mini-slip-dress?color=black&gender=women&tracker=collection_page__women%2Fsilk__Dresses%20%26%20Skirts__6"
           linkText="Quince"
           image="https://images.quince.com/JJsqkXFlH3Wx8mS7cbJVB/d98d0c14f1498986570d8b3ce66f7a09/W-DRS-47-BLK_1335.jpg?w=1600&q=50&h=2000&fm=webp"
@@ -189,16 +187,6 @@ const GiftList = ({ location }) => {
           price={60}
           title="Quince Silk Mini Slip Dress"
           alt="quince-silk-dress"
-        />
-        <GiftItem
-          link="https://www.cos.com/en_usd/women/womenswear/dresses/product.corduroy-midi-shirt-dress-green.1168573001.html"
-          linkText="COS"
-          image="/images/corduroy-dress.jpg"
-          id="corduroy-dress"
-          description="Size 14 in Green"
-          price={135}
-          title="COS Corduroy Midi Shirt Dress"
-          alt="corduroy-dress"
         />
       </Section>
       <h2>Games & Stuff</h2>
