@@ -162,11 +162,23 @@ const GiftList = ({ location }) => {
         />
         <GiftItem
           link="https://cuyana.com/products/silk-asymmetrical-skirt?variant=44393458696507"
+          linkText="Cuyana"
+          image="https://cuyana.com/cdn/shop/products/sp19_silkasymmetricalskirt_black_0041-hero_900x900.jpg?v=1687317337"
           id="silk-skirt"
           description="Size XL in Black"
           price={178}
           title="Cuyana Silk Asymmetrical Skirt"
           alt="silk-skirt"
+        />
+        <GiftItem
+          link="https://cuyana.com/products/convertible-puffer-jacket?variant=44838255722811"
+          linkText="Cuyana"
+          image="https://cuyana.com/cdn/shop/files/PDP_Hero_1080x1350_FA23_ConvertiblePufferJacket_Black_2367_1000x.jpg?v=1695320246"
+          id="puffer"
+          description="Size XL in Black"
+          price={398}
+          title="Cuyana Puffer Jacket"
+          alt="puffer"
         />
         <GiftItem
           link="https://www.threadandsprout.com/made-to-order"
