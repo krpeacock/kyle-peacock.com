@@ -148,17 +148,16 @@ const GiftList = ({ location }) => {
       <h1>Kyle's Gift List</h1>
 
       <h2>Clothing</h2>
-      <p>It's time for some more dresses!</p>
       <Section>
         <GiftItem
-          link="https://cuyana.com/products/silk-cami-v2?variant=44711426982203"
-          linkText="Cuyana"
-          image="https://cuyana.com/cdn/shop/files/PDP_1080x1350_ES23_SilkCami_BloodOrange_20255_5aa2359e-cb68-4e66-a3ef-c27c4083ef9c_1000x.jpg?v=1691188028"
-          id="silk-cami"
-          description="Size XL in Blood Orange"
-          price={128}
-          title="Cuyana Silk Cami"
-          alt="silk-cami"
+          link="https://www.curatorsf.com/collections/bottoms/products/jessie-skirt-oat-black-stripe?variant=41396930379835"
+          linkText="Curator"
+          image="https://www.curatorsf.com/cdn/shop/files/jessie_skirt_oat_leo_pointelle_fog_cassia_1_web_1195x1792.jpg?v=1691036968"
+          id="jessie-skirt"
+          description="Size 2XL in Oat + Black Stripe"
+          price={178}
+          title="Curator Jessie Skirt"
+          alt="jessie-skirt"
         />
         <GiftItem
           link="https://cuyana.com/products/silk-asymmetrical-skirt?variant=44393458696507"
@@ -171,16 +170,6 @@ const GiftList = ({ location }) => {
           alt="silk-skirt"
         />
         <GiftItem
-          link="https://cuyana.com/products/convertible-puffer-jacket?variant=44838255722811"
-          linkText="Cuyana"
-          image="https://cuyana.com/cdn/shop/files/PDP_Hero_1080x1350_FA23_ConvertiblePufferJacket_Black_2367_1000x.jpg?v=1695320246"
-          id="puffer"
-          description="Size XL in Black"
-          price={398}
-          title="Cuyana Puffer Jacket"
-          alt="puffer"
-        />
-        <GiftItem
           link="https://www.threadandsprout.com/made-to-order"
           linkText="Thread & Sprout"
           image="https://images.squarespace-cdn.com/content/v1/5c54e85b809d8e2901b05b83/1675795581299-F3PKOKSJKWDLKJ15JQH3/Blundstone+Photos-6.jpg?format=750w"
@@ -191,48 +180,29 @@ const GiftList = ({ location }) => {
           alt="thread-and-sprout"
         />
         <GiftItem
-          link="https://www.quince.com/women/women-s-washable-silk-mini-slip-dress?color=black&gender=women&tracker=collection_page__women%2Fsilk__Dresses%20%26%20Skirts__6"
-          linkText="Quince"
-          image="https://images.quince.com/JJsqkXFlH3Wx8mS7cbJVB/d98d0c14f1498986570d8b3ce66f7a09/W-DRS-47-BLK_1335.jpg?w=1600&q=50&h=2000&fm=webp"
-          id="quince-silk-dress"
+          link="https://cuyana.com/products/convertible-puffer-jacket?variant=44838255722811"
+          linkText="Cuyana"
+          image="https://cuyana.com/cdn/shop/files/PDP_Hero_1080x1350_FA23_ConvertiblePufferJacket_Black_2367_1000x.jpg?v=1695320246"
+          id="puffer"
           description="Size XL in Black"
-          price={60}
-          title="Quince Silk Mini Slip Dress"
-          alt="quince-silk-dress"
+          price={398}
+          title="Cuyana Puffer Jacket"
+          alt="puffer"
         />
       </Section>
       <h2>Games & Stuff</h2>
       <Section>
         <GiftItem
-          link="https://gocycle.com/us/webstore/accessories/gocycle-cateye-reflex-auto-light/"
-          linkText="GoCycle"
-          image="https://gocycle.com/us/wp-content/uploads/sites/3/2021/11/Cateye_OnBike_DSC5071_Webstore.jpg"
-          id="gocycle-lights"
-          description="My rear light got damaged, and this would be a great replacement"
-          price={56}
-          title="GoCycle Cateye Reflex Auto Light"
-          alt="gocycle-lights"
+          link="https://www.nintendo.com/us/store/products/super-mario-rpg-118738/"
+          linkText="Nintendo"
+          image="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/My%20Nintendo%20Store/EN-US/Nintendo%20Switch%20Software/super-mario-rpg-118738/118738-switch-super-mario-rpg-1200x675"
+          id="super-mario-rpg"
+          description="Super Mario RPG for Nintendo Switch (physical preferred)"
+          price={60}
+          title="Super Mario RPG"
+          alt="super-mario-rpg"
         />
-        <GiftItem
-          link="https://store.steampowered.com/app/865610/Tails_Noir/"
-          linkText="Steam"
-          image="https://rawfury.com/wp-content/uploads/2020/10/TailsNoir_RF_Web_BoxArt.png"
-          id="tails-noir"
-          description="Detective game for PC"
-          price={5}
-          title="Tails Noir"
-          alt="tails-noir"
-        />
-        <GiftItem
-          link="https://www.heathceramics.com/collections/mugs-cups/products/large-mug?variant=5421972946977"
-          linkText="Heath Ceramics"
-          image="https://www.heathceramics.com/cdn/shop/products/large-mug-slate-indigo-heath-ceramics_700-0294.jpg?v=1692032885"
-          id="heath-mug"
-          description="Large Mug in Slate / Indigo. Mine cracked 😢"
-          price={45}
-          title="Heath Ceramics Mug"
-          alt="heath-mug"
-        />
+
         <GiftItem
           link="https://store.steampowered.com/app/1888160/ARMORED_CORE_VI_FIRES_OF_RUBICON/"
           linkText="Steam"
@@ -242,26 +212,6 @@ const GiftList = ({ location }) => {
           price={60}
           title="Armored Core IV: Fires of Rubicon"
           alt="armored-core"
-        />
-        <GiftItem
-          link="https://www.amazon.com/dp/B08JYKN185/?coliid=I2ZFKXM02D4SZV&colid=2Z8K6CQUF82ZY&ref_=list_c_wl_lv_ov_lig_dp_it&th=1"
-          linkText="Amazon"
-          image="https://m.media-amazon.com/images/I/71yz51mniRL._AC_SL1500_.jpg"
-          id="sharpener"
-          description="Fancy Knife Sharpener"
-          price={189}
-          title="HORL 2 Knife Sharpener"
-          alt="sharpener"
-        />
-        <GiftItem
-          link="https://www.colevalleyqueenanne.com/"
-          linkText="Cole Valley Queen Anne"
-          image="https://cdn.openhomesphotography.com/uploads/737-cole-street.1ee1b517-c40b-681a-9608-02216b1db4f5/batchUploads/ptw.5b6a5eaa-26bb-11ee-a11b-02216b1db4f5/processed/pictures/web/737-cole-street.65883.ptw.003.web.jpg"
-          id="real-estate"
-          description="Might as well ask, right?"
-          title="Real Estate"
-          alt="cole-valley-queen-anne"
-          price={4_500_000}
         />
       </Section>
 
