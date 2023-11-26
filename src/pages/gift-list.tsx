@@ -193,6 +193,16 @@ const GiftList = ({ location }) => {
       <h2>Games & Stuff</h2>
       <Section>
         <GiftItem
+          link="https://www.amazon.com/NUC11PAHi7-Computer-i7-1165G7-Processor-Thunderbolt/dp/B09WRH6C1S/ref=sr_1_9?keywords=intel%2Bnuc%2Bi7&qid=1701013138&sr=8-9&th=1"
+          linkText="Amazon"
+          image="https://m.media-amazon.com/images/G/01/apparel/rcxgs/tile._CB483369110_.gif"
+          id="nuc"
+          description="Micro PC for Media Console"
+          price={549}
+          title="Intel NUC 11 Performance Kit"
+          alt="nuc"
+        />
+        <GiftItem
           link="https://www.nintendo.com/us/store/products/super-mario-rpg-118738/"
           linkText="Nintendo"
           image="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/My%20Nintendo%20Store/EN-US/Nintendo%20Switch%20Software/super-mario-rpg-118738/118738-switch-super-mario-rpg-1200x675"
