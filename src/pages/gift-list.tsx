@@ -155,7 +155,7 @@ const GiftList = ({ location }) => {
           image="https://www.curatorsf.com/cdn/shop/files/jessie_skirt_oat_leo_pointelle_fog_cassia_1_web_1195x1792.jpg?v=1691036968"
           id="jessie-skirt"
           description="Size 2XL in Oat + Black Stripe"
-          price={178}
+          price={168}
           title="Curator Jessie Skirt"
           alt="jessie-skirt"
         />
@@ -195,7 +195,7 @@ const GiftList = ({ location }) => {
         <GiftItem
           link="https://www.amazon.com/NUC11PAHi7-Computer-i7-1165G7-Processor-Thunderbolt/dp/B09WRH6C1S/ref=sr_1_9?keywords=intel%2Bnuc%2Bi7&qid=1701013138&sr=8-9&th=1"
           linkText="Amazon"
-          image="https://m.media-amazon.com/images/G/01/apparel/rcxgs/tile._CB483369110_.gif"
+          image="https://m.media-amazon.com/images/I/610nMq+4uEL._AC_SX679_.jpg"
           id="nuc"
           description="Micro PC for Media Console"
           price={549}
