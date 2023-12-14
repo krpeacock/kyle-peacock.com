@@ -14,11 +14,11 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: EINVAL: invalid argument, mkdir '/Users/kyle/code/kyle-peacock.com/node_modules/@typescript-eslint/visitor-keys/node_modules'
+  Error: EINVAL: invalid argument, mkdir '/Users/kyle/code/kaipeacock.com/node_modules/@typescript-eslint/visitor-keys/node_modules'
 
 npm manifest: 
   {
-    "name": "kyle-peacock.com",
+    "name": "kaipeacock.com",
     "private": true,
     "description": "A Simple Personal Website",
     "version": "0.1.0",

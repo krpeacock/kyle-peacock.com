@@ -70,7 +70,6 @@ const Provenance = ({ location }) => (
           <NamedLink name="Twitter" link="https://twitter.com/kylpeacock" />
           <NamedLink name="GitHub" link="https://github.com/krpeacock" />
           <NamedLink name="DSCVR" link="https://dscvr.one/u/kyle" />
-          <NamedLink name="Distrikt" link="https://distrikt.app/u/kyle" />
           <dt>Discord</dt>
           <dd>Kyle#8394</dd>
         </dl>
@@ -83,7 +82,6 @@ const Provenance = ({ location }) => (
           <dt>ICP</dt>
           <dd>
             <ul>
-              <li>kyle.icp</li>
               <li>peacock.icp</li>
             </ul>
           </dd>

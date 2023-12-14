@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Kyle Peacock's website`,
     description: `For all your Kyle Peacock related needs`,
-    siteUrl: `https://kyle-peacock.com`,
+    siteUrl: `https://kaipeacock.com`,
     author: `Kyle Peacock`,
   },
   plugins: [
@@ -58,7 +58,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `kyle-peacock.com`,
+        name: `kaipeacock.com`,
         short_name: `website`,
         start_url: `/`,
         background_color: `#663399`,

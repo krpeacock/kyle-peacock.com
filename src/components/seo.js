@@ -57,11 +57,11 @@ function SEO(props) {
               },
               {
                 name: `og:image`,
-                content: `https://kyle-peacock.com${image}`,
+                content: `https://kaipeacock.com${image}`,
               },
               {
                 name: `og:image:alt`,
-                content: `kyle-peacock.com banner`,
+                content: `kaipeacock.com banner`,
               },
             ]
               .concat(

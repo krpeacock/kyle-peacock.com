@@ -1,1 +1,65 @@
-{"data":{"allMdx":{"edges":[{"node":{"id":"c203ab0d-ae47-5166-a3c0-0fdf6a31b60a","frontmatter":{"title":"JFK Drive","description":"Some thoughts on San Francisco closing JFK Drive during coronavirus","date":"2020-05-16T00:00:00.000Z","path":"jfk-drive","series":null,"tags":null}}},{"node":{"id":"fc8a8376-71d0-5750-8f76-ba64e9e04277","frontmatter":{"title":"How do web workers work?","description":"I've heard some people say I should use web workers, but that always seemed like a pain. This post documents my first attempt to use a simple web worker","date":"2020-05-13T00:00:00.000Z","path":"web-workers","series":"unscripted","tags":["javascript","web workers","code","browser"]}}},{"node":{"id":"c2acee54-a9db-5388-99fe-08b1b5004fac","frontmatter":{"title":"Site Upgrade","description":"Announcing the rebuild of kyle-peacock.com","date":"2019-01-19T00:00:00.000Z","path":"site-upgrade","series":null,"tags":null}}},{"node":{"id":"4732709c-fa59-55b7-9f27-e58d04c50691","frontmatter":{"title":"Power Strip","description":"Guide for how I built my DIY Power Strip that I can automate and control using Google Home with a Raspberry Pi","date":"2016-07-19T00:00:00.000Z","path":"power-strip","series":null,"tags":null}}}]}}}
+{
+    "data": {
+        "allMdx": {
+            "edges": [
+                {
+                    "node": {
+                        "id": "c203ab0d-ae47-5166-a3c0-0fdf6a31b60a",
+                        "frontmatter": {
+                            "title": "JFK Drive",
+                            "description": "Some thoughts on San Francisco closing JFK Drive during coronavirus",
+                            "date": "2020-05-16T00:00:00.000Z",
+                            "path": "jfk-drive",
+                            "series": null,
+                            "tags": null
+                        }
+                    }
+                },
+                {
+                    "node": {
+                        "id": "fc8a8376-71d0-5750-8f76-ba64e9e04277",
+                        "frontmatter": {
+                            "title": "How do web workers work?",
+                            "description": "I've heard some people say I should use web workers, but that always seemed like a pain. This post documents my first attempt to use a simple web worker",
+                            "date": "2020-05-13T00:00:00.000Z",
+                            "path": "web-workers",
+                            "series": "unscripted",
+                            "tags": [
+                                "javascript",
+                                "web workers",
+                                "code",
+                                "browser"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "node": {
+                        "id": "c2acee54-a9db-5388-99fe-08b1b5004fac",
+                        "frontmatter": {
+                            "title": "Site Upgrade",
+                            "description": "Announcing the rebuild of kaipeacock.com",
+                            "date": "2019-01-19T00:00:00.000Z",
+                            "path": "site-upgrade",
+                            "series": null,
+                            "tags": null
+                        }
+                    }
+                },
+                {
+                    "node": {
+                        "id": "4732709c-fa59-55b7-9f27-e58d04c50691",
+                        "frontmatter": {
+                            "title": "Power Strip",
+                            "description": "Guide for how I built my DIY Power Strip that I can automate and control using Google Home with a Raspberry Pi",
+                            "date": "2016-07-19T00:00:00.000Z",
+                            "path": "power-strip",
+                            "series": null,
+                            "tags": null
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

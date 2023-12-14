@@ -23,7 +23,7 @@ const IndexPage = ({ location }) => (
   <Layout location={location}>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <Intro>
-      <h1>kyle peacock</h1>
+      <h1>kai peacock</h1>
       <h5>is a web developer</h5>
     </Intro>
     <GoTo>
@@ -32,7 +32,7 @@ const IndexPage = ({ location }) => (
       <Link to="about">about me</Link>
       <Link to="blog">my blog</Link>
       <Link to="portfolio">stuff I've made</Link>
-      <Link to="provenance">is it kyle? (socials and provenance)</Link>
+      <Link to="provenance">is it kai? (socials and provenance)</Link>
     </GoTo>
   </Layout>
 );

@@ -13,19 +13,19 @@ function Links(props: Props) {
       pageContext={{
         disableTitleAndDate: true,
         frontmatter: {
-          title: "Kyle Peacock",
+          title: "Kai Peacock",
         },
       }}
       location={location}
     >
-      <h1>It's me, Kyle</h1>
+      <h1>It's me, Kai</h1>
       <img
         src="/images/profile.jpeg"
         alt="artistic profile"
         style={{ maxWidth: "400px" }}
       />
       <View>
-        <a href={`/kyle-peacock.vcf`} download="kyle-peacock.vcf">
+        <a href={`/kai-peacock.vcf`} download="kai-peacock.vcf">
           Download My Contact
         </a>
       </View>
