@@ -71,7 +71,7 @@ const Provenance = ({ location }) => (
           <NamedLink name="GitHub" link="https://github.com/krpeacock" />
           <NamedLink name="DSCVR" link="https://dscvr.one/u/kyle" />
           <dt>Discord</dt>
-          <dd>Kyle#8394</dd>
+          <dd>kpeacock</dd>
         </dl>
       </Section>
       <Section id="crypto-handles">

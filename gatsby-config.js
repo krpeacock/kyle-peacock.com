@@ -4,10 +4,10 @@ const rehypePrism = require("@mapbox/rehype-prism");
 
 module.exports = {
   siteMetadata: {
-    title: `Kyle Peacock's website`,
-    description: `For all your Kyle Peacock related needs`,
+    title: `Kai Peacock's website`,
+    description: `For all your Kai Peacock related needs`,
     siteUrl: `https://kaipeacock.com`,
-    author: `Kyle Peacock`,
+    author: `Kai Peacock`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -187,7 +187,7 @@ module.exports = {
             }
             `,
             output: "/rss.xml",
-            title: "Kyle Peacock's RSS Feed",
+            title: "Kai Peacock's RSS Feed",
           },
         ],
       },

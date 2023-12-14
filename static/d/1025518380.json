@@ -1,1 +1,11 @@
-{"data":{"site":{"siteMetadata":{"title":"Kyle Peacock's website","description":"For all your Kyle Peacock related needs","author":"Kyle Peacock"}}}}
+{
+    "data": {
+        "site": {
+            "siteMetadata": {
+                "title": "Kai Peacock's website",
+                "description": "For all your Kai Peacock related needs",
+                "author": "Kai Peacock"
+            }
+        }
+    }
+}

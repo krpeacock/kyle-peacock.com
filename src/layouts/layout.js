@@ -252,12 +252,12 @@ const Layout = ({ children, pageContext, location }) => {
         </Provider>
         <Footer mode={mode}>
           <section>
-            <p>&copy; Kyle Peacock {new Date().getFullYear()}</p>
+            <p>&copy; Kai Peacock {new Date().getFullYear()}</p>
             {visits ? <p>This page has been viewed {visits} times</p> : null}
           </section>
           <section id="newsletterFrame">
             <iframe
-              src="https://kylepeacock.substack.com/embed"
+              src="https://kaipeacock.substack.com/embed"
               height="175"
               style={{ border: "none", background: "white" }}
               frameBorder="0"

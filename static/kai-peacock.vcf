@@ -1,7 +1,7 @@
 BEGIN:VCARD
 VERSION:3.0
-FN;CHARSET=UTF-8:Kyle Peacock
-N;CHARSET=UTF-8:Peacock;Kyle;;;
+FN;CHARSET=UTF-8:Kai Peacock
+N;CHARSET=UTF-8:Peacock;Kai;;;
 GENDER:O
 EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:kai@peacock.dev
 EMAIL;CHARSET=UTF-8;type=WORK,INTERNET:kyle.peacock@dfinity.org
@@ -12,8 +12,8 @@ URL;CHARSET=UTF-8:https://kaipeacock.com
 URL;type=WORK;CHARSET=UTF-8:https://internetcomputer.org
 X-SOCIALPROFILE;TYPE=twitter:https://twitter.com/kylpeacock
 X-SOCIALPROFILE;TYPE=linkedin:https://linkedin.com/in/krpeacock
-X-SOCIALPROFILE;TYPE=discord:https://discord.com/users/Kyle#8394
-X-SOCIALPROFILE;TYPE=mastodon:https://kyle@social.coop
+X-SOCIALPROFILE;TYPE=discord:https://discord.com/users/kpeacock
+X-SOCIALPROFILE;TYPE=mastodon:https://kaipeacock@sfba.social
 X-SOCIALPROFILE;TYPE=dscvr:https://dscvr.one/u/kyle
 REV:2023-02-24T23:28:35.388Z
 END:VCARD

@@ -45,7 +45,7 @@ function Links(props: Props) {
           <a href="https://linkedin.com/in/krpeacock">My LinkedIn</a>
         </li>
         <li>
-          <a href="https://discord.com/users/Kyle#8394">Discord</a>
+          <a href="https://discord.com/users/kpeacock">Discord</a>
         </li>
       </ul>
     </Layout>

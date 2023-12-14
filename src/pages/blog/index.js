@@ -34,7 +34,7 @@ const Blog = ({ pageContext }) => {
     <>
       <SEO
         title="Blog"
-        description="Technical and non-technical posts from Kyle's blog. This blog is a bit of a digital garden. "
+        description="Technical and non-technical posts from Kai's blog. This blog is a bit of a digital garden. "
         {...frontmatter}
       />
       <Picture>

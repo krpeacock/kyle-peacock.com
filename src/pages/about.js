@@ -70,7 +70,7 @@ const AboutPage = ({ location }) => (
         My Resume
       </a>
       <br />
-      <a rel="me" href="https://social.coop/@kyle">
+      <a rel="me" href="https://sfba.social/@kaipeacock">
         Mastodon
       </a>
       <br />

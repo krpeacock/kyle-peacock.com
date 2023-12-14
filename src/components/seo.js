@@ -14,7 +14,7 @@ function SEO(props) {
         const metaDescription =
           description ||
           data.site.siteMetadata.description ||
-          "For all your Kyle Peacock related needs. Multi-talented and empathetic, Kyle is a world-class software engineer, who is currently working on the Internet Computer. Check out their blog for more information!";
+          "For all your Kai Peacock related needs. Multi-talented and empathetic, Kai is a world-class software engineer, who is currently working on the Internet Computer. Check out their blog for more information!";
         return (
           <Helmet
             htmlAttributes={{

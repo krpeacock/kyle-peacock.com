@@ -145,7 +145,7 @@ const GiftList = ({ location }) => {
       pageContext={{ frontmatter: { capitalize: false } }}
       location={location}
     >
-      <h1>Kyle's Gift List</h1>
+      <h1>Kai's Gift List</h1>
 
       <h2>Clothing</h2>
       <Section>

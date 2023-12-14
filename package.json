@@ -3,7 +3,7 @@
   "private": true,
   "description": "A Simple Personal Website",
   "version": "0.1.0",
-  "author": "Kyle Peacock <kylpeacock@gmail.com>",
+  "author": "Kai Peacock <kai@peacock.dev>",
   "dependencies": {
     "@adobe/react-spectrum": "^3.13.0",
     "@babel/core": "^7.14.8",
