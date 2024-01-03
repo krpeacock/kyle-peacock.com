@@ -229,12 +229,14 @@ const GiftList = ({ location }) => {
       <p>General sizing: XL Women's, L Men's</p>
       <dl>
         <dt>Chest</dt>
+        <dd>41</dd>
+        <dt>Bust</dt>
         <dd>43</dd>
         <dt>Waist</dt>
-        <dd>38</dd>
-        <dt>Hips</dt>
         <dd>40</dd>
-        <dt>Length</dt>
+        <dt>Hips</dt>
+        <dd>42</dd>
+        <dt>Inseam</dt>
         <dd>32</dd>
       </dl>
     </Layout>
