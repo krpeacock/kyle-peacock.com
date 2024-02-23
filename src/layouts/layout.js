@@ -255,15 +255,6 @@ const Layout = ({ children, pageContext, location }) => {
             <p>&copy; Kai Peacock {new Date().getFullYear()}</p>
             {visits ? <p>This page has been viewed {visits} times</p> : null}
           </section>
-          <section id="newsletterFrame">
-            <iframe
-              src="https://kaipeacock.substack.com/embed"
-              height="175"
-              style={{ border: "none", background: "white" }}
-              frameBorder="0"
-              scrolling="no"
-            ></iframe>
-          </section>
         </Footer>
       </MDXProvider>
     </ErrorBoundary>
