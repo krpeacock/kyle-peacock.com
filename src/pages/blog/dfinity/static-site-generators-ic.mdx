@@ -9,9 +9,7 @@ description: "Interested in running a website on a decentralized cloud platform?
 import gatsbyInit from "../../../images/gatsby-init.png";
 import contactCard from "../../../images/contact-card.png";
 import { BlogImage } from "../../../components/BlogComponents";
-import ContactStartingIndex from "../../../documents/contact-starting-index.mdx";
-import ContactMainMo from "../../../documents/contact-main.mdx";
-import GatsbyNode from "../../../documents/gatsby-node.mdx";
+
 
 <style>{`main{text-transform: none;}`}</style>
 
@@ -123,7 +121,6 @@ Now, let's customize the code here a bit. I want to build a contact book, so let
 <details style={{marginBottom: "1rem"}}>
 <summary>The code's a bit long, so <button onClick={(e)=>e.target.parentElement.click()}>click</button> to reveal</summary>
 
-<ContactStartingIndex/>
 
 </details>
 
@@ -144,9 +141,6 @@ We'll need to make a few changes to modify our project to add a backend canister
 ### Adding our backend logic
 
 I'll create a Motoko canister that will implement the simple logic of setting and getting information, stored in a HashMap.
-
-
-<ContactMainMo />
 
 
 Without diving too far into the details here, this code uses a `stable var` to persist our data across upgrades, and initializes a friendly `HashMap` interface, that stores data with a `Text` type key and a `Text` type value.
@@ -201,8 +195,6 @@ Now, those files should be available under `src/declarations/phone_book`.
 ### Configure Gatsby
 
 Next, we'll need to update Gatsby with an alias that points to our declarations. We'll create a `gatsby-node.js` file in the root of our project, and write some code that will use our settings in `dfx.json` to import our custom interfaces for our new backend.
-
-<GatsbyNode />
 
 Additionally, we'll add a proxy to `gatsby-config.js` file, proxying `localhost:8000`, which is the default address for our `dfx` replica.
 

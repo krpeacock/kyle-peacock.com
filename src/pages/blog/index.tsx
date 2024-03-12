@@ -9,7 +9,7 @@ const Blog = ({ pageContext }) => {
   const data = useStaticQuery(
     graphql`
       query PostsQuery {
-        allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+        allMdx(sort: { frontmatter: { date: DESC } }) {
           edges {
             node {
               id
@@ -40,7 +40,7 @@ const Blog = ({ pageContext }) => {
       <Picture>
         <img src={banner} alt="Peacock logo" />
       </Picture>
-      <Layout>
+      <Layout pageContext={pageContext} location={location}>
         <Posts
           edges={data?.allMdx?.edges.filter(
             (edge) => !edge.node.frontmatter.isPrivate

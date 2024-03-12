@@ -23,38 +23,16 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
-        path: `${__dirname}/src/pages/`,
+        path: `${__dirname}/src/pages`,
       },
     },
-    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-mdx`,
-      options: {
-        defaultLayouts: {
-          default: require.resolve("./src/layouts/layout.js"),
-        },
-        rehypePlugins: [
-          rehypePrism,
-          require("rehype-slug"),
-          // To pass options, use a 2-element array with the
-          // configuration in an object in the second element
-          [require("rehype-autolink-headings"), { behavior: "wrap" }],
-        ],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              linkImagesToOriginal: false,
-              wrapperStyle: "margin-bottom: 1rem;",
-            },
-          },
-        ],
-      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
-    `gatsby-image`,
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -105,7 +83,7 @@ module.exports = {
                     date
                     description
                   }
-                  rawBody
+                  body
                 }
               }
             }
@@ -135,7 +113,7 @@ module.exports = {
             id: edge.node.id,
             path: edge.node.frontmatter.path,
             title: edge.node.frontmatter.title,
-            body: edge.node.rawBody,
+            body: edge.node.body,
             frontmatter: edge.node.frontmatter,
           }));
         },
