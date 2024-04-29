@@ -1,7 +1,7 @@
 ---
 title: "Students Occupy the University of San Francisco"
 path: "palestine/usf-protest"
-date: 2024-08-29
+date: 2024-04-29
 description: "On Monday, April 29th, students set up tents on the university lawn and are calling for the University of San Francisco to divest from its relationship with the state of Israel"
 ---
 
@@ -52,7 +52,6 @@ Around 200 students were gathered. Several speeches were delivered, with persona
 At 1pm, a call went out for muslim students to come forward and pray.
 
 ![students decorate signs while others lay out rugs for prayer](./usf-protest/20240429-IMG_5976.jpg)
-
 
 I left to go eat, and returned at 1:42. At that time, the camp was still peaceful, and there were no signs of university or police presence. They declared the camp open, and instructed everyone who participates in the demonstration to abide by their community guidelines.
 
