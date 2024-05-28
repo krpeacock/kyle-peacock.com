@@ -11,6 +11,7 @@ function SEO(props) {
     <StaticQuery
       query={detailsQuery}
       render={(data) => {
+        console.log(props);
         const metaDescription =
           description ||
           data.site.siteMetadata.description ||
@@ -22,6 +23,16 @@ function SEO(props) {
             }}
             title={title}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+            link={
+              props.canonical
+                ? [
+                    {
+                      rel: "canonical",
+                      href: props.canonical,
+                    },
+                  ]
+                : null
+            }
             meta={[
               {
                 name: `description`,
@@ -38,22 +49,6 @@ function SEO(props) {
               {
                 property: `og:type`,
                 content: `website`,
-              },
-              {
-                name: `twitter:card`,
-                content: `summary`,
-              },
-              {
-                name: `twitter:creator`,
-                content: "kylpeacock",
-              },
-              {
-                name: `twitter:title`,
-                content: title,
-              },
-              {
-                name: `twitter:description`,
-                content: metaDescription,
               },
               {
                 name: `og:image`,
@@ -92,6 +87,7 @@ SEO.propTypes = {
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
+  canonical: PropTypes.string,
 };
 
 export default SEO;

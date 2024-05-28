@@ -157,6 +157,15 @@ const Layout = ({ children, pageContext, location }) => {
   const [visits, setVisits] = React.useState(null);
   const [mode, setMode] = useState(parsed?.mode || "dark");
   const [loaded, setLoaded] = useState(false);
+  let canonical;
+  if (location && location !== undefined) {
+    canonical = location?.href?.replace(
+      location?.origin,
+      "https://kaipeacock.com"
+    );
+  }
+
+  console.log(canonical);
 
   useEffect(() => {
     const defaultMode =
@@ -195,7 +204,7 @@ const Layout = ({ children, pageContext, location }) => {
     <ErrorBoundary>
       <MDXProvider>
         {pageContext?.frontmatter?.title ? (
-          <SEO {...pageContext?.frontmatter} />
+          <SEO {...pageContext?.frontmatter} canonical={canonical} />
         ) : null}
         <GlobalStyle mode={mode} capitalize={!!pageContext?.frontmatter} />
 
