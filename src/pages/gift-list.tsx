@@ -150,16 +150,6 @@ const GiftList = ({ location }) => {
       <h2>Clothing</h2>
       <Section>
         <GiftItem
-          link="https://www.curatorsf.com/collections/bottoms/products/jessie-skirt-oat-black-stripe?variant=41396930379835"
-          linkText="Curator"
-          image="https://www.curatorsf.com/cdn/shop/files/jessie_skirt_oat_leo_pointelle_fog_cassia_1_web_1195x1792.jpg?v=1691036968"
-          id="jessie-skirt"
-          description="Size 2XL in Oat + Black Stripe"
-          price={168}
-          title="Curator Jessie Skirt"
-          alt="jessie-skirt"
-        />
-        <GiftItem
           link="https://cuyana.com/products/silk-asymmetrical-skirt?variant=44393458696507"
           linkText="Cuyana"
           image="https://cuyana.com/cdn/shop/products/sp19_silkasymmetricalskirt_black_0041-hero_900x900.jpg?v=1687317337"
@@ -169,59 +159,31 @@ const GiftList = ({ location }) => {
           title="Cuyana Silk Asymmetrical Skirt"
           alt="silk-skirt"
         />
-        <GiftItem
-          link="https://www.threadandsprout.com/made-to-order"
-          linkText="Thread & Sprout"
-          image="https://images.squarespace-cdn.com/content/v1/5c54e85b809d8e2901b05b83/1675795581299-F3PKOKSJKWDLKJ15JQH3/Blundstone+Photos-6.jpg?format=750w"
-          id="thread-and-sprout"
-          description="Made to order dress (may not be available before birthday / christmas)"
-          price={340}
-          title="Thread & Sprout Dress"
-          alt="thread-and-sprout"
-        />
-        <GiftItem
-          link="https://cuyana.com/products/convertible-puffer-jacket?variant=44838255722811"
-          linkText="Cuyana"
-          image="https://cuyana.com/cdn/shop/files/PDP_Hero_1080x1350_FA23_ConvertiblePufferJacket_Black_2367_1000x.jpg?v=1695320246"
-          id="puffer"
-          description="Size XL in Black"
-          price={398}
-          title="Cuyana Puffer Jacket"
-          alt="puffer"
-        />
       </Section>
-      <h2>Games & Stuff</h2>
+
+      <h2>Home</h2>
       <Section>
         <GiftItem
-          link="https://www.amazon.com/NUC11PAHi7-Computer-i7-1165G7-Processor-Thunderbolt/dp/B09WRH6C1S/ref=sr_1_9?keywords=intel%2Bnuc%2Bi7&qid=1701013138&sr=8-9&th=1"
+          link="https://www.amazon.com/dp/B088DNK94C"
           linkText="Amazon"
-          image="https://m.media-amazon.com/images/I/610nMq+4uEL._AC_SX679_.jpg"
-          id="nuc"
-          description="Micro PC for Media Console"
-          price={549}
-          title="Intel NUC 11 Performance Kit"
-          alt="nuc"
+          image="https://m.media-amazon.com/images/I/51TNjnnt1cL._AC_SL1077_.jpg"
+          id="icecream"
+          description="Insulated Ice Cream Bowls"
+          price={26}
+          title="Insulated Ice Cream Bowls"
+          alt="icecream"
         />
-        <GiftItem
-          link="https://www.nintendo.com/us/store/products/super-mario-rpg-118738/"
-          linkText="Nintendo"
-          image="https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/My%20Nintendo%20Store/EN-US/Nintendo%20Switch%20Software/super-mario-rpg-118738/118738-switch-super-mario-rpg-1200x675"
-          id="super-mario-rpg"
-          description="Super Mario RPG for Nintendo Switch (physical preferred)"
-          price={60}
-          title="Super Mario RPG"
-          alt="super-mario-rpg"
-        />
+      </Section>
 
+      <h2>Games</h2>
+      <Section>
         <GiftItem
-          link="https://store.steampowered.com/app/1888160/ARMORED_CORE_VI_FIRES_OF_RUBICON/"
-          linkText="Steam"
-          image="https://upload.wikimedia.org/wikipedia/en/8/89/Armored_Core_VI_Fires_of_Rubicon_cover_art.jpg"
-          id="armored-core"
-          description="Armored Core for PC"
-          price={60}
-          title="Armored Core IV: Fires of Rubicon"
-          alt="armored-core"
+          link="https://store.steampowered.com/app/2457220/Avowed/"
+          image="https://www.digitaltrends.com/wp-content/uploads/2024/01/Avowed-key-art-1.jpg?fit=1920%2C1080&p=1"
+          id="avowed"
+          description="New Obsidian games RPG"
+          title="Avowed"
+          alt="avowed"
         />
       </Section>
 
