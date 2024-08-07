@@ -159,6 +159,36 @@ const GiftList = ({ location }) => {
           title="Cuyana Silk Asymmetrical Skirt"
           alt="silk-skirt"
         />
+        <GiftItem
+          link="https://www.fluevog.com/shop/5281-gladstone-black?item=9&of=32&anchor=true"
+          linkText="Fluevog"
+          image="https://www.fluevog.com/images/gladstone-black-mid-calf-lace-up-boot-profile-outside-colour_image-0000029889-retina_detail.webp"
+          id="gladstone-boots"
+          description="Size 11 mens / 13 womens in Black"
+          price={399}
+          title="Fluevog East End Gladstone Mid-calf lace-up boot"
+          alt="gladstone-boots"
+        />
+        <GiftItem
+          link="https://www.etsy.com/listing/772955961/genuine-leather-black-holster-with?click_key=1ab311bd2eb799929bb95ee219ec553b3d65ede8%3A772955961&click_sum=806db059&ref=shop_home_active_1&pro=1&frs=1"
+          linkText="Etsy"
+          image="https://i.etsystatic.com/6109266/r/il/3f3678/2604264544/il_1588xN.2604264544_3aek.jpg"
+          id="leather-holster"
+          description="holster in black"
+          price={260}
+          title="Leather Holster"
+          alt="leather-holster"
+        />
+        <GiftItem
+          link="https://shop.spookyhaus.com/products/trans-symbol-earrings"
+          linkText="Spooky Haus"
+          image="https://shop.spookyhaus.com/cdn/shop/files/Brightness_Contrast1.png?v=1714455332"
+          id="trans-earrings"
+          description="Earrings from my friends at Spooky Haus"
+          price={28}
+          title="Glitzy Trans Symbol Earrings"
+          alt="trans earrings"
+        />
       </Section>
 
       <h2>Home</h2>
@@ -172,6 +202,16 @@ const GiftList = ({ location }) => {
           price={26}
           title="Insulated Ice Cream Bowls"
           alt="icecream"
+        />
+        <GiftItem
+          link="https://yetch.store/products/small-coat-hinger-bracket-kit-pre-order"
+          linkText="Yetch"
+          image="https://imgproxy.fourthwall.com/Ea-Z8ga5kjvCmdWlPYUG90MMOVz9fI8hr4mzMQaaS1s/sm:1/enc/ZWVlMGFlOGE5ODk3/ODQ0ODWLM3OwT6iV/ZH6UeHSku1ukWmPA/09f_rAAKlM5CnqcC/e1EihE2gGHmdBGs7/NV7BRMF2dtmp9FxL/Eq_KoE9EdSJvc--F/z287Yre8FMsZ4m1M/6KbB0xRJcqrLgAfb/99OUlTvUIYSUCA4-/wp29LmCgh2EuRZS5/dSDWbtsRjQxUinfs/znde6LTjuFRTUGgY/IxQX-Q.webp"
+          id="coat-hanger"
+          description="Neat little space-saving coat hanger from Simone Giertz"
+          price={150}
+          title="Yetch Coat Hinger"
+          alt="coat-hanger"
         />
       </Section>
 
