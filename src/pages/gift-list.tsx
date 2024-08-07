@@ -216,7 +216,7 @@ const GiftList = ({ location }) => {
         <GiftItem
           link="https://www.amazon.com/dp/B08G8RG8Q8/ref=emc_bcc_2_i?th=1"
           linkText="Amazon"
-          image="https://m.media-amazon.com/images/G/01/apparel/rcxgs/tile._CB483369110_.gif"
+          image="https://m.media-amazon.com/images/I/71JHo8dEyYL._AC_SX679_.jpg"
           id="ladder"
           description="gotta get up high"
           price={113}
