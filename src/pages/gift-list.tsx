@@ -189,6 +189,16 @@ const GiftList = ({ location }) => {
           title="Glitzy Trans Symbol Earrings"
           alt="trans earrings"
         />
+        <GiftItem
+          link="https://mantasleep.com/products/manta-sleep-mask?variant=44473174392985"
+          linkText="Manta Sleep"
+          image="https://mantasleep.com/cdn/shop/files/PINK-Buy-Box-1_1_1400x.png?v=1718070947"
+          id="manta-mask"
+          description="Manta Sleep Mask in Pink"
+          price={35}
+          title="Manta Sleep Mask"
+          alt="manta-mask"
+        />
       </Section>
 
       <h2>Home</h2>

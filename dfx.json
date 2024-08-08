@@ -1,0 +1,11 @@
+{
+  "canisters": {
+    "gift-list": {
+      "remote": {
+        "id": {
+          "ic": "eoexx-syaaa-aaaab-qahzq-cai"
+        }
+      }
+    }
+  }
+}
