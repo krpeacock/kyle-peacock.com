@@ -199,6 +199,16 @@ const GiftList = ({ location }) => {
           title="Manta Sleep Mask"
           alt="manta-mask"
         />
+        <GiftItem
+          link="https://industryofallnations.com/collections/all/products/mesh-tank-top?variant=43833876807927"
+          linkText="Industry of All Nations"
+          image="https://industryofallnations.com/cdn/shop/files/NETTY_TANK_UNDYED_1400x1750_crop_center.jpg?v=1721266194"
+          id="mesh-tank"
+          description="Size L - I must experience the 90 dollar tank"
+          price={90}
+          title="Mesh Tank Top"
+          alt="mesh-tank"
+        />
       </Section>
 
       <h2>Home</h2>
